@@ -13,30 +13,42 @@ class InfoPage extends StatefulWidget {
 }
 
 class _InfoPageState extends State<InfoPage> {
+
+  String ieeeDesc = "IEEE VIT is one of the most active student chapters inside Region 10 of IEEE International. "
+      "We're a diverse group of tech enthusiasts, developers and designers.";
+
+  String hacktoberfestDesc = "Hacktoberfest is open to everyone in our global community. Whether you’re a developer, "
+      "student learning to code, event host, or company of any size, you can help drive growth of open source and make"
+      " positive contributions to an ever-growing community. ";
+
+  String hacktoberfestImage = "https://hacktoberfest.digitalocean.com/assets/HF-full-logo-b05d5eb32b3f3ecc9b2240526104cf4da3187b8b61963dd9042fdc2536e4a76c.svg";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       body: Container(
         padding: EdgeInsets.all(20),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             GestureDetector(
               child: Center(
                 child: Image.asset(
-                  "assets/ieeevit.png", //IEEE image
+                  "assets/ieee.png", //IEEE image
                 ),
               ),
               onTap: () => launch('https://ieeevit.org'), //Launches the IEEE website
             ),
+            Text(ieeeDesc),
             GestureDetector(
               child: Center(
                   child: Container(
-                      child: SvgPicture.network('https://hacktoberfest.digitalocean.com/assets/HF-full-logo-b05d5eb32b3f3ecc9b2240526104cf4da3187b8b61963dd9042fdc2536e4a76c.svg'))),
+                    height: 200,
+                      child: SvgPicture.network(hacktoberfestImage))),
               onTap: () => launch('https://hacktoberfest.digitalocean.com'), //Launches Hacktoberfest site
             ),
+            Text(hacktoberfestDesc),
           ],
         ),
       ),

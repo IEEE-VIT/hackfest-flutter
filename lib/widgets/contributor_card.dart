@@ -13,20 +13,20 @@ class ContCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
-        child: ListTile(
-          title:Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text('Username: $userName'),
+        child: Column(
+          children: <Widget>[
+            SizedBox(height: 20),
+            Image.network(dispImg, height: 100),
+            SizedBox(height: 20),
+            Text('Username: $userName'),
+            SizedBox(height: 10),
               Text('$desc'),
+            SizedBox(height: 10),
               Text('WebSite: $webSite'),
-            ],
-          ),
-          leading: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.network(dispImg),
-          ),
+            SizedBox(height: 20),
+          ],
         ),
+
       ),
     );
   }

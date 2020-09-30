@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   static List<Widget> _widgetOptions = <Widget>[
     Search(), //This loads up the Search screen where the user can search for repositories on GitHub
     Contributors(), // This loads up the the Contributors card page
-    InfoPage(), // Todo Make an About Us widget
+    InfoPage(), // TODO: Make an About Us widget
   ];
 
   void _onItemTapped(int index) {
