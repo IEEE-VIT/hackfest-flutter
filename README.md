@@ -1,9 +1,8 @@
 <p align="center"><img width="40%" src="https://hacktoberfest.digitalocean.com/assets/HF-full-logo-b05d5eb32b3f3ecc9b2240526104cf4da3187b8b61963dd9042fdc2536e4a76c.svg"/></p>
 
 # Hacktoberfest 2020 with IEEE-VIT :heart:
-
-
 This app aims to simplify the process of finding repositories on GitHub, view the various contributors to the repos, and also allows the user to become a contributor to the desired project.
+
 
 Support open source software by participating in [Hacktoberfest](https://hacktoberfest.digitalocean.com) and get goodies and a free t-shirt! :yellow_heart:
 
@@ -11,8 +10,9 @@ Support open source software by participating in [Hacktoberfest](https://hacktob
 
 Kindly consider leaving a :star: if you like the repository and our organisation.
 
-## Getting Started
+> We are holding a virtual meetup, where we will be discussing OSS, GitHub and Hacktoberfest! Everyone's invited to [join](https://organize.mlh.io/participants/events/4373-ieee-vit-hacktoberfest-online-meetup) :smile: 
 
+## Getting Started
 * Fork it.
 
 * Clone your forked repo and move inside it:
@@ -40,6 +40,7 @@ Run the following commands from the root of the project directory:
 `git push origin <my-amazing-feature>`
 
 Open your forked repo in your browser and then raise a PR to the `master` branch of this repository!
+
 
 
 ## Contributing
