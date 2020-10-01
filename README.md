@@ -1,31 +1,17 @@
 <p align="center"><img width="40%" src="https://hacktoberfest.digitalocean.com/assets/HF-full-logo-b05d5eb32b3f3ecc9b2240526104cf4da3187b8b61963dd9042fdc2536e4a76c.svg"/></p>
 
-​
-
 # Hacktoberfest 2020 with IEEE-VIT :heart:
 
----
 
 This app aims to simplify the process of finding repositories on GitHub, view the various contributors to the repos, and also allows the user to become a contributor to the desired project.
 
-​
-
 Support open source software by participating in [Hacktoberfest](https://hacktoberfest.digitalocean.com) and get goodies and a free t-shirt! :yellow_heart:
-
-
-​
 
 > Please check all issues labelled as `hacktoberfest` to start contributing!
 
-​
-
 Kindly consider leaving a :star: if you like the repository and our organisation.
 
-​
-
 ## Getting Started
-
----
 
 * Fork it.
 
@@ -36,7 +22,6 @@ Kindly consider leaving a :star: if you like the repository and our organisation
 * Checkout to a new branch to work on an issue:
 
 `git checkout -b my-amazing-feature`
-
 
 
 * Now you can open the project.
@@ -59,14 +44,8 @@ Open your forked repo in your browser and then raise a PR to the `master` branch
 
 ## Contributing
 
----
-
-To start contributing, check out [CONTRIBUTING.md](https://github.com/IEEE-VIT/Github-Flutter/blob/master/CONTRIBUTING.md). New contributors are always welcome to support this project. If you want something gentle to start with, check out issues labelled as `easy` or `good-first-issue` Check out issues labelled as `hacktoberfest` if you are up for some grabs! :) 
-
-​
+To start contributing, check out [CONTRIBUTING.md](https://github.com/IEEE-VIT/hacktoberfest-flutter/blob/master/CONTRIBUTING.md). New contributors are always welcome to support this project. If you want something gentle to start with, check out issues labelled as `easy` or `good-first-issue` Check out issues labelled as `hacktoberfest` if you are up for some grabs! :) 
 
 ## License
 
----
-
-This project is licensed under [MIT](https://github.com/IEEE-VIT/Github-Flutter/blob/master/LICENSE)
+This project is licensed under [MIT](https://github.com/IEEE-VIT/hacktoberfest-flutter/blob/master/LICENSE)
