@@ -18,7 +18,7 @@ class _ContributorsState extends State<Contributors> {
   bool val;
   List <ContributorCard> cardList = [
     ContributorCard(userName:'Contributor 1',desc:'xyz',displayImgUrl:'https://www.cnam.ca/wp-content/uploads/2018/06/default-profile.gif',website: 'www.abc.com'),
-    ContributorCard(userName:'Contributor 2',desc:'new',displayImgUrl:'https://www.google.com/url?sa=i&url=https%3A%2F%2Fk2partnering.com%2Fthe-team%2Fattachment%2Fbusiness-man-icon-vector-eps%2F&psig=AOvVaw3qdGI_151iKavkLR6RtcTP&ust=1601662117290000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCND3uMH-k-wCFQAAAAAdAAAAABAD',website: 'www.pqr.com'),
+    ContributorCard(userName:'Contributor 2',desc:'new',displayImgUrl:'https://user-images.githubusercontent.com/32811341/94847373-229c0380-0440-11eb-9d6f-0cc95ca1495c.jpg',website: 'www.pqr.com'),
   ];
 @override
   void initState() {
