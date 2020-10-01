@@ -39,24 +39,11 @@ Kindly consider leaving a :star: if you like the repository and our organisation
 
 
 
-* Load Android Studio and select 'Check out Project' from Version Control.
+* Now you can open the project.
 
+* Run `flutter pub get` in the project terminal and get the dependencies.
 
-
-* Select GitHub from the drop down list.
-
-
-
-
-* Enter your GitHub credentials. Then click Login.
-
-
-
-* Fill out the Clone Repository form and click Clone.
-
-
-
-* Open the project
+* Use `flutter run debug` to install the app.
 
 * Once you're all done coding, it's time to open a PR :)
 Run the following commands from the root of the project directory:
