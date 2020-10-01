@@ -43,7 +43,7 @@ Kindly consider leaving a :star: if you like the repository and our organisation
 
 * Run `flutter pub get` in the project terminal and get the dependencies.
 
-* Use `flutter run debug` to install the app.
+* Use `flutter run debug` to run the app in your local emulator.
 
 * Once you're all done coding, it's time to open a PR :)
 Run the following commands from the root of the project directory:
