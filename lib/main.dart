@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'routes.dart';
 import 'screens/home_page.dart';
 void main() {

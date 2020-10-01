@@ -26,6 +26,7 @@ class _InfoPageState extends State<InfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[800],
       body: Container(
         padding: EdgeInsets.all(20),
         child: Column(
@@ -34,13 +35,23 @@ class _InfoPageState extends State<InfoPage> {
           children: [
             GestureDetector(
               child: Center(
-                child: Image.asset(
-                  "assets/ieee.png", //IEEE image
-                ),
+                child: Text('IEEE',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w800,
+                    fontSize: 60,
+                    color: Colors.pink[200]
+                  ),
+                )
               ),
               onTap: () => launch('https://ieeevit.org'), //Launches the IEEE website
             ),
-            Text(ieeeDesc),
+            Text(ieeeDesc,
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.indigo[100],
+                
+              ),
+            ),
             GestureDetector(
               child: Center(
                   child: Container(
@@ -48,7 +59,11 @@ class _InfoPageState extends State<InfoPage> {
                       child: SvgPicture.network(hacktoberfestImage))),
               onTap: () => launch('https://hacktoberfest.digitalocean.com'), //Launches Hacktoberfest site
             ),
-            Text(hacktoberfestDesc),
+            Text(hacktoberfestDesc,
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.indigo[100],
+              ),),
           ],
         ),
       ),

@@ -11,15 +11,16 @@ class Contributors extends StatelessWidget {
   static final String routename = '/Contributors';
   //List of Contributors who have added their cards
   List <ContributorCard> cardList = [
-    ContributorCard(userName:'Contributor 1',desc:'xyz',displayImgUrl:'https://www.cnam.ca/wp-content/uploads/2018/06/default-profile.gif',website: 'www.abc.com'),
+    ContributorCard(userName:'@uditswaroopa',desc:'FLUTTER DEV',displayImgUrl:'https://avatars1.githubusercontent.com/u/65483816?s=460&u=8904420377730c0a6a0237a75de265a709d2cffe&v=4',website: 'www.sketchbyudit.com'),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[800],
       appBar: AppBar(
         title: Center(child: Text('Contributors List')),
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.blueGrey[900],
       ),
       body:Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

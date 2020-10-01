@@ -37,22 +37,24 @@ class _HomePageState extends State<HomePage> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        unselectedItemColor: Colors.grey,
+        backgroundColor: Colors.blueGrey[900],
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            title: Text('Search'),
+            label: 'Search',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.apps),
-            title: Text('Contributors'),
+            label: 'Contributors',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.info_outline),
-            title: Text('About Us'),
+            label: 'About Us'
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.blue,
         onTap: _onItemTapped,
       ),
     );

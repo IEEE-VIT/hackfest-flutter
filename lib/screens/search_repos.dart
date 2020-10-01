@@ -8,8 +8,9 @@ class Search extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[800],
       appBar: AppBar(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.blueGrey[900],
         title: Text('Search tags'),
       ),
     );

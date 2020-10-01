@@ -13,17 +13,45 @@ class ContCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
-        child: Column(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        color: Colors.blueGrey[900],
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             SizedBox(height: 20),
-            Image.network(dispImg, height: 100),
-            SizedBox(height: 20),
-            Text('Username: $userName'),
+            CircleAvatar(
+              radius: 40,
+              backgroundImage: NetworkImage(dispImg),
+            ),
             SizedBox(height: 10),
-              Text('$desc'),
-            SizedBox(height: 10),
-              Text('WebSite: $webSite'),
-            SizedBox(height: 20),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 30.0),
+                Text(userName,
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.blue,
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text('$desc',
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w800,
+                    color: Colors.indigo[100],
+                  ),),
+                SizedBox(height: 10),
+                Text('$webSite',
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.pink[400],
+
+                  ),),
+                SizedBox(height: 20),
+              ],
+            ),
           ],
         ),
 
