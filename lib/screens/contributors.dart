@@ -7,18 +7,43 @@ import 'package:flutter/material.dart';
 import '../Widgets/contributor_card.dart';
 import '../models/contributors_card_model.dart';
 
-class Contributors extends StatelessWidget {
+class Contributors extends StatefulWidget {
   static final String routename = '/Contributors';
-  //List of Contributors who have added their cards
+
+  @override
+  _ContributorsState createState() => _ContributorsState();
+}
+
+class _ContributorsState extends State<Contributors> {
+  bool val;
   List <ContributorCard> cardList = [
     ContributorCard(userName:'Contributor 1',desc:'xyz',displayImgUrl:'https://www.cnam.ca/wp-content/uploads/2018/06/default-profile.gif',website: 'www.abc.com'),
+    ContributorCard(userName:'Contributor 2',desc:'new',displayImgUrl:'https://www.google.com/url?sa=i&url=https%3A%2F%2Fk2partnering.com%2Fthe-team%2Fattachment%2Fbusiness-man-icon-vector-eps%2F&psig=AOvVaw3qdGI_151iKavkLR6RtcTP&ust=1601662117290000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCND3uMH-k-wCFQAAAAAdAAAAABAD',website: 'www.pqr.com'),
   ];
-
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    val=false;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text('Contributors List')),
+        title: Center(child: Text('Contributors List'),
+        ),  actions: <Widget>[
+        Padding(
+            padding: EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () { },
+              child: Icon(
+                Icons.track_changes,
+                size: 26.0,
+              ),
+            )
+        ),
+
+      ],
         backgroundColor: Colors.grey,
       ),
       body:Column(
@@ -33,7 +58,7 @@ class Contributors extends StatelessWidget {
               itemBuilder:(ctx , index){
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: ContCard(userName: cardList[index].userName,dispImg: cardList[index].displayImgUrl,desc: cardList[index].desc,webSite: cardList[index].website,),
+                  child:ContCard(userName: cardList[index].userName,dispImg: cardList[index].displayImgUrl,desc: cardList[index].desc,webSite: cardList[index].website,),
                 );
               }
            ),
