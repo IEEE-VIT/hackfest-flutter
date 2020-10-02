@@ -31,10 +31,10 @@ class Search extends StatelessWidget {
           children: <Widget>[
             TextField(
               decoration: InputDecoration(
-                  hintText: "Search Repository",
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8)
-                  )
+                hintText: "Search Repository",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8)
+                )
               ),
             ),
             SizedBox(
@@ -47,8 +47,8 @@ class Search extends StatelessWidget {
               child: Text(
                 "Search",
                 style: TextStyle(
-                    fontSize: 12,
-                    color: whiteColor
+                  fontSize: 12,
+                  color: whiteColor
                 ),
               ),
               color: githubButtonGreen,

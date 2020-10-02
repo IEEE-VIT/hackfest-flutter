@@ -8,6 +8,7 @@ import '../models/contributors_card_model.dart';
 import '../widgets/contributor_card.dart';
 import 'package:slimy_card/slimy_card.dart';
 
+
 class Contributors extends StatefulWidget {
   static final String routename = '/Contributors';
 
@@ -120,6 +121,7 @@ class _ContributorsState extends State<Contributors>
             );
           }
       ),
+
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black,
         child: Icon(Icons.add),
@@ -165,6 +167,3 @@ addToContributors() {
   // Ask the user to enter the details
   // Adds the user to contributors list
 }
-
-
-
