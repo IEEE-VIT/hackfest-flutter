@@ -41,11 +41,18 @@ class Card extends StatelessWidget {
 
           decoration:  BoxDecoration(
             color: Colors.grey,
-              borderRadius:  BorderRadius.all(Radius.circular(10.0),),),
+            borderRadius:  BorderRadius.all(Radius.circular(10.0),),),
           child: Column(
             children: <Widget>[
               SizedBox(height: 20),
-              Image.network(dispImg, height: 100),
+              CircleAvatar(
+                radius: 60,
+                child: ClipOval(
+                    child: Image.network(dispImg, height: 500)
+                ),
+              ),
+
+
               SizedBox(height: 20),
               Text('Username: $userName',style: TextStyle(color: Colors.white),),
               SizedBox(height: 10),
@@ -75,6 +82,7 @@ class Card extends StatelessWidget {
     );
   }
 }
+
 
 
 
