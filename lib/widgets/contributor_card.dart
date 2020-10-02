@@ -40,7 +40,7 @@ class Card extends StatelessWidget {
         child: Container(
 
           decoration:  BoxDecoration(
-            color: Colors.grey,
+            color: Colors.blueGrey,
             borderRadius:  BorderRadius.all(Radius.circular(10.0),),),
           child: Column(
             children: <Widget>[
@@ -65,7 +65,7 @@ class Card extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Container(
           decoration:  BoxDecoration(
-            color: Colors.grey,
+            color: Colors.blueGrey,
             borderRadius:  BorderRadius.all(Radius.circular(10.0),),),
           child: Column(
             children: <Widget>[
