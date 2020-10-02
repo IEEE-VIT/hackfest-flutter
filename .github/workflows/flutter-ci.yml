@@ -2,8 +2,9 @@ name: Flutter CI
 
 on:
   pull_request:
-    branches: [ master ]
-      types: [closed]
+    branches:
+      - master
+    types: [closed]
 
 env:
   flutter_version: "1.20.4"
@@ -11,7 +12,7 @@ env:
 
 jobs:
   format-and-lint:
-  if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     name: formatting and code linting
     runs-on: ubuntu-latest
     steps:
