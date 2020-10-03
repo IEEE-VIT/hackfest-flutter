@@ -1,7 +1,3 @@
-/*
-  This file  contains the Navigation bar which helps the user navigate through the various pages of app
-*/
-
 import 'package:flutter/material.dart';
 import 'info_page.dart';
 import 'contributors.dart';
@@ -22,6 +18,7 @@ class _HomePageState extends State<HomePage> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        backgroundColor: Colors.blueGrey[600],
         body: TabBarView(
           children: [
             Search(), //This loads up the Search screen where the user can search for repositories on GitHub
@@ -30,18 +27,19 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         bottomNavigationBar: TabBar(
-          labelColor: Colors.amber[800],
+          
+          labelColor: Colors.white70,
           unselectedLabelColor: Colors.black,
-          indicatorSize: TabBarIndicatorSize.label,
-          indicatorPadding: EdgeInsets.all(5.0),
-          indicatorColor: Colors.red,
+          // indicatorSize: TabBarIndicatorSize.label,
+          // indicatorPadding: EdgeInsets.all(1.0),
+          // indicatorColor: Colors.red,
           tabs: [
             Tab(
               icon: Icon(Icons.search),
               child: Text('Search'),
             ),
             Tab(
-              icon: Icon(Icons.rss_feed),
+              icon: Icon(Icons.people_outline),
               child: Text('Contributors'),
             ),
             Tab(
