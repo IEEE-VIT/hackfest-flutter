@@ -1,4 +1,3 @@
-//Add all colors used throughout the code here for easy access
 
 import 'package:flutter/material.dart';
 

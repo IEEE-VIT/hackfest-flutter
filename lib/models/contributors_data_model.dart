@@ -95,3 +95,4 @@ class Contributor {
         "contributions": contributions == null ? null : contributions,
     };
 }
+

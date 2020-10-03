@@ -65,6 +65,5 @@ getRepos(){
 // This function will be triggered when the user hits search on the search bar
 // Depending on the the text in the TextField make an API call to the GitHub API.
 // Send the tag which the user input in the search bar as an argument.
-// Get the list of repos with matcching tag  and add them to a list of cards.  
+// Get the list of repos with matcching tag  and add them to a list of cards.
 }
-
