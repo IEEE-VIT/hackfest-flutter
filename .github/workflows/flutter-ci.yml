@@ -15,7 +15,6 @@ env:
 
 jobs:
   format-and-lint:
-
     name: formatting and code linting
     runs-on: ubuntu-latest
     steps:
