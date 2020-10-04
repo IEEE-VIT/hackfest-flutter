@@ -2,17 +2,19 @@
 
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
+
 class ContCard extends StatelessWidget {
   final String userName;
   final String dispImg;
   final String desc;
   final String webSite;
-  ContCard({this.desc,this.userName,this.dispImg,this.webSite});
+  ContCard({this.desc, this.userName, this.dispImg, this.webSite});
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Card(dispImg: dispImg, userName: userName, desc: desc, webSite: webSite),
+      child: Card(
+          dispImg: dispImg, userName: userName, desc: desc, webSite: webSite),
     );
   }
 }
@@ -28,7 +30,7 @@ class Card extends StatelessWidget {
 
   final String dispImg;
   final String userName;
-  final String desc;
+  final String desc; 
   final String webSite;
 
   @override
@@ -36,27 +38,27 @@ class Card extends StatelessWidget {
     return FlipCard(
       direction: FlipDirection.HORIZONTAL, // default
       front: Padding(
-        padding: const EdgeInsets.only(left:6,right: 6),
+        padding: const EdgeInsets.only(left: 6, right: 6),
         child: Container(
-
-          decoration:  BoxDecoration(
+          decoration: BoxDecoration(
             color: Colors.blueGrey,
-            borderRadius:  BorderRadius.all(Radius.circular(10.0),),),
+            borderRadius: BorderRadius.all(
+              Radius.circular(10.0),
+            ),
+          ),
           child: Column(
             children: <Widget>[
               SizedBox(height: 20),
               CircleAvatar(
                 radius: 60,
-                child: ClipOval(
-                    child: Image.network(dispImg, height: 500)
-                ),
+                child: ClipOval(child: Image.network(dispImg, height: 500)),
               ),
-
-
               SizedBox(height: 20),
-              Text('Username: $userName',style: TextStyle(color: Colors.white),),
+              Text(
+                'Username: $userName',
+                style: TextStyle(color: Colors.blue),
+              ),
               SizedBox(height: 10),
-
             ],
           ),
         ),
@@ -64,16 +66,24 @@ class Card extends StatelessWidget {
       back: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          decoration:  BoxDecoration(
+          decoration: BoxDecoration(
             color: Colors.blueGrey,
-            borderRadius:  BorderRadius.all(Radius.circular(10.0),),),
+            borderRadius: BorderRadius.all(
+              Radius.circular(10.0),
+            ),
+          ),
           child: Column(
             children: <Widget>[
-
               SizedBox(height: 40),
-              Text('$desc',style: TextStyle(color: Colors.white),),
+              Text(
+                '$desc',
+                style: TextStyle(color: Colors.white),
+              ),
               SizedBox(height: 40),
-              Text('WebSite: $webSite',style: TextStyle(color: Colors.white),),
+              Text(
+                'WebSite: $webSite',
+                style: TextStyle(color: Colors.white),
+              ),
               SizedBox(height: 70),
             ],
           ),
@@ -82,7 +92,3 @@ class Card extends StatelessWidget {
     );
   }
 }
-
-
-
-
