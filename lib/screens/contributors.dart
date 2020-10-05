@@ -4,7 +4,6 @@ import 'package:github_flutter/models/contributor_detail_model.dart';
 import 'package:github_flutter/models/contributors_data_model.dart';
 import 'package:http/http.dart' as http;
 import '../models/contributors_card_model.dart';
-import '../widgets/contributor_card.dart';
 
 class Contributors extends StatefulWidget {
   static final String routename = '/Contributors';
