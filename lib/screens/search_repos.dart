@@ -7,7 +7,7 @@ import '../shared/colors.dart';
 
 class Search extends StatelessWidget {
   static String routename = 'Search';
-  String searchText;
+  final String searchText ='';
   @override
   Widget build(BuildContext context) {
     // Used device height and width to make responsive layout
