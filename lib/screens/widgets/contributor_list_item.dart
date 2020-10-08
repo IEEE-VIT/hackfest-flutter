@@ -5,7 +5,7 @@ import '../../models/contributors_card_model.dart';
 import '../../shared/colors.dart';
 
 class ContributorListItem extends StatelessWidget {
-  ContributorCard _contributorCard;
+  final ContributorCard _contributorCard;
 
   ContributorListItem(this._contributorCard);
 
