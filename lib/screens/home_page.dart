@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Colors.blueGrey[600],
+        backgroundColor: Colors.white,
         body: TabBarView(
           children: [
             Search(), //This loads up the Search screen where the user can search for repositories on GitHub
@@ -26,10 +26,10 @@ class _HomePageState extends State<HomePage> {
             InfoPage(), // TODO: Make an About Us widget
           ],
         ),
-        bottomNavigationBar: TabBar(
-          
-          labelColor: Colors.white70,
-          unselectedLabelColor: Colors.black,
+        
+        bottomNavigationBar: TabBar(          
+          labelColor: Colors.black,
+          unselectedLabelColor: Colors.grey[400],
           // indicatorSize: TabBarIndicatorSize.label,
           // indicatorPadding: EdgeInsets.all(1.0),
           // indicatorColor: Colors.red,
