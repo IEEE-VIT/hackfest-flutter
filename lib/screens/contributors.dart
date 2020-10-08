@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:github_flutter/models/contributor_detail_model.dart';
 import 'package:github_flutter/models/contributors_data_model.dart';
 import 'package:github_flutter/screens/widgets/contributor_list_item.dart';
-import 'package:github_flutter/shared/colors.dart';
 import 'package:http/http.dart' as http;
-import 'package:url_launcher/url_launcher.dart';
 import 'package:github_flutter/models/contributors_card_model.dart';
 
 class Contributors extends StatefulWidget {
