@@ -30,7 +30,7 @@ class _ContributorsState extends State<Contributors>
   // ignore: must_call_super
   Widget build(BuildContext context) {
     // Used device height and width to make responsive layout
-    final _deviceWidth = MediaQuery.of(context).size.width;
+    //final _deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: Colors.grey[100],
