@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:github_flutter/custom/slimycard.dart';
 import 'package:github_flutter/models/contributor_detail_model.dart';
 import 'package:github_flutter/models/contributors_data_model.dart';
 import 'package:github_flutter/shared/colors.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
-import '../models/contributors_card_model.dart';
+import 'package:github_flutter/models/contributors_card_model.dart';
 
 class Contributors extends StatefulWidget {
   static final String routename = '/Contributors';
@@ -35,12 +34,35 @@ class _ContributorsState extends State<Contributors>
     final _deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Colors.blueGrey[900],
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey[800],
+        elevation: 5.0,
+        shadowColor: Colors.black26,
+        backgroundColor: Colors.white,
         centerTitle: true,
-        title: Center(
-          child: Text('Contributors List'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Contributors List',
+              style: TextStyle(color: Colors.black),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Container(
+              height: 30,
+              width: 30,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: Colors.blueAccent,
+                  borderRadius: BorderRadius.circular(50)),
+              child: Text(
+                cardList.length.toString(),
+                style: TextStyle(fontSize: 14),
+              ),
+            )
+          ],
         ),
       ),
       body: cardList.isEmpty
@@ -53,85 +75,159 @@ class _ContributorsState extends State<Contributors>
               itemCount: cardList.length,
               itemBuilder: (ctx, index) {
                 return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SlimyCard(
-                    color: Colors.blueGrey[800],
-                    width: 200,
-                    topCardHeight: 200,
-                    bottomCardHeight: 100,
-                    borderRadius: 15,
-                    slimeEnabled: false,
-                    topCardWidget: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Container(
-                          height: 90,
-                          width: 90,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(50),
-                            image: DecorationImage(
-                                image: NetworkImage(
-                              cardList[index].displayImgUrl,
-                            )),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 20,
-                                spreadRadius: 1,
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white),
+                      padding: EdgeInsets.all(10),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              CircleAvatar(
+                                radius: 35,
+                                backgroundImage:
+                                    NetworkImage(cardList[index].displayImgUrl),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 15.0),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    _launchURL(cardList[index].website);
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            hactoberViolet,
+                                            hacktoberPink
+                                          ],
+                                          begin: Alignment.centerLeft,
+                                          end: Alignment.centerRight,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(30.0)),
+                                    child: Container(
+                                      constraints: BoxConstraints(
+                                          maxWidth: _deviceWidth / 5,
+                                          minHeight: 30.0),
+                                      alignment: Alignment.center,
+                                      child: const Text(
+                                        "View Profile",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 10),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
-                        ),
-                        SizedBox(height: 15),
-                        Text(cardList[index].userName,
-                            style: TextStyle(
-                                color: Colors.blue[300], fontSize: 17)),
-                        SizedBox(height: 35),
-                      ],
-                    ),
-                    bottomCardWidget: Column(
-                      children: [
-                        Text(
-                          cardList[index].desc,
-                          style: TextStyle(
-                            color: Colors.blue[300],
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
+                          SizedBox(
+                            width: 20,
                           ),
-                          textAlign: TextAlign.center,
-                        ),
-                        RaisedButton(
-                          onPressed: () {
-                            _launchURL(cardList[index].website);
-                          },
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(80.0)),
-                          padding: EdgeInsets.all(0.0),
-                          child: Ink(
-                            decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [hactoberViolet, hacktoberPink],
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
-                                ),
-                                borderRadius: BorderRadius.circular(30.0)),
-                            child: Container(
-                              constraints: BoxConstraints(
-                                  maxWidth: _deviceWidth / 3, minHeight: 40.0),
-                              alignment: Alignment.center,
-                              child: const Text(
-                                "View Profile",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.white),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              cardList[index].name.isNotEmpty
+                                  ? Text(
+                                      cardList[index].name,
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 14),
+                                    )
+                                  : SizedBox(),
+                              Text(
+                                cardList[index].userName,
+                                style: TextStyle(
+                                    color: Colors.grey[700],
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14),
                               ),
-                            ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              SizedBox(
+                                width: _deviceWidth / 1.7,
+                                child: Text(
+                                  cardList[index].desc == ''
+                                      ? 'Contributor'
+                                      : cardList[index].desc,
+                                  style: TextStyle(
+                                    color: Colors.grey[700],
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12,
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              cardList[index].location.isNotEmpty
+                                  ? Row(
+                                      children: [
+                                        Icon(
+                                          Icons.location_on,
+                                          size: 14,
+                                        ),
+                                        Text(
+                                          cardList[index].location,
+                                          style: TextStyle(fontSize: 12),
+                                        ),
+                                      ],
+                                    )
+                                  : SizedBox(),
+                              cardList[index].location.isNotEmpty
+                                  ? SizedBox(
+                                      height: 5,
+                                    )
+                                  : SizedBox(),
+                              cardList[index].twitterUsername.isNotEmpty
+                                  ? GestureDetector(
+                                      onTap: () {
+                                        _launchURL('https://twitter.com/' +
+                                            cardList[index].twitterUsername);
+                                      },
+                                      child: Row(
+                                        children: [
+                                          SizedBox(
+                                            height: 14,
+                                            width: 14,
+                                            child: Image.network(
+                                              'https://img.icons8.com/fluent-systems-filled/344/twitter.png',
+                                              color: Colors.blueAccent,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          Icon(
+                                            Icons.alternate_email,
+                                            size: 14,
+                                            color: Colors.blueAccent,
+                                          ),
+                                          Text(
+                                            cardList[index].twitterUsername,
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                color: Colors.blueAccent),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  : SizedBox(),
+                            ],
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
+                        ],
+                      ),
+                    ));
               }),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue,
@@ -161,7 +257,10 @@ Future<List<ContributorCard>> getContributors(
     contriCards.add(
       ContributorCard(
         userName: contributor.login,
+        name: contributorDetail.name ?? '',
         desc: contributorDetail.bio ?? '',
+        location: contributorDetail.location ?? '',
+        twitterUsername: contributorDetail.twitterUsername ?? '',
         displayImgUrl: contributorDetail.avatarUrl,
         website: contributorDetail.blog.isEmpty
             ? contributorDetail.htmlUrl
