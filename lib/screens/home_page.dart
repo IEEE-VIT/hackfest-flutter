@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Search(), //This loads up the Search screen where the user can search for repositories on GitHub
             Contributors(), // This loads up the the Contributors card page
-            InfoPage(), // TODO: Make an About Us widget
+            AboutUs(), // Loads up information about IEEE
           ],
         ),
         

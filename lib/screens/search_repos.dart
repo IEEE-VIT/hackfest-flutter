@@ -2,12 +2,13 @@
 //Once a search is made, it should show the repos which have that specific tag in them.
 
 import 'package:flutter/material.dart';
+import 'package:github_flutter/screens/new_contributor_info.dart';
 
 import '../shared/colors.dart';
 
 class Search extends StatelessWidget {
   static String routename = 'Search';
-  final String searchText ='';
+  final String searchText = '';
   @override
   Widget build(BuildContext context) {
     // Used device height and width to make responsive layout
@@ -16,13 +17,16 @@ class Search extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white, 
+        backgroundColor: Colors.white,
         elevation: 5.0,
         shadowColor: Colors.black26,
         shape: const BeveledRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
-        title: const Text('Search tags', style: TextStyle(color: Colors.black),),
+        title: const Text(
+          'Search tags',
+          style: TextStyle(color: Colors.black),
+        ),
       ),
       body: Container(
         margin: EdgeInsets.symmetric(
