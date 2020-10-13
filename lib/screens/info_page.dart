@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class InfoPage extends StatefulWidget {
-  static String routename  = 'InfoPage';
+  static String routename = 'InfoPage';
   InfoPage({Key key}) : super(key: key);
 
   @override
@@ -13,7 +13,6 @@ class InfoPage extends StatefulWidget {
 }
 
 class _InfoPageState extends State<InfoPage> {
-
   String ieeeDesc = "IEEE VIT is one of the most active student chapters inside Region 10 of IEEE International. "
       "We're a diverse group of tech enthusiasts, developers and designers.";
 
@@ -26,31 +25,33 @@ class _InfoPageState extends State<InfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: ListView(
         padding: EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            GestureDetector(
-              child: Center(
-                child: Image.asset(
-                  "assets/ieee.png", //IEEE image
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              GestureDetector(
+                child: Center(
+                  child: Image.asset(
+                    "assets/ieee.png", //IEEE image
+                  ),
                 ),
+                onTap: () => launch('https://ieeevit.org'), //Launches the IEEE website
               ),
-              onTap: () => launch('https://ieeevit.org'), //Launches the IEEE website
-            ),
-            Text(ieeeDesc),
-            GestureDetector(
-              child: Center(
-                  child: Container(
-                    height: 200,
-                      child: SvgPicture.network(hacktoberfestImage))),
-              onTap: () => launch('https://hacktoberfest.digitalocean.com'), //Launches Hacktoberfest site
-            ),
-            Text(hacktoberfestDesc),
-          ],
-        ),
+              Text(ieeeDesc),
+              GestureDetector(
+                child: Center(
+                    child: Container(
+                        height: 200,
+                        child: SvgPicture.network(hacktoberfestImage))),
+                onTap: () => launch('https://hacktoberfest.digitalocean.com'), //Launches Hacktoberfest site
+              ),
+              Text(hacktoberfestDesc),
+            ],
+          ),
+        ],
       ),
     );
   }

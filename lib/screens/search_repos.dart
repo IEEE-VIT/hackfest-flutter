@@ -8,6 +8,7 @@ import '../widgets/repo_card.dart';
 class Search extends StatefulWidget {
   static String routename = 'Search';
 
+
   @override
   _SearchState createState() => _SearchState();
 }
@@ -30,6 +31,7 @@ class _SearchState extends State<Search> {
     _controller.dispose();
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
