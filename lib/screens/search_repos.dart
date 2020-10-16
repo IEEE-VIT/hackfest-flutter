@@ -127,7 +127,6 @@ class _SearchState extends State<Search> {
                 ),
               ),
             ),
-
             //This widget display the information of the repos with the help of listview
             FutureBuilder<List<dynamic>>(
               future: listOfRepos,

@@ -25,9 +25,6 @@ dependencies:
     sdk: flutter
   flutter_svg:
   url_launcher:
-  flip_card: ^0.4.4
-  expansion_card: ^0.1.0
-  slimy_card: ^1.0.4
   http: ^0.12.2
   flutter_spinkit: "^4.1.2"
 
