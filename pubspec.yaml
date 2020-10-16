@@ -26,6 +26,8 @@ dependencies:
   flutter_svg:
   url_launcher:
   http: ^0.12.2
+  flutter_spinkit: "^4.1.2"
+  slimy_card: ^1.0.4
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
