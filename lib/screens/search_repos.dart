@@ -150,12 +150,14 @@ class _SearchState extends State<Search> {
                   return Text('Error');
                 } else if (snapshot.connectionState ==
                     ConnectionState.waiting) {
-                  return Container(
-                    height: 250,
-                    child: Center(
-                      child: SpinKitFadingCube(
-                        color: Colors.grey,
-                        size: 50.0,
+                  return Expanded(
+                    child: Container(
+                      height: 250,
+                      child: Center(
+                        child: SpinKitFadingCube(
+                          color: Colors.grey,
+                          size: 50.0,
+                        ),
                       ),
                     ),
                   );

@@ -16,8 +16,8 @@ class NewRepoCard extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: SlimyCard(
         color: hactoberViolet,
-        width: 320,
-        topCardHeight: 170,
+        width: 300,
+        topCardHeight: 230,
         bottomCardHeight: 250,
         borderRadius: 15,
         topCardWidget: SingleChildScrollView(
