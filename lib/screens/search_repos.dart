@@ -192,9 +192,9 @@ class _SearchState extends State<Search> {
 //This future func get the repos data from the Github API
 //And returns the list of repos
 Future<List> getRepos(String tag) async {
-  final String BASE_URL = "https://api.github.com/search/repositories?q=" + tag;
+  final String baseURL = "https://api.github.com/search/repositories?q=" + tag;
   final response = await http
-      .get(Uri.encodeFull(BASE_URL), headers: {"Accept": "application/json"});
+      .get(Uri.encodeFull(baseURL), headers: {"Accept": "application/json"});
   if (response.statusCode == 200) {
     Map<String, dynamic> result = jsonDecode(response.body);
     List listOfRepos = result["items"];

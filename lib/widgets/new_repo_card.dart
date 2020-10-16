@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:slimy_card/slimy_card.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../shared/colors.dart';
