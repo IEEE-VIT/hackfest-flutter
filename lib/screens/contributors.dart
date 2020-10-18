@@ -37,7 +37,7 @@ class _ContributorsState extends State<Contributors>
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         elevation: 5.0,
-        shadowColor: Colors.black26,
+        //shadowColor: Colors.black26,
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Row(

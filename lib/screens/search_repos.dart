@@ -41,7 +41,7 @@ class _SearchState extends State<Search> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 5.0,
-        shadowColor: Colors.black26,
+        //shadowColor: Colors.black26,
         shape: const BeveledRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
