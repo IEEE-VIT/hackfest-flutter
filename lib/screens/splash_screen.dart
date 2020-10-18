@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:github_flutter/screens/ss2.dart';
+import 'package:github_flutter/screens/home_page.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -18,8 +18,8 @@ class Splash extends State<SplashScreen> {
   Widget build(BuildContext context) {
     Timer(
         Duration(seconds: 2),
-        () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => SplashScreen1())));
+        () => Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (BuildContext context) => HomePage())));
 
     const color = const Color(0xff13253d);
     return MaterialApp(
