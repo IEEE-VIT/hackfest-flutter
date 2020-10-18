@@ -1,9 +1,7 @@
-import 'package:animated_splash/animated_splash.dart';
 import 'package:flutter/material.dart';
 import 'package:github_flutter/screens/splash_screen.dart';
 
 import 'routes.dart';
-import 'screens/home_page.dart';
 
 void main() {
   runApp(MyApp());
