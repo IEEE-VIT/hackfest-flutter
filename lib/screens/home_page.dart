@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:github_flutter/providers/theme_provider.dart';
+import 'package:provider/provider.dart';
 import 'info_page.dart';
 import 'contributors.dart';
 import 'search_repos.dart';
@@ -18,7 +20,7 @@ class _HomePageState extends State<HomePage> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).primaryColor,
         body: TabBarView(
           children: [
             Search(), //This loads up the Search screen where the user can search for repositories on GitHub
@@ -28,7 +30,8 @@ class _HomePageState extends State<HomePage> {
         ),
         
         bottomNavigationBar: TabBar(          
-          labelColor: Colors.black,
+          labelColor: Provider.of<ThemeProvider>(context).isDarkTheme?
+          Color(0xff93C2DB):Colors.black,
           unselectedLabelColor: Colors.grey[400],
           // indicatorSize: TabBarIndicatorSize.label,
           // indicatorPadding: EdgeInsets.all(1.0),

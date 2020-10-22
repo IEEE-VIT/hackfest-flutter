@@ -12,4 +12,6 @@ Color hacktoberPurple = Color(0xFF9b4667);
 
 Color hactoberViolet = Color.fromRGBO(153, 69, 255, 1);
 
+Color darkModeHactober = Color(0xff183D5D);
+
 
