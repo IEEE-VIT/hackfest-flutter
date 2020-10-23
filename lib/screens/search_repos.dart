@@ -1,10 +1,12 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:github_flutter/providers/theme_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-
 import '../shared/colors.dart';
 import '../widgets/new_repo_card.dart';
+import 'package:provider/provider.dart';
 
 class Search extends StatefulWidget {
   static String routename = 'Search';
@@ -23,6 +25,7 @@ class _SearchState extends State<Search> {
   @override
   void initState() {
     _controller = TextEditingController();
+
     super.initState();
   }
 
@@ -39,18 +42,37 @@ class _SearchState extends State<Search> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).primaryColor,
         elevation: 5.0,
         //shadowColor: Colors.black26,
         shape: const BeveledRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
-        title: const Text(
+        actions: [
+          IconButton(
+              icon: Icon(Icons.palette,
+              color: Provider.of<ThemeProvider>(context).isDarkTheme?
+              Color(0xff93C2DB):Colors.grey
+                ,
+              ),
+              onPressed: (){
+                Provider.of<ThemeProvider>(context,listen: false).changeTheme();
+              }
+              )
+        ],
+        title: Text(
           'Search tags',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(
+              color: Theme.of(context).secondaryHeaderColor,
+          ),
         ),
       ),
       body: Container(
+        padding: EdgeInsets.all(10.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(15.0),),
+          color: Theme.of(context).primaryColor,
+        ),
         margin: EdgeInsets.symmetric(
           vertical: _deviceHeight * 0.04,
           horizontal: _deviceHeight * 0.04,

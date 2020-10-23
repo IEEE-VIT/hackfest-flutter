@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:github_flutter/models/contributor_detail_model.dart';
 import 'package:github_flutter/models/contributors_data_model.dart';
+import 'package:github_flutter/providers/theme_provider.dart';
 import 'package:github_flutter/shared/colors.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:github_flutter/models/contributors_card_model.dart';
 
@@ -34,18 +36,17 @@ class _ContributorsState extends State<Contributors>
     final _deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Colors.grey[100],
       appBar: AppBar(
         elevation: 5.0,
         //shadowColor: Colors.black26,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).primaryColor,
         centerTitle: true,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               'Contributors List',
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(color: Theme.of(context).secondaryHeaderColor,),
             ),
             SizedBox(
               width: 10,
@@ -79,7 +80,7 @@ class _ContributorsState extends State<Contributors>
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Colors.white),
+                          color: Theme.of(context).primaryColor),
                       padding: EdgeInsets.all(10),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,7 +138,7 @@ class _ContributorsState extends State<Contributors>
                                   ? Text(
                                       cardList[index].name,
                                       style: TextStyle(
-                                          color: Colors.black,
+                                          color: Theme.of(context).secondaryHeaderColor,
                                           fontWeight: FontWeight.w700,
                                           fontSize: 14),
                                     )
@@ -145,7 +146,7 @@ class _ContributorsState extends State<Contributors>
                               Text(
                                 cardList[index].userName,
                                 style: TextStyle(
-                                    color: Colors.grey[700],
+                                    color: Provider.of<ThemeProvider>(context).isDarkTheme?Colors.white.withOpacity(0.7):Colors.grey[700],
                                     fontWeight: FontWeight.w400,
                                     fontSize: 14),
                               ),
@@ -159,7 +160,7 @@ class _ContributorsState extends State<Contributors>
                                       ? 'Contributor'
                                       : cardList[index].desc,
                                   style: TextStyle(
-                                    color: Colors.grey[700],
+                                    color: Provider.of<ThemeProvider>(context).isDarkTheme?Colors.white.withOpacity(0.7):Colors.grey[700],
                                     fontWeight: FontWeight.w400,
                                     fontSize: 12,
                                   ),
@@ -176,10 +177,13 @@ class _ContributorsState extends State<Contributors>
                                         Icon(
                                           Icons.location_on,
                                           size: 14,
+                                          color: Provider.of<ThemeProvider>(context).isDarkTheme?Colors.white:Colors.black,
                                         ),
                                         Text(
                                           cardList[index].location,
-                                          style: TextStyle(fontSize: 12),
+                                          style: TextStyle(fontSize: 12,
+                                            color: Provider.of<ThemeProvider>(context).isDarkTheme?Colors.white:Colors.black,
+                                          ),
                                         ),
                                       ],
                                     )
