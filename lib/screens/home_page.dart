@@ -1,10 +1,11 @@
+import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:github_flutter/providers/theme_provider.dart';
+import 'package:github_flutter/screens/search_view.dart';
 import 'package:provider/provider.dart';
 import 'info_page.dart';
 import 'contributors.dart';
 import 'search_repos.dart';
-
 
 class HomePage extends StatefulWidget {
   static String routename = 'HomePage';
@@ -23,30 +24,31 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Theme.of(context).primaryColor,
         body: TabBarView(
           children: [
-            Search(), //This loads up the Search screen where the user can search for repositories on GitHub
+            SearchView(),
+            // Search(), //This loads up the Search screen where the user can search for repositories on GitHub
             Contributors(), // This loads up the the Contributors card page
             InfoPage(), // TODO: Make an About Us widget
           ],
         ),
-        
-        bottomNavigationBar: TabBar(          
-          labelColor: Provider.of<ThemeProvider>(context).isDarkTheme?
-          Color(0xff93C2DB):Colors.black,
+        bottomNavigationBar: TabBar(
+          labelColor: Provider.of<ThemeProvider>(context).isDarkTheme
+              ? Color(0xff93C2DB)
+              : Colors.black,
           unselectedLabelColor: Colors.grey[400],
           // indicatorSize: TabBarIndicatorSize.label,
           // indicatorPadding: EdgeInsets.all(1.0),
           // indicatorColor: Colors.red,
           tabs: [
             Tab(
-              icon: Icon(Icons.search),
+              icon: Icon(FeatherIcons.search),
               child: Text('Search'),
             ),
             Tab(
-              icon: Icon(Icons.people_outline),
+              icon: Icon(FeatherIcons.users),
               child: Text('Contributors'),
             ),
             Tab(
-              icon: Icon(Icons.info_outline),
+              icon: Icon(FeatherIcons.info),
               child: Text('About Us'),
             ),
           ],

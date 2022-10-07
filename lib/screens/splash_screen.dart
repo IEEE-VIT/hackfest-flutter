@@ -1,7 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:github_flutter/constants/assets.dart';
+import 'package:github_flutter/providers/theme_provider.dart';
 import 'package:github_flutter/screens/home_page.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -27,9 +30,11 @@ class Splash extends State<SplashScreen> {
       home: Scaffold(
         body: Container(
           decoration: new BoxDecoration(color: color),
-          child: new Center(
+          padding: const EdgeInsets.all(20),
+          child: Center(
             child: Image.asset(
-              "assets/htbf.png",
+              Assets.logo,
+              color: Colors.white,
             ),
           ),
         ),

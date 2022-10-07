@@ -50,27 +50,30 @@ class _SearchState extends State<Search> {
         ),
         actions: [
           IconButton(
-              icon: Icon(Icons.palette,
-              color: Provider.of<ThemeProvider>(context).isDarkTheme?
-              Color(0xff93C2DB):Colors.grey
-                ,
+              icon: Icon(
+                Icons.palette,
+                color: Provider.of<ThemeProvider>(context).isDarkTheme
+                    ? Color(0xff93C2DB)
+                    : Colors.grey,
               ),
-              onPressed: (){
-                Provider.of<ThemeProvider>(context,listen: false).changeTheme();
-              }
-              )
+              onPressed: () {
+                Provider.of<ThemeProvider>(context, listen: false)
+                    .changeTheme();
+              })
         ],
         title: Text(
           'Search tags',
           style: TextStyle(
-              color: Theme.of(context).secondaryHeaderColor,
+            color: Theme.of(context).secondaryHeaderColor,
           ),
         ),
       ),
       body: Container(
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(15.0),),
+          borderRadius: BorderRadius.all(
+            Radius.circular(15.0),
+          ),
           color: Theme.of(context).primaryColor,
         ),
         margin: EdgeInsets.symmetric(
