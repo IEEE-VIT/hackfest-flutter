@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:github_flutter/models/contributor_detail_model.dart';
-import 'package:github_flutter/models/contributors_data_model.dart';
-import 'package:github_flutter/providers/theme_provider.dart';
-import 'package:github_flutter/shared/colors.dart';
+import 'package:hacktoberfest_flutter/models/contributor_detail_model.dart';
+import 'package:hacktoberfest_flutter/models/contributors_data_model.dart';
+import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
+import 'package:hacktoberfest_flutter/shared/colors.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:github_flutter/models/contributors_card_model.dart';
+import 'package:hacktoberfest_flutter/models/contributors_card_model.dart';
 
 class Contributors extends StatefulWidget {
-  static final String routename = '/Contributors';
+  static const String routename = '/Contributors';
+
+  const Contributors({super.key});
 
   @override
-  _ContributorsState createState() => _ContributorsState();
+  State<Contributors> createState() => _ContributorsState();
 }
 
 class _ContributorsState extends State<Contributors>
@@ -33,7 +35,7 @@ class _ContributorsState extends State<Contributors>
   // ignore: must_call_super
   Widget build(BuildContext context) {
     // Used device height and width to make responsive layout
-    final _deviceWidth = MediaQuery.of(context).size.width;
+    final deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       appBar: AppBar(
@@ -46,9 +48,11 @@ class _ContributorsState extends State<Contributors>
           children: [
             Text(
               'Contributors List',
-              style: TextStyle(color: Theme.of(context).secondaryHeaderColor,),
+              style: TextStyle(
+                color: Theme.of(context).secondaryHeaderColor,
+              ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Container(
@@ -60,14 +64,14 @@ class _ContributorsState extends State<Contributors>
                   borderRadius: BorderRadius.circular(50)),
               child: Text(
                 cardList.length.toString(),
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
               ),
             )
           ],
         ),
       ),
       body: cardList.isEmpty
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
               // Get the List of contributors to the project from the GitHub Api
               // Append the details of the card to the cardList
@@ -81,7 +85,7 @@ class _ContributorsState extends State<Contributors>
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: Theme.of(context).primaryColor),
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -113,7 +117,7 @@ class _ContributorsState extends State<Contributors>
                                             BorderRadius.circular(30.0)),
                                     child: Container(
                                       constraints: BoxConstraints(
-                                          maxWidth: _deviceWidth / 5,
+                                          maxWidth: deviceWidth / 5,
                                           minHeight: 30.0),
                                       alignment: Alignment.center,
                                       child: const Text(
@@ -128,7 +132,7 @@ class _ContributorsState extends State<Contributors>
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 20,
                           ),
                           Column(
@@ -138,29 +142,36 @@ class _ContributorsState extends State<Contributors>
                                   ? Text(
                                       cardList[index].name,
                                       style: TextStyle(
-                                          color: Theme.of(context).secondaryHeaderColor,
+                                          color: Theme.of(context)
+                                              .secondaryHeaderColor,
                                           fontWeight: FontWeight.w700,
                                           fontSize: 14),
                                     )
-                                  : SizedBox(),
+                                  : const SizedBox(),
                               Text(
                                 cardList[index].userName,
                                 style: TextStyle(
-                                    color: Provider.of<ThemeProvider>(context).isDarkTheme?Colors.white.withOpacity(0.7):Colors.grey[700],
+                                    color: Provider.of<ThemeProvider>(context)
+                                            .isDarkTheme
+                                        ? Colors.white.withOpacity(0.7)
+                                        : Colors.grey[700],
                                     fontWeight: FontWeight.w400,
                                     fontSize: 14),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               SizedBox(
-                                width: _deviceWidth / 1.7,
+                                width: deviceWidth / 1.7,
                                 child: Text(
                                   cardList[index].desc == ''
                                       ? 'Contributor'
                                       : cardList[index].desc,
                                   style: TextStyle(
-                                    color: Provider.of<ThemeProvider>(context).isDarkTheme?Colors.white.withOpacity(0.7):Colors.grey[700],
+                                    color: Provider.of<ThemeProvider>(context)
+                                            .isDarkTheme
+                                        ? Colors.white.withOpacity(0.7)
+                                        : Colors.grey[700],
                                     fontWeight: FontWeight.w400,
                                     fontSize: 12,
                                   ),
@@ -168,7 +179,7 @@ class _ContributorsState extends State<Contributors>
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               cardList[index].location.isNotEmpty
@@ -177,27 +188,35 @@ class _ContributorsState extends State<Contributors>
                                         Icon(
                                           Icons.location_on,
                                           size: 14,
-                                          color: Provider.of<ThemeProvider>(context).isDarkTheme?Colors.white:Colors.black,
+                                          color: Provider.of<ThemeProvider>(
+                                                      context)
+                                                  .isDarkTheme
+                                              ? Colors.white
+                                              : Colors.black,
                                         ),
                                         Text(
                                           cardList[index].location,
-                                          style: TextStyle(fontSize: 12,
-                                            color: Provider.of<ThemeProvider>(context).isDarkTheme?Colors.white:Colors.black,
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color: Provider.of<ThemeProvider>(
+                                                        context)
+                                                    .isDarkTheme
+                                                ? Colors.white
+                                                : Colors.black,
                                           ),
                                         ),
                                       ],
                                     )
-                                  : SizedBox(),
+                                  : const SizedBox(),
                               cardList[index].location.isNotEmpty
-                                  ? SizedBox(
+                                  ? const SizedBox(
                                       height: 5,
                                     )
-                                  : SizedBox(),
+                                  : const SizedBox(),
                               cardList[index].twitterUsername.isNotEmpty
                                   ? GestureDetector(
                                       onTap: () {
-                                        _launchURL('https://twitter.com/' +
-                                            cardList[index].twitterUsername);
+                                        _launchURL('https://twitter.com/${cardList[index].twitterUsername}');
                                       },
                                       child: Row(
                                         children: [
@@ -209,34 +228,34 @@ class _ContributorsState extends State<Contributors>
                                               color: Colors.blueAccent,
                                             ),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 5,
                                           ),
-                                          Icon(
+                                          const Icon(
                                             Icons.alternate_email,
                                             size: 14,
                                             color: Colors.blueAccent,
                                           ),
                                           Text(
                                             cardList[index].twitterUsername,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontSize: 12,
                                                 color: Colors.blueAccent),
                                           ),
                                         ],
                                       ),
                                     )
-                                  : SizedBox(),
+                                  : const SizedBox(),
                             ],
                           ),
                         ],
                       ),
                     ));
               }),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: const FloatingActionButton(
         backgroundColor: Colors.blue,
-        child: Icon(Icons.add),
         onPressed: addToContributors,
+        child: Icon(Icons.add),
       ),
     );
   }
@@ -246,16 +265,16 @@ class _ContributorsState extends State<Contributors>
 }
 
 Future<List<ContributorCard>> getContributors(
-    {@required String username, @required String repository}) async {
+    {required String username, required String repository}) async {
   const String head = 'https://api.github.com/repos/';
   const String tail = '/contributors';
-  String url = head + username + '/' + repository + tail;
-  http.Response response = await http.get(url);
+  String url = '$head$username/$repository$tail';
+  http.Response response = await http.get(Uri.https(url));
   List<Contributor> contributors = contributorFromJson(response.body);
   List<ContributorCard> contriCards = [];
   for (final contributor in contributors) {
-    http.Response contributorResponse =
-        await http.get('https://api.github.com/users/' + contributor.login);
+    http.Response contributorResponse = await http
+        .get(Uri.https('https://api.github.com/users/${contributor.login}'));
     ContributorDetail contributorDetail =
         contributorDetailFromJson(contributorResponse.body);
     contriCards.add(
@@ -284,8 +303,8 @@ addToContributors() {
 
 _launchURL(String gurl) async {
   String url = gurl;
-  if (await canLaunch(url)) {
-    await launch(url);
+  if (await canLaunchUrl(Uri.parse(url))) {
+    await launchUrl(Uri.parse(url));
   } else {
     throw 'Could not launch $url';
   }

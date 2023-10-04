@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:slimy_card/slimy_card.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_slimy_card/flutter_slimy_card.dart';
 import '../shared/colors.dart';
 
 class NewRepoCard extends StatelessWidget {
   final List<dynamic> listData;
   final int index;
 
-  NewRepoCard({this.listData, this.index});
+  const NewRepoCard({super.key, required this.listData, required this.index});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: SlimyCard(
+      child: FlutterSlimyCard(
         color: hactoberViolet,
-        width: 300,
+        cardWidth: 300,
         topCardHeight: 230,
         bottomCardHeight: 250,
         borderRadius: 15,
@@ -44,10 +44,10 @@ class NewRepoCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Text('Owner:  ${listData[index]['owner']['login']}',
-                    style: TextStyle(color: Colors.white)),
-                SizedBox(height: 15),
+                    style: const TextStyle(color: Colors.white)),
+                const SizedBox(height: 15),
               ],
             ),
           ),
@@ -59,11 +59,11 @@ class NewRepoCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text('Repository:  ${listData[index]['full_name']}',
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                     )),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 listData[index]['description'] != null
                     ? Text(
                         'Description:  ${listData[index]['description']}',
@@ -71,27 +71,29 @@ class NewRepoCard extends StatelessWidget {
                       )
                     : Text('No Description',
                         style: TextStyle(color: Colors.deepPurple[100])),
-                SizedBox(height: 15),
-                FlatButton.icon(
-                    color: Colors.deepPurple[800],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(30),
+                const SizedBox(height: 15),
+                TextButton.icon(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.deepPurple[800]!),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                        ),
                       ),
                     ),
                     onPressed: () async {
                       String url = listData[index]['html_url'];
-                      if (await canLaunch(url)) {
-                        await launch(url);
+                      if (await canLaunchUrl(Uri.parse(url))) {
+                        await launchUrl(Uri.parse(url));
                       } else {
                         throw 'Could not launch $url';
                       }
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.visibility,
                       color: Colors.white,
                     ),
-                    label: Text(
+                    label: const Text(
                       'Click To Visit',
                       style: TextStyle(color: Colors.white),
                     ))

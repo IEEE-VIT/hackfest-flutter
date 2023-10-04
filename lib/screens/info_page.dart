@@ -8,14 +8,14 @@ import '../shared/dictionary.dart';
 
 class InfoPage extends StatefulWidget {
   static String routename = 'InfoPage';
-  InfoPage({Key key}) : super(key: key);
+  const InfoPage({Key? key}) : super(key: key);
 
   @override
-  _InfoPageState createState() => _InfoPageState();
+  State<InfoPage> createState() => _InfoPageState();
 }
 
 class _InfoPageState extends State<InfoPage> {
-  static const color = const Color(0xff13253d);
+  static const color = Color(0xff13253d);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +34,7 @@ class _InfoPageState extends State<InfoPage> {
                     height: 150, //IEEE image
                   ),
                 ),
-                onTap: () => launch(ieevUrl), //Launches the IEEE website
+                onTap: () => launchUrl(Uri.parse(ieevUrl)), //Launches the IEEE website
               ),
               Container(
                 height: 20,
@@ -42,7 +42,7 @@ class _InfoPageState extends State<InfoPage> {
               Text(
                 ieeeDesc,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                 ),
               ),
@@ -51,11 +51,11 @@ class _InfoPageState extends State<InfoPage> {
               ),
               GestureDetector(
                 child: Center(
-                    child: Container(
+                    child: SizedBox(
                         height: 200,
                         child: SvgPicture.network(hacktoberfestImage))),
                 onTap: () =>
-                    launch(hacktoberfestUrl), //Launches Hacktoberfest site
+                    launchUrl(Uri.parse(hacktoberfestUrl)), //Launches Hacktoberfest site
               ),
             ],
           ),
@@ -65,7 +65,7 @@ class _InfoPageState extends State<InfoPage> {
           Text(
             hacktoberfestDesc,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
             ),
           ),
