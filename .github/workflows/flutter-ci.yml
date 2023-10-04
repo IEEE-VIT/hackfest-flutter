@@ -10,7 +10,7 @@ on:
 
 
 env:
-  flutter_version: "3.13.0"
+  flutter_version: "3.13.6"
   java_version: "12.x"
 
 jobs:
