@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../shared/colors.dart';
 
@@ -14,9 +13,9 @@ class ThemeProvider extends ChangeNotifier{
   );
   var darkTheme = ThemeData(
    // backgroundColor: Color(0xff071724),
-    secondaryHeaderColor: Color(0xff93C2DB),
+    secondaryHeaderColor: const Color(0xff93C2DB),
     primaryColor: darkModeHactober,
-    scaffoldBackgroundColor: Color(0xff0F253E),
+    scaffoldBackgroundColor: const Color(0xff0F253E),
   );
  bool get isDarkTheme=> _isDarkTheme;
 
@@ -28,8 +27,9 @@ class ThemeProvider extends ChangeNotifier{
   get currentTheme{
     if(_isDarkTheme){
       return darkTheme;
-    }else
+    }else {
       return lightTheme;
+    }
   }
 
 

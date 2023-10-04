@@ -9,6 +9,6 @@ String hacktoberfestDesc =
     " positive contributions to an ever-growing community. ";
 
 String hacktoberfestImage =
-    "https://hacktoberfest.digitalocean.com/assets/HF-full-logo-b05d5eb32b3f3ecc9b2240526104cf4da3187b8b61963dd9042fdc2536e4a76c.svg";
+    "https://hacktoberfest.com/_next/static/media/opengraph.e5fafe07.png";
 var ieevUrl ='https://ieeevit.org';
-var hacktoberfestUrl = "https://hacktoberfest.digitalocean.com";
+var hacktoberfestUrl = "https://hacktoberfest.com";
