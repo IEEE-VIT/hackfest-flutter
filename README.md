@@ -4,7 +4,7 @@
 This app aims to simplify the process of finding repositories on GitHub, view the various contributors to the repos, and also allows the user to become a contributor to the desired project.
 
 
-Support open source software by participating in [Hacktoberfest](https://hacktoberfest.digitalocean.com) and get goodies and a free t-shirt! :yellow_heart:
+Support open source software by participating in [Hacktoberfest](https://hacktoberfest.digitalocean.com) and get goodies :yellow_heart:
 
 > Please check all issues labelled as `hacktoberfest` to start contributing!
 
