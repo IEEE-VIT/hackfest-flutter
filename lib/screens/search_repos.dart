@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
+import 'package:hacktoberfest_flutter/controller/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import '../shared/colors.dart';
+import '../helpers/colors.dart';
 import '../widgets/new_repo_card.dart';
 
 class Search extends StatefulWidget {

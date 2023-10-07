@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
+import 'package:hacktoberfest_flutter/controller/theme_provider.dart';
 import 'package:hacktoberfest_flutter/screens/splash_screen.dart';
 import 'routes.dart';
 

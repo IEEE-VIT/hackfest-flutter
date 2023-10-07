@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_slimy_card/flutter_slimy_card.dart';
-import '../shared/colors.dart';
+import '../helpers/colors.dart';
 
 class NewRepoCard extends StatelessWidget {
   final List<dynamic> listData;

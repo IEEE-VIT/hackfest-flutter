@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hacktoberfest_flutter/models/contributor_detail_model.dart';
 import 'package:hacktoberfest_flutter/models/contributors_data_model.dart';
-import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
-import 'package:hacktoberfest_flutter/shared/colors.dart';
+import 'package:hacktoberfest_flutter/controller/theme_provider.dart';
+import 'package:hacktoberfest_flutter/helpers/colors.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';

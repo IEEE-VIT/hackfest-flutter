@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
+import 'package:hacktoberfest_flutter/controller/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'info_page.dart';
 import 'contributors.dart';
