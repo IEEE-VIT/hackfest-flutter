@@ -1,15 +1,14 @@
 # Hacktoberfest 2023 with IEEE-VIT :heart:
-<img src="https://files.ieeevit.org/Hacktoberfest-23/Hacktoberfest%20App.png">\
-\
-This app aims to simplify the process of finding repositories on GitHub, view the various contributors to the repos, and also allows the user to become a contributor to the desired project.
+<img src="https://files.ieeevit.org/Hacktoberfest-23/Hacktoberfest%20App.png">
 
+## About
+This app aims to simplify the process of finding repositories on GitHub, view the various contributors to the repos, and also allows the user to become a contributor to the desired project.
 
 Support open source software by participating in [Hacktoberfest](https://hacktoberfest.digitalocean.com) and get goodies :yellow_heart:
 
 > Please check all issues labelled as `hacktoberfest` to start contributing!
 
 Kindly consider leaving a :star: if you like the repository and our organisation.
-
 
 ## Getting Started
 * Fork it.
