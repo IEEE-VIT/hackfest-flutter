@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
+import 'package:hacktoberfest_flutter/screens/contributors.dart';
+import 'package:hacktoberfest_flutter/screens/info_page.dart';
+import 'package:hacktoberfest_flutter/screens/search_repos.dart';
 import 'package:provider/provider.dart';
-import 'info_page.dart';
-import 'contributors.dart';
-import 'search_repos.dart';
 
 class HomePage extends StatefulWidget {
-  static String routename = 'HomePage';
   const HomePage({Key? key}) : super(key: key);
+  static String routename = 'HomePage';
 
   @override
   State<HomePage> createState() => _HomePageState();
