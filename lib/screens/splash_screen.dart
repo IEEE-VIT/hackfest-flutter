@@ -1,5 +1,6 @@
-import 'dart:async';
+//import 'dart:async';
 
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hacktoberfest_flutter/screens/home_page.dart';
 
@@ -18,23 +19,12 @@ class Splash extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Timer(
-        const Duration(seconds: 2),
-        () => Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (BuildContext context) => const HomePage())));
-
-    const color = Color(0xff13253d);
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Container(
-          decoration: const BoxDecoration(color: color),
-          child: Center(
-            child: Image.asset(
-              "assets/htbf.png",
-            ),
-          ),
-        ),
+    return Scaffold(
+      body: AnimatedSplashScreen(
+        backgroundColor: Color.fromARGB(255, 18, 16, 16),
+        nextScreen: HomePage(),
+        splash: 'assets/logo.png',
+        splashTransition: SplashTransition.scaleTransition,
       ),
     );
   }
