@@ -161,24 +161,8 @@ class _SearchState extends State<Search> {
             FutureBuilder<List<dynamic>>(
               future: listOfRepos,
               builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
-                if (snapshot.hasData) {
-                  //this widget display the repos details
-                  return Expanded(
-                    child: ListView.builder(
-                      itemCount: snapshot.data?.length,
-                      shrinkWrap: true,
-                      itemBuilder: (ctx, index) {
-                        return NewRepoCard(
-                          listData: snapshot.data!,
-                          index: index,
-                        );
-                      },
-                    ),
-                  );
-                } else if (snapshot.hasError) {
-                  return const Text('Error');
-                } else if (snapshot.connectionState ==
-                    ConnectionState.waiting) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  //spinner
                   return const Expanded(
                     child: SizedBox(
                       height: 250,
@@ -189,23 +173,31 @@ class _SearchState extends State<Search> {
                       ),
                     ),
                   );
+                } else if (snapshot.hasError) {
+                  return const Expanded(
+                    child: Center(
+                      child: Text('Error occurred while fetching data.'),
+                    ),
+                  );
+                } else if (snapshot.data!.isEmpty) {
+                  return const Expanded(
+                    child: Center(
+                      child: Text('No repositories found for the search term.'),
+                    ),
+                  );
                 }
 
-                //loading spinner
                 return Expanded(
-                  child: SizedBox(
-                    height: 250,
-                    child: Center(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(23),
-                        child: Image(
-                          width: deviceWidth,
-                          image: const NetworkImage(
-                            'https://image.freepik.com/free-vector/search-engine-concept-illustration_114360-306.jpg',
-                          ),
-                        ),
-                      ),
-                    ),
+                  child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: snapshot.data!.length,
+                    shrinkWrap: true,
+                    itemBuilder: (ctx, index) {
+                      return NewRepoCard(
+                        listData: snapshot.data!,
+                        index: index,
+                      );
+                    },
                   ),
                 );
               },
