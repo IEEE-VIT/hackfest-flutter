@@ -17,7 +17,7 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
 
   @override
   void initState() {
@@ -39,7 +39,7 @@ class _SearchState extends State<Search> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF551A8B), // Change the background color
+        backgroundColor: Colors.indigo,
         elevation: 5.0,
         shape: const BeveledRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -49,7 +49,7 @@ class _SearchState extends State<Search> {
             icon: Icon(
               Icons.palette,
               color: Provider.of<ThemeProvider>(context).isDarkTheme
-                  ? const Color(0xff93C2DB)
+                  ? Colors.purple
                   : Colors.grey,
             ),
             onPressed: () {
@@ -57,18 +57,17 @@ class _SearchState extends State<Search> {
             },
           )
         ],
-        title: Text(
+        title: const Text(
           'Search tags',
           style: TextStyle(
             color: Colors.white, // Change text color
           ),
         ),
       ),
-      backgroundColor: Color(0xFF551A8B),
       body: Container(
         padding: const EdgeInsets.all(10.0),
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(
             Radius.circular(15.0),
           ),
           color: Colors.white, // Change the background color
@@ -83,7 +82,7 @@ class _SearchState extends State<Search> {
           children: <Widget>[
             // Textfield to get the user inputs
             TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.grey, // Change border color
@@ -129,16 +128,17 @@ class _SearchState extends State<Search> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                padding: const EdgeInsets.all(1.0),
-                primary: Colors.blue, // Change button background color
-              ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  padding: const EdgeInsets.all(1.0),
+                  backgroundColor: Colors.deepPurple,
+                  elevation: 0 // Change button background color
+                  ),
               child: Ink(
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [hactoberViolet, hacktoberPink],
+                  gradient: const LinearGradient(
+                    colors: [Colors.purple, Colors.pink],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ),

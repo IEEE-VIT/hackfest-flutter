@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
-import 'package:provider/provider.dart';
 import 'info_page.dart';
 import 'contributors.dart';
 import 'search_repos.dart';
@@ -16,11 +14,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
+    return const DefaultTabController(
       length: 3,
       child: Scaffold(
         // backgroundColor: Color(0xFF551A8B), // Hacktoberfest Purple background
-        body: const TabBarView(
+        body: TabBarView(
           children: [
             Search(),
             Contributors(),
@@ -28,24 +26,39 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         bottomNavigationBar: TabBar(
-          labelColor: Colors.white, // Text color for selected tab
+          labelColor: Colors.indigo, // Text color for selected tab
           unselectedLabelColor:
-              Color(0xFFA692D0), // Light Lavender for unselected tabs
+              Colors.white, // Light Lavender for unselected tabs
           indicatorSize: TabBarIndicatorSize.label,
           indicatorPadding: EdgeInsets.all(1.0),
-          indicatorColor: Colors.orange, // Set an accent color
-          tabs: const [
+          indicatorColor: Colors.transparent, // Set an accent color
+          tabs: [
             Tab(
-              icon: Icon(Icons.search),
-              child: Text('Search'),
+              icon: Icon(
+                Icons.search,
+                color: Colors.lightBlue,
+              ),
+              child: Text(
+                'Search',
+                style: TextStyle(color: Colors.lightBlue),
+              ),
             ),
             Tab(
-              icon: Icon(Icons.people_outline),
-              child: Text('Contributors'),
+              icon: Icon(
+                Icons.people_outline,
+                color: Colors.lightBlue,
+              ),
+              child: Text(
+                'Contributors',
+                style: TextStyle(color: Colors.lightBlue),
+              ),
             ),
             Tab(
-              icon: Icon(Icons.info_outline),
-              child: Text('About Us'),
+              icon: Icon(Icons.info_outline, color: Colors.lightBlue),
+              child: Text(
+                'About Us',
+                style: TextStyle(color: Colors.lightBlue),
+              ),
             ),
           ],
         ),

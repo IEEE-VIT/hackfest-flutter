@@ -20,8 +20,8 @@ class Splash extends State<SplashScreen> {
   Widget build(BuildContext context) {
     Timer(
         const Duration(seconds: 2),
-        () => Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (BuildContext context) => const HomePage())));
+        () => Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (BuildContext context) => const HomePage())));
 
     const color = Color(0xff13253d);
     return MaterialApp(

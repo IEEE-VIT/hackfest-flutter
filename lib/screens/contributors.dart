@@ -11,7 +11,7 @@ import 'package:hacktoberfest_flutter/models/contributors_card_model.dart';
 class Contributors extends StatefulWidget {
   static const String routename = '/Contributors';
 
-  const Contributors({Key? key});
+  const Contributors({super.key});
 
   @override
   State<Contributors> createState() => _ContributorsState();
@@ -40,7 +40,7 @@ class _ContributorsState extends State<Contributors>
     });
   }
 
-  @override
+  @mustCallSuper
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
 
@@ -270,7 +270,7 @@ class _ContributorsState extends State<Contributors>
           // Trigger the 'Add Contributor' dialog
           _showAddContributorDialog(context, addContributor);
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -283,13 +283,13 @@ class _ContributorsState extends State<Contributors>
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Add Contributor'),
+          title: const Text('Add Contributor'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: usernameController,
-                decoration: InputDecoration(labelText: 'GitHub Username'),
+                decoration: const InputDecoration(labelText: 'GitHub Username'),
               ),
             ],
           ),
@@ -298,7 +298,7 @@ class _ContributorsState extends State<Contributors>
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
@@ -310,7 +310,7 @@ class _ContributorsState extends State<Contributors>
 
                 Navigator.of(context).pop(); // Close the dialog
               },
-              child: Text('Add'),
+              child: const Text('Add'),
             ),
           ],
         );
@@ -398,8 +398,8 @@ void addToContributors(BuildContext context,
 
 _launchURL(String gurl) async {
   String url = gurl;
-  if (await canLaunch(url)) {
-    await launch(url);
+  if (await canLaunchUrl(Uri.parse(url))) {
+    await launchUrl(Uri.parse(url));
   } else {
     throw 'Could not launch $url';
   }
