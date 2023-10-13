@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<ThemeProvider>(
-            create: (context) => ThemeProvider(isDarkTheme2: isDarkTheme)),
+            create: (context) => ThemeProvider(isdarkTheme: isDarkTheme)),
       ],
       child: Consumer<ThemeProvider>(
         builder: (context, theme, _) {

@@ -3,10 +3,10 @@ import '../shared/colors.dart';
 
 class ThemeProvider extends ChangeNotifier{
 
-  bool isDarkTheme2;
+  bool isdarkTheme;
   String? selectedTheme;
 
-  ThemeProvider({required this.isDarkTheme2, this.selectedTheme});
+  ThemeProvider({required this.isdarkTheme, this.selectedTheme});
 
   //global lightTheme for app
   var lightTheme= ThemeData(
@@ -110,7 +110,7 @@ class ThemeProvider extends ChangeNotifier{
 
 
   //
-  bool get isDarkTheme=> isDarkTheme2;
+  bool get isDarkTheme=> isdarkTheme;
 
 
   //changeTheme to set the theme chosen in settings page
@@ -121,13 +121,13 @@ class ThemeProvider extends ChangeNotifier{
 
   //setTheme , used before to change theme from light to dark and vice-versa
   void setTheme(){
-    isDarkTheme2 = !isDarkTheme2;
+    isdarkTheme = !isdarkTheme;
     notifyListeners();
   }
 
   //getter to get the current theme
   get currentTheme{
-    if(isDarkTheme2){
+    if(isdarkTheme){
       return darkTheme;
     }else {
       return lightTheme;
