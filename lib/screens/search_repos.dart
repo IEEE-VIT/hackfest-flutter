@@ -10,23 +10,17 @@ import '../widgets/new_repo_card.dart';
 class Search extends StatefulWidget {
   static String routename = 'Search';
 
-  const Search({super.key});
+  const Search({Key? key}) : super(key: key);
 
   @override
   State<Search> createState() => _SearchState();
 }
 
 class _SearchState extends State<Search> {
-  final String searchText = '';
-
-  Future<List> listOfRepos = Future.value([]);
-
   TextEditingController _controller = TextEditingController();
 
   @override
   void initState() {
-    _controller = TextEditingController();
-
     super.initState();
   }
 
@@ -36,6 +30,8 @@ class _SearchState extends State<Search> {
     super.dispose();
   }
 
+  Future<List<dynamic>> listOfRepos = Future.value([]);
+
   @override
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
@@ -43,39 +39,39 @@ class _SearchState extends State<Search> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Color(0xFF551A8B), // Change the background color
         elevation: 5.0,
-        //shadowColor: Colors.black26,
         shape: const BeveledRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
         actions: [
           IconButton(
-              icon: Icon(
-                Icons.palette,
-                color: Provider.of<ThemeProvider>(context).isDarkTheme
-                    ? const Color(0xff93C2DB)
-                    : Colors.grey,
-              ),
-              onPressed: () {
-                Provider.of<ThemeProvider>(context, listen: false)
-                    .changeTheme();
-              })
+            icon: Icon(
+              Icons.palette,
+              color: Provider.of<ThemeProvider>(context).isDarkTheme
+                  ? const Color(0xff93C2DB)
+                  : Colors.grey,
+            ),
+            onPressed: () {
+              Provider.of<ThemeProvider>(context, listen: false).changeTheme();
+            },
+          )
         ],
         title: Text(
           'Search tags',
           style: TextStyle(
-            color: Theme.of(context).secondaryHeaderColor,
+            color: Colors.white, // Change text color
           ),
         ),
       ),
+      backgroundColor: Color(0xFF551A8B),
       body: Container(
         padding: const EdgeInsets.all(10.0),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(
             Radius.circular(15.0),
           ),
-          color: Theme.of(context).primaryColor,
+          color: Colors.white, // Change the background color
         ),
         margin: EdgeInsets.symmetric(
           vertical: deviceHeight * 0.04,
@@ -85,24 +81,28 @@ class _SearchState extends State<Search> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            //Textfield to get the user inputs
+            // Textfield to get the user inputs
             TextField(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                      color: Color.fromRGBO(217, 217, 217, 1), width: 1.0),
+                    color: Colors.grey, // Change border color
+                    width: 1.0,
+                  ),
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                      color: Color.fromRGBO(143, 143, 143, 1), width: 1.0),
+                    color: Colors.blue, // Change focused border color
+                    width: 1.0,
+                  ),
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
                 labelText: 'Search Repository',
                 helperText: '* Search repos with the help of tag',
                 labelStyle: TextStyle(
-                  fontSize: 15,
-                  color: Color.fromRGBO(48, 48, 48, 1),
+                  fontSize: 18, // Increase font size
+                  color: Colors.black, // Change label text color
                 ),
                 suffixIcon: Icon(
                   Icons.search,
@@ -116,15 +116,13 @@ class _SearchState extends State<Search> {
               height: deviceHeight * 0.02,
             ),
 
-            //search button to call the action
+            // Search button to call the action
             ElevatedButton(
               onPressed: () async {
                 if (_controller.text.isNotEmpty) {
                   FocusScope.of(context).unfocus();
                   setState(() {
-                    setState(() {
-                      listOfRepos = getRepos(_controller.text);
-                    });
+                    listOfRepos = getRepos(_controller.text);
                   });
                 } else {
                   return;
@@ -135,18 +133,22 @@ class _SearchState extends State<Search> {
                   borderRadius: BorderRadius.circular(30.0),
                 ),
                 padding: const EdgeInsets.all(1.0),
+                primary: Colors.blue, // Change button background color
               ),
               child: Ink(
                 decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [hactoberViolet, hacktoberPink],
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                    ),
-                    borderRadius: BorderRadius.circular(30.0)),
+                  gradient: LinearGradient(
+                    colors: [hactoberViolet, hacktoberPink],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                  ),
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
                 child: Container(
                   constraints: BoxConstraints(
-                      maxWidth: deviceWidth / 3, minHeight: 40.0),
+                    maxWidth: deviceWidth / 3,
+                    minHeight: 40.0,
+                  ),
                   alignment: Alignment.center,
                   child: const Text(
                     "Search",
@@ -156,23 +158,25 @@ class _SearchState extends State<Search> {
                 ),
               ),
             ),
-            //This widget display the information of the repos with the help of listview
+            // This widget displays the information of the repos with the help of listview
             FutureBuilder<List<dynamic>>(
               future: listOfRepos,
-              builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+              builder: (BuildContext context,
+                  AsyncSnapshot<List<dynamic>> snapshot) {
                 if (snapshot.hasData) {
-                  //this widget display the repos details
+                  // This widget displays the repos details
                   return Expanded(
                     child: ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        itemCount: snapshot.data?.length,
-                        shrinkWrap: true,
-                        itemBuilder: (ctx, index) {
-                          return NewRepoCard(
-                            listData: snapshot.data!,
-                            index: index,
-                          );
-                        }),
+                      scrollDirection: Axis.vertical,
+                      itemCount: snapshot.data?.length,
+                      shrinkWrap: true,
+                      itemBuilder: (ctx, index) {
+                        return NewRepoCard(
+                          listData: snapshot.data!,
+                          index: index,
+                        );
+                      },
+                    ),
                   );
                 } else if (snapshot.hasError) {
                   return const Text('Error');
@@ -191,19 +195,22 @@ class _SearchState extends State<Search> {
                   );
                 }
 
-                //loading spinner
-                return Expanded(
-                  child: SizedBox(
-                    height: 250,
-                    child: Center(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(23),
-                        child: Image(
-                          alignment: Alignment.center,
-                          width: deviceWidth,
-                          image: const NetworkImage(
-                              'https://image.freepik.com/free-vector/search-engine-concept-illustration_114360-306.jpg'),
+                // Loading spinner
+                return SizedBox(
+                  height: 250,
+                  child: Center(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(23),
+                      child: Image(
+                        alignment: Alignment.center,
+                        width: deviceWidth,
+                        image: const NetworkImage(
+                          'https://image.freepik.com/free-vector/search-engine-concept-illustration_114360-306.jpg',
                         ),
+                        errorBuilder: (context, error, stackTrace) {
+                          print('Image loading error: $error');
+                          return const Text('Image not available');
+                        },
                       ),
                     ),
                   ),
@@ -217,15 +224,19 @@ class _SearchState extends State<Search> {
   }
 }
 
-//This future func get the repos data from the Github API
-//And returns the list of repos
-Future<List> getRepos(String tag) async {
-  final String baseURL = "https://api.github.com/search/repositories?q=$tag";
-  final response = await http.get(Uri.parse(Uri.encodeFull(baseURL)),
-      headers: {"Accept": "application/json"});
+// This future func gets the repos data from the Github API
+// And returns the list of repos
+Future<List<dynamic>> getRepos(String tag) async {
+  final String baseURL =
+      "https://api.github.com/search/repositories?q=topic:$tag&per_page=100";
+  final response = await http.get(
+    Uri.parse(Uri.encodeFull(baseURL)),
+    headers: {"Accept": "application/json"},
+  );
+
   if (response.statusCode == 200) {
-    Map<String, dynamic> result = jsonDecode(response.body);
-    List listOfRepos = result["items"];
+    Map<String, dynamic> result = json.decode(response.body);
+    List<dynamic> listOfRepos = result["items"];
     return listOfRepos;
   } else {
     return ["Error"];

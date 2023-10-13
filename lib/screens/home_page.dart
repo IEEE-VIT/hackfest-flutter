@@ -19,22 +19,21 @@ class _HomePageState extends State<HomePage> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Theme.of(context).primaryColor,
+        // backgroundColor: Color(0xFF551A8B), // Hacktoberfest Purple background
         body: const TabBarView(
           children: [
-            Search(), //This loads up the Search screen where the user can search for repositories on GitHub
-            Contributors(), // This loads up the the Contributors card page
-            InfoPage(), // This loads up the the Info page
+            Search(),
+            Contributors(),
+            InfoPage(),
           ],
         ),
         bottomNavigationBar: TabBar(
-          labelColor: Provider.of<ThemeProvider>(context).isDarkTheme
-              ? const Color(0xff93C2DB)
-              : Colors.black,
-          unselectedLabelColor: Colors.grey[400],
-          // indicatorSize: TabBarIndicatorSize.label,
-          // indicatorPadding: EdgeInsets.all(1.0),
-          // indicatorColor: Colors.red,
+          labelColor: Colors.white, // Text color for selected tab
+          unselectedLabelColor:
+              Color(0xFFA692D0), // Light Lavender for unselected tabs
+          indicatorSize: TabBarIndicatorSize.label,
+          indicatorPadding: EdgeInsets.all(1.0),
+          indicatorColor: Colors.orange, // Set an accent color
           tabs: const [
             Tab(
               icon: Icon(Icons.search),

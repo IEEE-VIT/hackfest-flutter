@@ -1,7 +1,4 @@
-//A simple About Us page. Changes here are not necessary.
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../shared/dictionary.dart';
@@ -16,57 +13,63 @@ class InfoPage extends StatefulWidget {
 
 class _InfoPageState extends State<InfoPage> {
   static const color = Color(0xff13253d);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: color,
+      backgroundColor: Color(0xFF551A8B),
       body: ListView(
-        //padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
         children: [
           Column(
-            //mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GestureDetector(
                 child: Center(
                   child: Image.asset(
                     "assets/ieee.png",
-                    height: 150, //IEEE image
+                    height: 150,
                   ),
                 ),
-                onTap: () => launchUrl(Uri.parse(ieevUrl)), //Launches the IEEE website
+                onTap: () async {
+                  try {
+                    await launchUrl(Uri.parse(ieevUrl));
+                  } catch (e) {
+                    print('Error launching URL: $e');
+                  }
+                },
               ),
-              Container(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               Text(
                 ieeeDesc,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.white,
+                  fontSize: 18, // Increased font size
+                  fontWeight: FontWeight.bold, // Bold text
                 ),
               ),
-              Container(
-                height: 40,
-              ),
+              const SizedBox(height: 40),
               GestureDetector(
                 child: Center(
-                    child: SizedBox(
-                        height: 200,
-                        child: SvgPicture.network(hacktoberfestImage))),
-                onTap: () =>
-                    launchUrl(Uri.parse(hacktoberfestUrl)), //Launches Hacktoberfest site
+                  child: Image.network(
+                    hacktoberfestImage,
+                    height: 200,
+                  ),
+                ),
+                onTap: () => launchUrl(Uri.parse(hacktoberfestUrl)),
               ),
             ],
           ),
-          Container(
-            height: 30,
-          ),
+          const SizedBox(height: 30),
           Text(
             hacktoberfestDesc,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.white,
+              fontSize: 18, // Increased font size
+              fontWeight: FontWeight.bold, // Bold text
             ),
           ),
         ],
