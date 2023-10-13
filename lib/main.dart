@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
+import 'package:hacktoberfest_flutter/routes.dart';
 import 'package:hacktoberfest_flutter/screens/splash_screen.dart';
-import 'routes.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<ThemeProvider>(
-            create: (context) => ThemeProvider()),
+          create: (context) => ThemeProvider(),
+        ),
       ],
       child: Consumer<ThemeProvider>(
         builder: (context, theme, _) {
