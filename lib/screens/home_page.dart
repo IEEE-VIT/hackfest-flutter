@@ -4,8 +4,8 @@ import 'contributors.dart';
 import 'search_repos.dart';
 
 class HomePage extends StatefulWidget {
-  static String routename = 'HomePage';
   const HomePage({Key? key}) : super(key: key);
+  static String routename = 'HomePage';
 
   @override
   State<HomePage> createState() => _HomePageState();

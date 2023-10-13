@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../shared/colors.dart';
+import 'package:hacktoberfest_flutter/shared/colors.dart';
 
 class ThemeProvider extends ChangeNotifier{
 
@@ -129,7 +129,7 @@ class ThemeProvider extends ChangeNotifier{
   get currentTheme{
     if(isdarkTheme){
       return darkTheme;
-    }else {
+    } else {
       return lightTheme;
     }
   }

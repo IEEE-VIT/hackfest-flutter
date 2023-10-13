@@ -1,6 +1,15 @@
 //The model of the card of the contributors.
 
 class ContributorCard {
+  ContributorCard({
+    required this.userName,
+    required this.displayImgUrl,
+    required this.location,
+    required this.name,
+    required this.twitterUsername,
+    required this.desc,
+    required this.website,
+  });
   final String userName;
   final String desc;
   final String name;
@@ -8,12 +17,4 @@ class ContributorCard {
   final String displayImgUrl;
   final String website;
   final String twitterUsername;
-  ContributorCard(
-      {required this.userName,
-      required this.displayImgUrl,
-      required this.location,
-      required this.name,
-      required this.twitterUsername,
-      required this.desc,
-      required this.website});
 }

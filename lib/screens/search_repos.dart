@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:hacktoberfest_flutter/screens/settings.dart';
 import 'package:http/http.dart' as http;
@@ -7,9 +8,8 @@ import '../shared/colors.dart';
 import '../widgets/new_repo_card.dart';
 
 class Search extends StatefulWidget {
-  static String routename = 'Search';
-
   const Search({super.key});
+  static String routename = 'Search';
 
   @override
   State<Search> createState() => _SearchState();
@@ -98,8 +98,6 @@ class _SearchState extends State<Search> {
           horizontal: deviceHeight * 0.04,
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
 
             //Textfield to get the user inputs
@@ -143,18 +141,19 @@ class _SearchState extends State<Search> {
               ),
               child: Ink(
                 decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [hactoberViolet, hacktoberPink],
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                    ),
-                    borderRadius: BorderRadius.circular(30.0)),
+                  gradient: LinearGradient(
+                    colors: [hactoberViolet, hacktoberPink],
+                  ),
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
                 child: Container(
                   constraints: BoxConstraints(
-                      maxWidth: deviceWidth / 3, minHeight: 40.0),
+                    maxWidth: deviceWidth / 3,
+                    minHeight: 40.0,
+                  ),
                   alignment: Alignment.center,
                   child: const Text(
-                    "Search",
+                    'Search',
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.white),
                   ),
@@ -166,52 +165,43 @@ class _SearchState extends State<Search> {
             FutureBuilder<List<dynamic>>(
               future: listOfRepos,
               builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
-                if (snapshot.hasData) {
-                  //this widget display the repos details
-                  return Expanded(
-                    child: ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        itemCount: snapshot.data?.length,
-                        shrinkWrap: true,
-                        itemBuilder: (ctx, index) {
-                          return NewRepoCard(
-                            listData: snapshot.data!,
-                            index: index,
-                          );
-                        }),
-                  );
-                } else if (snapshot.hasError) {
-                  return const Text('Error');
-                } else if (snapshot.connectionState ==
-                    ConnectionState.waiting) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  //spinner
                   return const Expanded(
                     child: SizedBox(
                       height: 250,
                       child: Center(
                         child: SpinKitFadingCube(
                           color: Colors.grey,
-                          size: 50.0,
                         ),
                       ),
                     ),
                   );
+                } else if (snapshot.hasError) {
+                  return const Expanded(
+                    child: Center(
+                      child: Text('Error occurred while fetching data.'),
+                    ),
+                  );
+                } else if (snapshot.data!.isEmpty) {
+                  return const Expanded(
+                    child: Center(
+                      child: Text('No repositories found for the search term.'),
+                    ),
+                  );
                 }
 
-                //loading spinner
                 return Expanded(
-                  child: SizedBox(
-                    height: 250,
-                    child: Center(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(23),
-                        child: Image(
-                          alignment: Alignment.center,
-                          width: deviceWidth,
-                          image: const NetworkImage(
-                              'https://image.freepik.com/free-vector/search-engine-concept-illustration_114360-306.jpg'),
-                        ),
-                      ),
-                    ),
+                  child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: snapshot.data!.length,
+                    shrinkWrap: true,
+                    itemBuilder: (ctx, index) {
+                      return NewRepoCard(
+                        listData: snapshot.data!,
+                        index: index,
+                      );
+                    },
                   ),
                 );
               },
@@ -227,14 +217,16 @@ class _SearchState extends State<Search> {
 //This future func get the repos data from the Github API
 //And returns the list of repos
 Future<List> getRepos(String tag) async {
-  final String baseURL = "https://api.github.com/search/repositories?q=$tag";
-  final response = await http.get(Uri.parse(Uri.encodeFull(baseURL)),
-      headers: {"Accept": "application/json"});
+  final String baseURL = 'https://api.github.com/search/repositories?q=$tag';
+  final response = await http.get(
+    Uri.parse(Uri.encodeFull(baseURL)),
+    headers: {'Accept': 'application/json'},
+  );
   if (response.statusCode == 200) {
-    Map<String, dynamic> result = jsonDecode(response.body);
-    List listOfRepos = result["items"];
+    final Map<String, dynamic> result = jsonDecode(response.body);
+    final List listOfRepos = result['items'];
     return listOfRepos;
   } else {
-    return ["Error"];
+    return ['Error'];
   }
 }

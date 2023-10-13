@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hacktoberfest_flutter/screens/settings.dart';
 import 'package:provider/provider.dart';
 import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
+import 'package:hacktoberfest_flutter/routes.dart';
 import 'package:hacktoberfest_flutter/screens/splash_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'routes.dart';
