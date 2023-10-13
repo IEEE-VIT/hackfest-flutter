@@ -4,7 +4,7 @@ import 'package:hacktoberfest_flutter/shared/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NewRepoCard extends StatelessWidget {
-  const NewRepoCard({super.key, required this.listData, required this.index});
+  const NewRepoCard({Key? key, required this.listData, required this.index}) : super(key: key);
   final List<dynamic> listData;
   final int index;
 
@@ -91,8 +91,8 @@ class NewRepoCard extends StatelessWidget {
                   ),
                   onPressed: () async {
                     final String url = listData[index]['html_url'];
-                    if (await canLaunchUrl(Uri.parse(url))) {
-                      await launchUrl(Uri.parse(url));
+                    if (await canLaunch(url)) {
+                      await launch(url);
                     } else {
                       throw 'Could not launch $url';
                     }
