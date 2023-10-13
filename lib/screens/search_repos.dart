@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:hacktoberfest_flutter/screens/settings.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../shared/colors.dart';
@@ -26,7 +25,6 @@ class _SearchState extends State<Search> {
   @override
   void initState() {
     _controller = TextEditingController();
-
     super.initState();
   }
 
@@ -41,6 +39,24 @@ class _SearchState extends State<Search> {
     final deviceHeight = MediaQuery.of(context).size.height;
     final deviceWidth = MediaQuery.of(context).size.width;
 
+    Brightness currentBrightness = MediaQuery.of(context).platformBrightness;
+    // Check if the device is in dark mode
+    bool isDarkMode = currentBrightness == Brightness.dark;
+
+    Color inputColor = Colors.black;
+
+    // Check the theme conditions and set the inputText of the search field accordingly
+    if (device.theme == "Dark"){
+      inputColor = Colors.white;
+    }
+    else if (device.theme == "Light"){
+      inputColor = Colors.black;
+    }else if (isDarkMode == true && device.theme == "System Default"){
+      inputColor = Colors.white;
+    }else if (isDarkMode == false && device.theme == "System Default"){
+      inputColor = Colors.white;
+    };
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
@@ -51,16 +67,16 @@ class _SearchState extends State<Search> {
         ),
         actions: [
           IconButton(
-              icon: Icon(
-                Icons.palette,
-                color: Provider.of<ThemeProvider>(context).isDarkTheme
-                    ? const Color(0xff93C2DB)
-                    : Colors.grey,
+              icon: const Icon(
+                Icons.settings,
               ),
               onPressed: () {
-                Provider.of<ThemeProvider>(context, listen: false)
-                    .changeTheme();
-              })
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Settings()),
+                );
+              }
+          )
         ],
         title: Text(
           'Search tags',
@@ -85,28 +101,17 @@ class _SearchState extends State<Search> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+
             //Textfield to get the user inputs
             TextField(
+              style: TextStyle(
+                color: inputColor,
+              ),
               decoration: const InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: Color.fromRGBO(217, 217, 217, 1), width: 1.0),
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: Color.fromRGBO(143, 143, 143, 1), width: 1.0),
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                ),
                 labelText: 'Search Repository',
                 helperText: '* Search repos with the help of tag',
-                labelStyle: TextStyle(
-                  fontSize: 15,
-                  color: Color.fromRGBO(48, 48, 48, 1),
-                ),
                 suffixIcon: Icon(
                   Icons.search,
-                  color: Colors.black,
                 ),
               ),
               controller: _controller,
@@ -156,6 +161,7 @@ class _SearchState extends State<Search> {
                 ),
               ),
             ),
+
             //This widget display the information of the repos with the help of listview
             FutureBuilder<List<dynamic>>(
               future: listOfRepos,
@@ -216,6 +222,7 @@ class _SearchState extends State<Search> {
     );
   }
 }
+
 
 //This future func get the repos data from the Github API
 //And returns the list of repos
