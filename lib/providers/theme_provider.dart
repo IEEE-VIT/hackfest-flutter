@@ -110,7 +110,7 @@ class ThemeProvider extends ChangeNotifier{
 
 
   //
-  bool get isDarkTheme=> isdarkTheme;
+  bool get isDarkTheme2=> isdarkTheme;
 
 
   //changeTheme to set the theme chosen in settings page
