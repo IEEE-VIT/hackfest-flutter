@@ -25,7 +25,7 @@ class Splash extends State<SplashScreen> {
       ),
     );
 
-    const color = Color(0xFF0F0913);
+    const color = Color(0xff13253d);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
