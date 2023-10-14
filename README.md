@@ -1,8 +1,6 @@
 ## Hackfest-Flutter
 This app aims to simplify the process of finding repositories on GitHub, view the various contributors to the repos, and also allows the user to become a contributor to the desired project.
 
-> [!WARNING]  
-> This repository is excluded from Hacktoberfest participation due to branding problems.
 
 Kindly consider leaving a :star: if you like the repository and our organisation.
 
