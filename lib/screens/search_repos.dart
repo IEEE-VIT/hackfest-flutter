@@ -54,7 +54,7 @@ class _SearchState extends State<Search> {
             icon: Icon(
               Icons.palette,
               color: Provider.of<ThemeProvider>(context).isDarkTheme
-                  ? const Color(0xff93C2DB)
+                  ? Colors.white
                   : Colors.grey,
             ),
             onPressed: () {
@@ -85,28 +85,37 @@ class _SearchState extends State<Search> {
           children: <Widget>[
             //Textfield to get the user inputs
             TextField(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
+                fillColor: Provider.of<ThemeProvider>(context).isDarkTheme
+                        ? Colors.white
+                        : Colors.black,
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: Color.fromRGBO(217, 217, 217, 1),
+                    color: Provider.of<ThemeProvider>(context).isDarkTheme
+                        ? Colors.white
+                        : Colors.black,
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
                 ),
-                focusedBorder: OutlineInputBorder(
+                focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Color.fromRGBO(143, 143, 143, 1),
                   ),
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
                 labelText: 'Search Repository',
-                helperText: '* Search repos with the help of tag',
+                hintText: 'Search repos with the help of tag',
                 labelStyle: TextStyle(
                   fontSize: 15,
-                  color: Color.fromRGBO(48, 48, 48, 1),
+                  color: Provider.of<ThemeProvider>(context).isDarkTheme
+                      ? Colors.white
+                      : Colors.black,
                 ),
                 suffixIcon: Icon(
                   Icons.search,
-                  color: Colors.black,
+                  color: Provider.of<ThemeProvider>(context).isDarkTheme
+                      ? Colors.white
+                      : Colors.black,
                 ),
               ),
               controller: _controller,
@@ -180,9 +189,16 @@ class _SearchState extends State<Search> {
                     ),
                   );
                 } else if (snapshot.data!.isEmpty) {
-                  return const Expanded(
+                  return Expanded(
                     child: Center(
-                      child: Text('No repositories found for the search term.'),
+                      child: Text(
+                        'No repositories found for the search term.',
+                        style: TextStyle(
+                            color:
+                                Provider.of<ThemeProvider>(context).isDarkTheme
+                                    ? Colors.white
+                                    : Colors.black),
+                      ),
                     ),
                   );
                 }
