@@ -1,7 +1,6 @@
 //A simple About Us page. Changes here are not necessary.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hacktoberfest_flutter/shared/dictionary.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -14,7 +13,7 @@ class InfoPage extends StatefulWidget {
 }
 
 class _InfoPageState extends State<InfoPage> {
-  static const color = Color(0xff13253d);
+  static const color = Color(0xFF0F0913);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +52,7 @@ class _InfoPageState extends State<InfoPage> {
                 child: Center(
                   child: SizedBox(
                     height: 200,
-                    child: SvgPicture.network(hacktoberfestImage),
+                    child: Image.network(hacktoberfestImage),
                   ),
                 ),
                 onTap: () => launchUrl(
