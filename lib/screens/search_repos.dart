@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:hacktoberfest_flutter/screens/settings.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import '../shared/colors.dart';
-import '../widgets/new_repo_card.dart';
+import 'package:hacktoberfest_flutter/screens/settings.dart';
+import 'package:hacktoberfest_flutter/shared/colors.dart';
+import 'package:hacktoberfest_flutter/widgets/new_repo_card.dart';
+import 'package:http/http.dart' as http;
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -39,23 +39,25 @@ class _SearchState extends State<Search> {
     final deviceHeight = MediaQuery.of(context).size.height;
     final deviceWidth = MediaQuery.of(context).size.width;
 
-    Brightness currentBrightness = MediaQuery.of(context).platformBrightness;
+    final Brightness currentBrightness = MediaQuery.of(context).platformBrightness;
     // Check if the device is in dark mode
-    bool isDarkMode = currentBrightness == Brightness.dark;
+    final bool isDarkMode = currentBrightness == Brightness.dark;
 
     Color inputColor = Colors.black;
 
     // Check the theme conditions and set the inputText of the search field accordingly
-    if (device.theme == "Dark"){
+    if (device.theme == 'Dark'){
       inputColor = Colors.white;
     }
-    else if (device.theme == "Light"){
+    else if (device.theme == 'Light'){
       inputColor = Colors.black;
-    }else if (isDarkMode == true && device.theme == "System Default"){
+    }else if (isDarkMode == true && device.theme == 'System Default'){
       inputColor = Colors.white;
-    }else if (isDarkMode == false && device.theme == "System Default"){
-      inputColor = Colors.white;
-    };
+    }else if (isDarkMode == false && device.theme == 'System Default'){
+      inputColor = Colors.black;
+    }
+
+
 
     return Scaffold(
       appBar: AppBar(
@@ -75,8 +77,8 @@ class _SearchState extends State<Search> {
                   context,
                   MaterialPageRoute(builder: (context) => const Settings()),
                 );
-              }
-          )
+              },
+          ),
         ],
         title: Text(
           'Search tags',
@@ -193,7 +195,6 @@ class _SearchState extends State<Search> {
 
                 return Expanded(
                   child: ListView.builder(
-                    scrollDirection: Axis.vertical,
                     itemCount: snapshot.data!.length,
                     shrinkWrap: true,
                     itemBuilder: (ctx, index) {

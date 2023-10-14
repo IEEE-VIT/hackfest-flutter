@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../providers/theme_provider.dart';
 
 
 
 
 class Settings extends StatefulWidget {
-  static String routename = 'SettingsPage';
   const Settings({Key? key}) : super(key: key);
+  static String routename = 'SettingsPage';
 
   @override
   State<Settings> createState() => _SettingsState();
@@ -19,7 +18,7 @@ class _SettingsState extends State<Settings> {
 
 
 
-  Map<String, int> themes = {"System Default":1, "Light":2, "Dark":3};
+  Map<String, int> themes = {'System Default':1, 'Light':2, 'Dark':3};
 
 
 
@@ -45,7 +44,7 @@ class _SettingsState extends State<Settings> {
           children: [
             ListTile(
               title: const Text(
-                "Theme",
+                'Theme',
               ),
               onTap: () {
                 showDialog(
@@ -57,7 +56,7 @@ class _SettingsState extends State<Settings> {
                           padding: EdgeInsets.all(8.0),
                           child: Center(
                             child: Text(
-                              "Set Theme",
+                              'Set Theme',
                             ),
                           ),
                         ),
@@ -75,7 +74,7 @@ class _SettingsState extends State<Settings> {
                                   device.theme = e;
                                 });
                               },
-                            )).toList(),
+                            ),).toList(),
                           ),
                         ),
                         actions: [
@@ -91,10 +90,10 @@ class _SettingsState extends State<Settings> {
                                   fontWeight: FontWeight.bold,
                                   fontSize: 17,
                                 ),
-                              )),
+                              ),),
                         ],
                       );
-                    });
+                    },);
                   },
                 );
               },
@@ -126,9 +125,9 @@ Future<void> saveSetting(String key, dynamic value) async {
 
 //Device model including theme property
 class Device {
-  String? theme;
 
   Device({required this.theme});
+  String? theme;
 }
 
-Device device = Device(theme: "System Default");
+Device device = Device(theme: 'System Default');

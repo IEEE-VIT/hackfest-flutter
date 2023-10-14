@@ -3,20 +3,20 @@ import 'package:hacktoberfest_flutter/shared/colors.dart';
 
 class ThemeProvider extends ChangeNotifier{
 
+  ThemeProvider({required this.isdarkTheme, this.selectedTheme});
+
   bool isdarkTheme;
   String? selectedTheme;
-
-  ThemeProvider({required this.isdarkTheme, this.selectedTheme});
 
   //global lightTheme for app
   var lightTheme= ThemeData(
 
-    fontFamily: "Poppins-Regular",
+    fontFamily: 'Poppins-Regular',
    // backgroundColor: Color(0xfffafafa),
     iconButtonTheme : IconButtonThemeData(
       style: ButtonStyle(
-        iconColor: MaterialStateProperty.all(Colors.black)
-      )
+        iconColor: MaterialStateProperty.all(Colors.black),
+      ),
     ),
     secondaryHeaderColor: Colors.black,
     primaryColor: Colors.white,
@@ -36,12 +36,12 @@ class ThemeProvider extends ChangeNotifier{
         ),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
-            color: Color.fromRGBO(217, 217, 217, 1), width: 1.0),
+            color: Color.fromRGBO(217, 217, 217, 1),),
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
-            color: Color.fromRGBO(143, 143, 143, 1), width: 1.0),
+            color: Color.fromRGBO(143, 143, 143, 1),),
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
     ),
@@ -61,12 +61,12 @@ class ThemeProvider extends ChangeNotifier{
   //global darkTheme for app
   var darkTheme = ThemeData(
 
-    fontFamily: "Poppins-Regular",
+    fontFamily: 'Poppins-Regular',
    // backgroundColor: Color(0xff071724),
     iconButtonTheme : IconButtonThemeData(
         style: ButtonStyle(
-            iconColor: MaterialStateProperty.all(const Color(0xff93C2DB))
-        )
+            iconColor: MaterialStateProperty.all(const Color(0xff93C2DB)),
+        ),
     ),
     secondaryHeaderColor: const Color(0xffFDF0F0),
     primaryColor: darkModeHactober,
@@ -86,12 +86,12 @@ class ThemeProvider extends ChangeNotifier{
       ),
       enabledBorder: const OutlineInputBorder(
         borderSide: BorderSide(
-            color: Color.fromRGBO(217, 217, 217, 1), width: 1.0),
+            color: Color.fromRGBO(217, 217, 217, 1),),
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
-            color: Colors.purple.shade300, width: 1.0),
+            color: Colors.purple.shade300,),
             borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),
     ),
@@ -126,7 +126,7 @@ class ThemeProvider extends ChangeNotifier{
   }
 
   //getter to get the current theme
-  get currentTheme{
+  ThemeData get currentTheme{
     if(isdarkTheme){
       return darkTheme;
     } else {
