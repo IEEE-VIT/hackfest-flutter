@@ -31,7 +31,7 @@ class Splash extends State<SplashScreen> {
           decoration: const BoxDecoration(color: color),
           child: Center(
             child: Image.asset(
-              "assets/htbf.png",
+              'assets/htbf.png',
             ),
           ),
         ),

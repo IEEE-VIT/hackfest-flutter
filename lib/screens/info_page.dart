@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../shared/dictionary.dart';
-
 class InfoPage extends StatefulWidget {
-  static String routename = 'InfoPage';
   const InfoPage({Key? key}) : super(key: key);
+  static String routename = 'InfoPage';
 
   @override
   State<InfoPage> createState() => _InfoPageState();

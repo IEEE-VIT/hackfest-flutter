@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hacktoberfest_flutter/models/contributor_detail_model.dart';
+import 'package:hacktoberfest_flutter/models/contributors_card_model.dart';
 import 'package:hacktoberfest_flutter/models/contributors_data_model.dart';
 import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
 import 'package:hacktoberfest_flutter/shared/colors.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:hacktoberfest_flutter/models/contributors_card_model.dart';
 
 class Contributors extends StatefulWidget {
-  static const String routename = '/Contributors';
-
   const Contributors({super.key});
+  static const String routename = '/Contributors';
 
   @override
   State<Contributors> createState() => _ContributorsState();
@@ -322,8 +321,10 @@ class _ContributorsState extends State<Contributors>
   bool get wantKeepAlive => true;
 }
 
-Future<List<ContributorCard>> getContributors(
-    {required String username, required String repository}) async {
+Future<List<ContributorCard>> getContributors({
+  required String username,
+  required String repository,
+}) async {
   const String head = 'https://api.github.com/repos/';
   const String tail = '/contributors';
   String url = '$head$username/$repository$tail';
@@ -396,8 +397,8 @@ void addToContributors(BuildContext context,
   }
 }
 
-_launchURL(String gurl) async {
-  String url = gurl;
+Future<void> _launchURL(String gurl) async {
+  final String url = gurl;
   if (await canLaunchUrl(Uri.parse(url))) {
     await launchUrl(Uri.parse(url));
   } else {
