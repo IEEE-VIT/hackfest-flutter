@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
 import 'package:hacktoberfest_flutter/screens/home_page.dart';
 import 'package:provider/provider.dart';
-import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'routes.dart';
 
 void main() {
@@ -25,12 +24,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: theme.currentTheme,
-            home: AnimatedSplashScreen(
-              splash: Image.asset('assets/git.png'),
-              splashTransition: SplashTransition.fadeTransition,
-              nextScreen: const HomePage(),
-              duration: 2500,
-            ),
+            home: const HomePage(),
             routes: routes,
           );
         },

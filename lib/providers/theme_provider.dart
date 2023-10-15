@@ -8,7 +8,7 @@ class ThemeProvider extends ChangeNotifier {
     // backgroundColor: Color(0xfffafafa),
     secondaryHeaderColor: Colors.black,
     primaryColor: Colors.white,
-    scaffoldBackgroundColor: const Color(0xfff5f5f5),
+    scaffoldBackgroundColor: const Color(0Xff1F2933),
   );
   var darkTheme = ThemeData(
     // backgroundColor: Color(0xff071724),
