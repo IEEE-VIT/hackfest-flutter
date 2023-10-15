@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../shared/dictionary.dart';
+
 class InfoPage extends StatefulWidget {
-  const InfoPage({Key? key}) : super(key: key);
+  const InfoPage({super.key});
   static String routename = 'InfoPage';
 
   @override
@@ -18,13 +20,11 @@ class _InfoPageState extends State<InfoPage> {
         padding: const EdgeInsets.all(20),
         children: [
           Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GestureDetector(
                 child: Center(
                   child: Image.asset(
-                    "assets/ieee.png",
+                    'assets/ieee.png',
                     height: 150,
                   ),
                 ),

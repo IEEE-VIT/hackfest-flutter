@@ -1,18 +1,14 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
-import 'package:hacktoberfest_flutter/shared/colors.dart';
-import 'package:hacktoberfest_flutter/widgets/new_repo_card.dart';
-import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import '../widgets/new_repo_card.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
   static String routename = 'Search';
-
-  const Search({Key? key}) : super(key: key);
 
   @override
   State<Search> createState() => _SearchState();
@@ -57,7 +53,7 @@ class _SearchState extends State<Search> {
             onPressed: () {
               Provider.of<ThemeProvider>(context, listen: false).changeTheme();
             },
-          )
+          ),
         ],
         title: const Text(
           'Search tags',
@@ -86,14 +82,12 @@ class _SearchState extends State<Search> {
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.grey, // Change border color
-                    width: 1.0,
                   ),
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.blue, // Change focused border color
-                    width: 1.0,
                   ),
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
@@ -128,19 +122,17 @@ class _SearchState extends State<Search> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                  padding: const EdgeInsets.all(1.0),
-                  backgroundColor: Colors.deepPurple,
-                  elevation: 0 // Change button background color
-                  ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                padding: const EdgeInsets.all(1.0),
+                backgroundColor: Colors.deepPurple,
+                elevation: 0, // Change button background color
+              ),
               child: Ink(
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
                     colors: [Colors.purple, Colors.pink],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
                   ),
                   borderRadius: BorderRadius.circular(30.0),
                 ),
@@ -161,13 +153,14 @@ class _SearchState extends State<Search> {
             // This widget displays the information of the repos with the help of listview
             FutureBuilder<List<dynamic>>(
               future: listOfRepos,
-              builder: (BuildContext context,
-                  AsyncSnapshot<List<dynamic>> snapshot) {
+              builder: (
+                BuildContext context,
+                AsyncSnapshot<List<dynamic>> snapshot,
+              ) {
                 if (snapshot.hasData) {
                   // This widget displays the repos details
                   return Expanded(
                     child: ListView.builder(
-                      scrollDirection: Axis.vertical,
                       itemCount: snapshot.data?.length,
                       shrinkWrap: true,
                       itemBuilder: (ctx, index) {
@@ -201,7 +194,6 @@ class _SearchState extends State<Search> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(23),
                       child: Image(
-                        alignment: Alignment.center,
                         width: deviceWidth,
                         image: const NetworkImage(
                           'https://image.freepik.com/free-vector/search-engine-concept-illustration_114360-306.jpg',
@@ -227,15 +219,15 @@ class _SearchState extends State<Search> {
 // And returns the list of repos
 Future<List<dynamic>> getRepos(String tag) async {
   final String baseURL =
-      "https://api.github.com/search/repositories?q=topic:$tag&per_page=100";
+      'https://api.github.com/search/repositories?q=topic:$tag&per_page=100';
   final response = await http.get(
     Uri.parse(Uri.encodeFull(baseURL)),
-    headers: {"Accept": "application/json"},
+    headers: {'Accept': 'application/json'},
   );
 
   if (response.statusCode == 200) {
-    Map<String, dynamic> result = json.decode(response.body);
-    List<dynamic> listOfRepos = result["items"];
+    final Map<String, dynamic> result = json.decode(response.body);
+    final List<dynamic> listOfRepos = result['items'];
     return listOfRepos;
   } else {
     return ['Error'];

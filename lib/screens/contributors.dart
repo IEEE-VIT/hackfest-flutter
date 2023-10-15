@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hacktoberfest_flutter/models/contributor_detail_model.dart';
-import 'package:hacktoberfest_flutter/models/contributors_card_model.dart';
 import 'package:hacktoberfest_flutter/models/contributors_data_model.dart';
 import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
 import 'package:hacktoberfest_flutter/shared/colors.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:hacktoberfest_flutter/models/contributors_card_model.dart';
 
 class Contributors extends StatefulWidget {
   const Contributors({super.key});
@@ -26,7 +26,7 @@ class _ContributorsState extends State<Contributors>
   }
 
   Future<void> fetchInitialContributors() async {
-    List<ContributorCard> cards = await getContributors(
+    final List<ContributorCard> cards = await getContributors(
         username: 'IEEE-VIT', repository: 'hacktoberfest-flutter');
     setState(() {
       cardList = cards;
@@ -79,7 +79,6 @@ class _ContributorsState extends State<Contributors>
       body: cardList.isEmpty
           ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
-              scrollDirection: Axis.vertical,
               shrinkWrap: true,
               itemCount: cardList.length,
               itemBuilder: (ctx, index) {
@@ -112,8 +111,6 @@ class _ContributorsState extends State<Contributors>
                                   decoration: BoxDecoration(
                                     gradient: LinearGradient(
                                       colors: [hactoberViolet, hacktoberPink],
-                                      begin: Alignment.centerLeft,
-                                      end: Alignment.centerRight,
                                     ),
                                     borderRadius: BorderRadius.circular(30.0),
                                   ),
@@ -124,7 +121,7 @@ class _ContributorsState extends State<Contributors>
                                     ),
                                     alignment: Alignment.center,
                                     child: const Text(
-                                      "View Profile",
+                                      'View Profile',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Colors.white,
@@ -143,17 +140,16 @@ class _ContributorsState extends State<Contributors>
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            cardList[index].name.isNotEmpty
-                                ? Text(
-                                    cardList[index].name,
-                                    style: TextStyle(
-                                      color: Theme.of(context)
-                                          .secondaryHeaderColor,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 14,
-                                    ),
-                                  )
-                                : const SizedBox(),
+                            if (cardList[index].name.isNotEmpty)
+                              Text(
+                                cardList[index].name,
+                                style: TextStyle(
+                                  color: Theme.of(context).secondaryHeaderColor,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            const SizedBox(),
                             Text(
                               cardList[index].userName,
                               style: TextStyle(
@@ -189,72 +185,72 @@ class _ContributorsState extends State<Contributors>
                             const SizedBox(
                               height: 5,
                             ),
-                            cardList[index].location.isNotEmpty
-                                ? Row(
-                                    children: [
-                                      Icon(
-                                        Icons.location_on,
-                                        size: 14,
-                                        color:
-                                            Provider.of<ThemeProvider>(context)
-                                                    .isDarkTheme
-                                                ? Colors.white
-                                                : Colors.black,
-                                      ),
-                                      Text(
-                                        cardList[index].location,
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Provider.of<ThemeProvider>(
-                                                      context)
-                                                  .isDarkTheme
-                                              ? Colors.white
-                                              : Colors.black,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                : const SizedBox(),
-                            cardList[index].location.isNotEmpty
-                                ? const SizedBox(
-                                    height: 5,
-                                  )
-                                : const SizedBox(),
-                            cardList[index].twitterUsername.isNotEmpty
-                                ? GestureDetector(
-                                    onTap: () {
-                                      _launchURL(
-                                          'https://twitter.com/${cardList[index].twitterUsername}');
-                                    },
-                                    child: Row(
-                                      children: [
-                                        SizedBox(
-                                          height: 14,
-                                          width: 14,
-                                          child: Image.network(
-                                            'https://img.icons8.com/fluent-systems-filled/344/twitter.png',
-                                            color: Colors.blueAccent,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        const Icon(
-                                          Icons.alternate_email,
-                                          size: 14,
-                                          color: Colors.blueAccent,
-                                        ),
-                                        Text(
-                                          cardList[index].twitterUsername,
-                                          style: const TextStyle(
-                                            fontSize: 12,
-                                            color: Colors.blueAccent,
-                                          ),
-                                        ),
-                                      ],
+                            if (cardList[index].location.isNotEmpty)
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.location_on,
+                                    size: 14,
+                                    color: Provider.of<ThemeProvider>(context)
+                                            .isDarkTheme
+                                        ? Colors.white
+                                        : Colors.black,
+                                  ),
+                                  Text(
+                                    cardList[index].location,
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Provider.of<ThemeProvider>(
+                                        context,
+                                      ).isDarkTheme
+                                          ? Colors.white
+                                          : Colors.black,
                                     ),
-                                  )
-                                : const SizedBox(),
+                                  ),
+                                ],
+                              ),
+                            const SizedBox(),
+                            if (cardList[index].location.isNotEmpty)
+                              const SizedBox(
+                                height: 5,
+                              ),
+                            const SizedBox(),
+                            if (cardList[index].twitterUsername.isNotEmpty)
+                              GestureDetector(
+                                onTap: () {
+                                  _launchURL(
+                                    'https://twitter.com/${cardList[index].twitterUsername}',
+                                  );
+                                },
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      height: 14,
+                                      width: 14,
+                                      child: Image.network(
+                                        'https://img.icons8.com/fluent-systems-filled/344/twitter.png',
+                                        color: Colors.blueAccent,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    const Icon(
+                                      Icons.alternate_email,
+                                      size: 14,
+                                      color: Colors.blueAccent,
+                                    ),
+                                    Text(
+                                      cardList[index].twitterUsername,
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.blueAccent,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            const SizedBox(),
                           ],
                         ),
                       ],
@@ -275,8 +271,10 @@ class _ContributorsState extends State<Contributors>
   }
 
   void _showAddContributorDialog(
-      BuildContext context, Function(ContributorCard) addContributorCallback) {
-    TextEditingController usernameController = TextEditingController();
+    BuildContext context,
+    Function(ContributorCard) addContributorCallback,
+  ) {
+    final TextEditingController usernameController = TextEditingController();
 
     showDialog(
       context: context,
@@ -302,7 +300,7 @@ class _ContributorsState extends State<Contributors>
             TextButton(
               onPressed: () {
                 // Get the username entered by the user
-                String githubUsername = usernameController.text;
+                final githubUsername = usernameController.text;
 
                 // Call the function to add the contributor
                 addToContributors(context, addContributorCallback);
@@ -321,23 +319,21 @@ class _ContributorsState extends State<Contributors>
   bool get wantKeepAlive => true;
 }
 
-Future<List<ContributorCard>> getContributors({
-  required String username,
-  required String repository,
-}) async {
+Future<List<ContributorCard>> getContributors(
+    {required String username, required String repository}) async {
   const String head = 'https://api.github.com/repos/';
   const String tail = '/contributors';
-  String url = '$head$username/$repository$tail';
+  final url = '$head$username/$repository$tail';
   http.Response response = await http.get(
       Uri.https('api.github.com', '/repos/$username/$repository/contributors'));
 
-  List<Contributor> contributors = contributorFromJson(response.body);
-  List<ContributorCard> contriCards = [];
+  final List<Contributor> contributors = contributorFromJson(response.body);
+  final List<ContributorCard> contriCards = [];
   for (final contributor in contributors) {
     http.Response contributorResponse = await http
         .get(Uri.parse('https://api.github.com/users/${contributor.login}'));
 
-    ContributorDetail contributorDetail =
+    final ContributorDetail contributorDetail =
         contributorDetailFromJson(contributorResponse.body);
     contriCards.add(
       ContributorCard(
@@ -360,7 +356,7 @@ Future<List<ContributorCard>> getContributors({
 void addToContributors(BuildContext context,
     Function(ContributorCard) addContributorCallback) async {
   // Fetch contributor data from GitHub based on the provided username
-  String githubUsername =
+  const githubUsername =
       'githubUsername'; // Replace with the actual GitHub username
 
   // Fetch contributor data from GitHub using the GitHub API
@@ -370,7 +366,7 @@ void addToContributors(BuildContext context,
     // Parse the GitHub response to extract contributor details
     final contributorData = contributorDetailFromJson(githubResponse.body);
 
-    ContributorCard newContributor = ContributorCard(
+    final ContributorCard newContributor = ContributorCard(
       userName: contributorData.login,
       name: contributorData.name ?? '',
       desc: contributorData.bio ?? '',
@@ -397,8 +393,8 @@ void addToContributors(BuildContext context,
   }
 }
 
-Future<void> _launchURL(String gurl) async {
-  final String url = gurl;
+_launchURL(String gurl) async {
+  String url = gurl;
   if (await canLaunchUrl(Uri.parse(url))) {
     await launchUrl(Uri.parse(url));
   } else {
