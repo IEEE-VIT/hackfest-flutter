@@ -323,16 +323,13 @@ Future<List<ContributorCard>> getContributors(
     {required String username, required String repository}) async {
   const String head = 'https://api.github.com/repos/';
   const String tail = '/contributors';
-  final url = '$head$username/$repository$tail';
-  final http.Response response = await http.get(
-      Uri.https('api.github.com', '/repos/$username/$repository/contributors'));
-
+  final String url = '$head$username/$repository$tail';
+  final http.Response response = await http.get(Uri.parse(url));
   final List<Contributor> contributors = contributorFromJson(response.body);
   final List<ContributorCard> contriCards = [];
   for (final contributor in contributors) {
-    http.Response contributorResponse = await http
+    final http.Response contributorResponse = await http
         .get(Uri.parse('https://api.github.com/users/${contributor.login}'));
-
     final ContributorDetail contributorDetail =
         contributorDetailFromJson(contributorResponse.body);
     contriCards.add(
