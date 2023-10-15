@@ -324,7 +324,7 @@ Future<List<ContributorCard>> getContributors(
   const String head = 'https://api.github.com/repos/';
   const String tail = '/contributors';
   final url = '$head$username/$repository$tail';
-  http.Response response = await http.get(
+  final http.Response response = await http.get(
       Uri.https('api.github.com', '/repos/$username/$repository/contributors'));
 
   final List<Contributor> contributors = contributorFromJson(response.body);
@@ -353,8 +353,10 @@ Future<List<ContributorCard>> getContributors(
   return contriCards;
 }
 
-void addToContributors(BuildContext context,
-    Function(ContributorCard) addContributorCallback) async {
+void addToContributors(
+  BuildContext context,
+  Function(ContributorCard) addContributorCallback,
+) async {
   // Fetch contributor data from GitHub based on the provided username
   const githubUsername =
       'githubUsername'; // Replace with the actual GitHub username
