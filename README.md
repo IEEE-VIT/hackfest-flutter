@@ -1,12 +1,6 @@
-# Hacktoberfest 2023 with IEEE-VIT :heart:
-<img src="https://files.ieeevit.org/Hacktoberfest-23/Hacktoberfest%20App.png">
-
-## About
+## Hackfest-Flutter
 This app aims to simplify the process of finding repositories on GitHub, view the various contributors to the repos, and also allows the user to become a contributor to the desired project.
 
-Support open source software by participating in [Hacktoberfest](https://hacktoberfest.digitalocean.com) and get goodies :yellow_heart:
-
-> Please check all issues labelled as `hacktoberfest` to start contributing!
 
 Kindly consider leaving a :star: if you like the repository and our organisation.
 
@@ -32,11 +26,14 @@ Run the following commands from the root of the project directory:
 Open your forked repo in your browser and then raise a PR to the `master` branch of this repository!
 
 
-
 ## Contributing
 
-To start contributing, check out [CONTRIBUTING.md](https://github.com/IEEE-VIT/hacktoberfest-flutter/blob/master/CONTRIBUTING.md). New contributors are always welcome to support this project. If you want something gentle to start with, check out issues labelled as `easy` or `good-first-issue` Check out issues labelled as `hacktoberfest` if you are up for some grabs! :) 
+To start contributing, check out [CONTRIBUTING.md](https://github.com/IEEE-VIT/hacktoberfest-flutter/blob/master/CONTRIBUTING.md). New contributors are always welcome to support this project. If you want something gentle to start with, check out issues labelled as `easy` or `good-first-issue`
 
 ## License
 
 This project is licensed under [MIT](https://github.com/IEEE-VIT/hacktoberfest-flutter/blob/master/LICENSE)
+
+
+> [!NOTE]  
+> This project is not officially affiliated with DigitalOcean or Hacktoberfest in any manner.
