@@ -152,7 +152,7 @@ class _ContributorsState extends State<Contributors>
                               cardList[index].userName,
                               style: TextStyle(
                                 color: Provider.of<ThemeProvider>(context)
-                                        .isDarkTheme
+                                        .isDarkTheme2
                                     ? Colors.white.withOpacity(0.7)
                                     : Colors.grey[700],
                                 fontWeight: FontWeight.w400,
@@ -170,7 +170,7 @@ class _ContributorsState extends State<Contributors>
                                     : cardList[index].desc,
                                 style: TextStyle(
                                   color: Provider.of<ThemeProvider>(context)
-                                          .isDarkTheme
+                                          .isDarkTheme2
                                       ? Colors.white.withOpacity(0.7)
                                       : Colors.grey[700],
                                   fontWeight: FontWeight.w400,
@@ -191,7 +191,7 @@ class _ContributorsState extends State<Contributors>
                                     size: 14,
                                     color: Provider.of<ThemeProvider>(
                                       context,
-                                    ).isDarkTheme
+                                    ).isDarkTheme2
                                         ? Colors.white
                                         : Colors.black,
                                   ),
@@ -201,7 +201,7 @@ class _ContributorsState extends State<Contributors>
                                       fontSize: 12,
                                       color: Provider.of<ThemeProvider>(
                                         context,
-                                      ).isDarkTheme
+                                      ).isDarkTheme2
                                           ? Colors.white
                                           : Colors.black,
                                     ),

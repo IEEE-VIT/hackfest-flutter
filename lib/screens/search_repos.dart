@@ -2,11 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
+import 'package:hacktoberfest_flutter/screens/settings.dart';
 import 'package:hacktoberfest_flutter/shared/colors.dart';
 import 'package:hacktoberfest_flutter/widgets/new_repo_card.dart';
 import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -26,7 +25,6 @@ class _SearchState extends State<Search> {
   @override
   void initState() {
     _controller = TextEditingController();
-
     super.initState();
   }
 
@@ -41,25 +39,45 @@ class _SearchState extends State<Search> {
     final deviceHeight = MediaQuery.of(context).size.height;
     final deviceWidth = MediaQuery.of(context).size.width;
 
+    final Brightness currentBrightness = MediaQuery.of(context).platformBrightness;
+    // Check if the device is in dark mode
+    final bool isDarkMode = currentBrightness == Brightness.dark;
+
+    Color inputColor = Colors.black;
+
+    // Check the theme conditions and set the inputText of the search field accordingly
+    if (device.theme == 'Dark'){
+      inputColor = Colors.white;
+    }
+    else if (device.theme == 'Light'){
+      inputColor = Colors.black;
+    }else if (isDarkMode == true && device.theme == 'System Default'){
+      inputColor = Colors.white;
+    }else if (isDarkMode == false && device.theme == 'System Default'){
+      inputColor = Colors.black;
+    }
+
+
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
         elevation: 5.0,
         //shadowColor: Colors.black26,
-        shape: const BeveledRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+        iconTheme: IconThemeData(
+          color: Theme.of(context).secondaryHeaderColor,
         ),
         actions: [
           IconButton(
-            icon: Icon(
-              Icons.palette,
-              color: Provider.of<ThemeProvider>(context).isDarkTheme
-                  ? const Color(0xff93C2DB)
-                  : Colors.grey,
-            ),
-            onPressed: () {
-              Provider.of<ThemeProvider>(context, listen: false).changeTheme();
-            },
+              icon: const Icon(
+                Icons.settings,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Settings()),
+                );
+              },
           ),
         ],
         title: Text(
@@ -83,30 +101,17 @@ class _SearchState extends State<Search> {
         ),
         child: Column(
           children: <Widget>[
+
             //Textfield to get the user inputs
             TextField(
+              style: TextStyle(
+                color: inputColor,
+              ),
               decoration: const InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Color.fromRGBO(217, 217, 217, 1),
-                  ),
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Color.fromRGBO(143, 143, 143, 1),
-                  ),
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                ),
                 labelText: 'Search Repository',
                 helperText: '* Search repos with the help of tag',
-                labelStyle: TextStyle(
-                  fontSize: 15,
-                  color: Color.fromRGBO(48, 48, 48, 1),
-                ),
                 suffixIcon: Icon(
                   Icons.search,
-                  color: Colors.black,
                 ),
               ),
               controller: _controller,
@@ -157,6 +162,7 @@ class _SearchState extends State<Search> {
                 ),
               ),
             ),
+
             //This widget display the information of the repos with the help of listview
             FutureBuilder<List<dynamic>>(
               future: listOfRepos,
@@ -189,7 +195,6 @@ class _SearchState extends State<Search> {
 
                 return Expanded(
                   child: ListView.builder(
-                    scrollDirection: Axis.vertical,
                     itemCount: snapshot.data!.length,
                     shrinkWrap: true,
                     itemBuilder: (ctx, index) {
@@ -208,6 +213,7 @@ class _SearchState extends State<Search> {
     );
   }
 }
+
 
 //This future func get the repos data from the Github API
 //And returns the list of repos
