@@ -64,8 +64,8 @@ class _SearchState extends State<Search> {
         backgroundColor: Theme.of(context).primaryColor,
         elevation: 5.0,
         //shadowColor: Colors.black26,
-        shape: const BeveledRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+        iconTheme: IconThemeData(
+          color: Theme.of(context).secondaryHeaderColor,
         ),
         actions: [
           IconButton(
