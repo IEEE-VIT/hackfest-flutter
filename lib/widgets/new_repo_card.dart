@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slimy_card/flutter_slimy_card.dart';
 import 'package:hacktoberfest_flutter/shared/colors.dart';
+import 'package:hacktoberfest_flutter/widgets/custom_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NewRepoCard extends StatelessWidget {
@@ -10,6 +11,16 @@ class NewRepoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final deviceWidth = MediaQuery.of(context).size.width;
+    Future<void> onPressed () async {
+      final String url = listData[index]['html_url'];
+      if (await canLaunchUrl(Uri.parse(url))) {
+        await launchUrl(Uri.parse(url));
+      } else {
+        throw 'Could not launch $url';
+      }
+    }
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: FlutterSlimyCard(
@@ -65,12 +76,20 @@ class NewRepoCard extends StatelessWidget {
                     color: Colors.white,
                     fontSize: 20,
                   ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 15),
                 if (listData[index]['description'] != null)
                   Text(
                     'Description:  ${listData[index]['description']}',
-                    style: TextStyle(color: Colors.deepPurple[100]),
+                    style: TextStyle(
+                      color: Colors.deepPurple[100],
+                    ),
+                    maxLines: 4,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
                   )
                 else
                   Text(
@@ -78,34 +97,15 @@ class NewRepoCard extends StatelessWidget {
                     style: TextStyle(color: Colors.deepPurple[100]),
                   ),
                 const SizedBox(height: 15),
-                TextButton.icon(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      Colors.deepPurple[800]!,
+                CustomButton(
+                    height: 35,
+                    width: deviceWidth / 4,
+                    onPressed: onPressed,
+                    isIcon: true,
+                    buttonText: 'Visit',
+                    color1: const Color(0XFF4527A0),
+                    color2: const Color(0XFF4527A0),
                     ),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                      ),
-                    ),
-                  ),
-                  onPressed: () async {
-                    final String url = listData[index]['html_url'];
-                    if (await canLaunchUrl(Uri.parse(url))) {
-                      await launchUrl(Uri.parse(url));
-                    } else {
-                      throw 'Could not launch $url';
-                    }
-                  },
-                  icon: const Icon(
-                    Icons.visibility,
-                    color: Colors.white,
-                  ),
-                  label: const Text(
-                    'Click To Visit',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
               ],
             ),
           ),
