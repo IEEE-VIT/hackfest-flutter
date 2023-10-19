@@ -119,14 +119,15 @@ class _SearchState extends State<Search> {
             //search button to call the action
             ElevatedButton(
               onPressed: () async {
-                if (_controller.text.isNotEmpty) {
+                if (_controller.text.trim().isNotEmpty) {
                   FocusScope.of(context).unfocus();
                   setState(() {
-                    setState(() {
-                      listOfRepos = getRepos(_controller.text);
-                    });
+                    listOfRepos = getRepos(_controller.text);
                   });
                 } else {
+                  setState(() {
+                    _controller.text="";
+                  });
                   return;
                 }
               },
