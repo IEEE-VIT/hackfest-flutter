@@ -280,12 +280,12 @@ Future<List<ContributorCard>> getContributors({
   const String head = 'https://api.github.com/repos/';
   const String tail = '/contributors';
   final String url = '$head$username/$repository$tail';
-  final http.Response response = await http.get(Uri.https(url));
+  final http.Response response = await http.get(Uri.parse(url));
   final List<Contributor> contributors = contributorFromJson(response.body);
   final List<ContributorCard> contriCards = [];
   for (final contributor in contributors) {
     final http.Response contributorResponse = await http
-        .get(Uri.https('https://api.github.com/users/${contributor.login}'));
+        .get(Uri.parse('https://api.github.com/users/${contributor.login}'));
     final ContributorDetail contributorDetail =
         contributorDetailFromJson(contributorResponse.body);
     contriCards.add(
