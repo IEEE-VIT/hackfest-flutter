@@ -4,7 +4,12 @@ import 'package:hacktoberfest_flutter/shared/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NewRepoCard extends StatelessWidget {
-  const NewRepoCard({super.key, required this.listData, required this.index});
+  const NewRepoCard({
+    Key? key,
+    required this.listData,
+    required this.index,
+  }) : super(key: key);
+
   final List<dynamic> listData;
   final int index;
 
@@ -13,7 +18,7 @@ class NewRepoCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: FlutterSlimyCard(
-        color: hactoberViolet,
+        color: hacktoberViolet,
         topCardHeight: 230,
         bottomCardHeight: 250,
         borderRadius: 15,
@@ -45,7 +50,7 @@ class NewRepoCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                 Text(
-                  'Owner:  ${listData[index]['owner']['login']}',
+                  'Owner: ${listData[index]['owner']['login']}',
                   style: const TextStyle(color: Colors.white),
                 ),
                 const SizedBox(height: 15),
@@ -60,7 +65,7 @@ class NewRepoCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Repository:  ${listData[index]['full_name']}',
+                  'Repository: ${listData[index]['full_name']}',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20,
@@ -69,7 +74,7 @@ class NewRepoCard extends StatelessWidget {
                 const SizedBox(height: 15),
                 if (listData[index]['description'] != null)
                   Text(
-                    'Description:  ${listData[index]['description']}',
+                    'Description: ${listData[index]['description']}',
                     style: TextStyle(color: Colors.deepPurple[100]),
                   )
                 else
@@ -91,8 +96,8 @@ class NewRepoCard extends StatelessWidget {
                   ),
                   onPressed: () async {
                     final String url = listData[index]['html_url'];
-                    if (await canLaunchUrl(Uri.parse(url))) {
-                      await launchUrl(Uri.parse(url));
+                    if (await canLaunch(url)) {
+                      await launch(url);
                     } else {
                       throw 'Could not launch $url';
                     }
