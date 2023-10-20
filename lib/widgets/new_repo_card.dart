@@ -12,7 +12,8 @@ class NewRepoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
-    Future<void> onPressed () async {
+
+    Future<void> visitRepo () async {
       final String url = listData[index]['html_url'];
       if (await canLaunchUrl(Uri.parse(url))) {
         await launchUrl(Uri.parse(url));
@@ -100,7 +101,7 @@ class NewRepoCard extends StatelessWidget {
                 CustomButton(
                     height: 35,
                     width: deviceWidth / 4,
-                    onPressed: onPressed,
+                    onPressed: visitRepo,
                     isIcon: true,
                     buttonText: 'Visit',
                     color1: const Color(0XFF4527A0),

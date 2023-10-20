@@ -40,8 +40,8 @@ class _SearchState extends State<Search> {
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
     final deviceWidth = MediaQuery.of(context).size.width;
-    Future<void> onPressed () async {
-      _controller.text='flutter';
+
+    Future<void> searchRepo () async {
       if (_controller.text.isNotEmpty) {
         FocusScope.of(context).unfocus();
         setState(() {
@@ -133,7 +133,7 @@ class _SearchState extends State<Search> {
             CustomButton(
                 height: 40,
                 width: deviceWidth / 4,
-                onPressed: onPressed,
+                onPressed: searchRepo,
                 isIcon: false,
                 buttonText: 'Search',
                 color1: hactoberViolet,
