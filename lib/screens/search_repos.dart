@@ -1,6 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
 import 'package:hacktoberfest_flutter/shared/colors.dart';
@@ -111,6 +111,9 @@ class _SearchState extends State<Search> {
               ),
               controller: _controller,
               textInputAction: TextInputAction.done,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.allow(RegExp('[ 0-9a-zA-Z._-]',)),
+              ],
             ),
             SizedBox(
               height: deviceHeight * 0.02,
@@ -126,7 +129,7 @@ class _SearchState extends State<Search> {
                   });
                 } else {
                   setState(() {
-                    _controller.text="";
+                    _controller.text='';
                   });
                   return;
                 }
