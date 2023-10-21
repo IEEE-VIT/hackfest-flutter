@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
 import 'package:hacktoberfest_flutter/screens/contributors.dart';
 import 'package:hacktoberfest_flutter/screens/info_page.dart';
 import 'package:hacktoberfest_flutter/screens/search_repos.dart';
-import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -27,15 +25,8 @@ class _HomePageState extends State<HomePage> {
             InfoPage(), // This loads up the the Info page
           ],
         ),
-        bottomNavigationBar: TabBar(
-          labelColor: Provider.of<ThemeProvider>(context).isDarkTheme
-              ? const Color(0xff93C2DB)
-              : Colors.black,
-          unselectedLabelColor: Colors.grey[400],
-          // indicatorSize: TabBarIndicatorSize.label,
-          // indicatorPadding: EdgeInsets.all(1.0),
-          // indicatorColor: Colors.red,
-          tabs: const [
+        bottomNavigationBar: const TabBar(
+          tabs: [
             Tab(
               icon: Icon(Icons.search),
               child: Text('Search'),
