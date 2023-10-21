@@ -10,8 +10,6 @@ class NewRepoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final deviceWidth = MediaQuery.of(context).size.width;
-
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: FlutterSlimyCard(
@@ -86,40 +84,32 @@ class NewRepoCard extends StatelessWidget {
                     style: TextStyle(color: Colors.deepPurple[100]),
                   ),
                 const SizedBox(height: 15),
-                Container(
-                  height: 25,
-                  width: deviceWidth/3,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      final String url = listData[index]['html_url'];
-                      if (await canLaunchUrl(Uri.parse(url))) {
-                        await launchUrl(Uri.parse(url));
-                      } else {
-                        throw 'Could not launch $url';
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
+                TextButton.icon(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      Colors.deepPurple[800]!,
+                    ),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
                       ),
-                      padding: const EdgeInsets.all(1.0),
-                      backgroundColor: Colors.deepPurple[800],
-                      alignment: Alignment.center,
-
                     ),
-                    child: const Row(
-                      children: [
-                        Icon(
-                          Icons.visibility,
-                          color: Colors.white,
-                        ),
-                        Text(
-                          'Click To Vist',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
+                  ),
+                  onPressed: () async {
+                    final String url = listData[index]['html_url'];
+                    if (await canLaunchUrl(Uri.parse(url))) {
+                      await launchUrl(Uri.parse(url));
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
+                  icon: const Icon(
+                    Icons.visibility,
+                    color: Colors.white,
+                  ),
+                  label: const Text(
+                    'Click To Visit',
+                    style: TextStyle(color: Colors.white),
                   ),
                 ),
               ],
