@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slimy_card/flutter_slimy_card.dart';
+import 'package:hacktoberfest_flutter/screens/contributors.dart';
 import 'package:hacktoberfest_flutter/shared/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import '../screens/contributors.dart';
 
 class NewRepoCard extends StatelessWidget {
   const NewRepoCard({super.key, required this.listData, required this.index});
@@ -84,17 +83,7 @@ class NewRepoCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    TextButton.icon(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                          Colors.deepPurple[800]!,
-                        ),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          ),
-                        ),
-                      ),
+                    ElevatedButton(
                       onPressed: () async {
                         final String url = listData[index]['html_url'];
                         if (await canLaunchUrl(Uri.parse(url))) {
@@ -103,13 +92,23 @@ class NewRepoCard extends StatelessWidget {
                           throw 'Could not launch $url';
                         }
                       },
-                      icon: const Icon(
-                        Icons.visibility,
-                        color: Colors.white,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.deepPurple.shade800,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                       ),
-                      label: const Text(
-                        'Visit',
-                        style: TextStyle(color: Colors.white),
+                      child: const Row(
+                        children: [
+                          Icon(
+                            Icons.visibility,
+                            color: Colors.white,
+                          ),
+                          SizedBox(width: 8,),
+                          Text(
+                              'Visit',
+                          ),
+                        ],
                       ),
                     ),
                     ElevatedButton(
@@ -124,17 +123,18 @@ class NewRepoCard extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.deepPurple[800],
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
                       child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Icon(
                             Icons.people_outline,
                             color: Colors.white,
                           ),
+                          SizedBox(width: 8,),
                           Text('Contributors'),
                         ],
                       ),

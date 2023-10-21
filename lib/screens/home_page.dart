@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hacktoberfest_flutter/screens/contributors.dart';
 import 'package:hacktoberfest_flutter/screens/info_page.dart';
 import 'package:hacktoberfest_flutter/screens/search_repos.dart';
 
