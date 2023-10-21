@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slimy_card/flutter_slimy_card.dart';
 import 'package:hacktoberfest_flutter/shared/colors.dart';
-import 'package:hacktoberfest_flutter/widgets/custom_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NewRepoCard extends StatelessWidget {
@@ -12,15 +11,6 @@ class NewRepoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
-
-    Future<void> visitRepo () async {
-      final String url = listData[index]['html_url'];
-      if (await canLaunchUrl(Uri.parse(url))) {
-        await launchUrl(Uri.parse(url));
-      } else {
-        throw 'Could not launch $url';
-      }
-    }
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -85,9 +75,7 @@ class NewRepoCard extends StatelessWidget {
                 if (listData[index]['description'] != null)
                   Text(
                     'Description:  ${listData[index]['description']}',
-                    style: TextStyle(
-                      color: Colors.deepPurple[100],
-                    ),
+                    style: TextStyle(color: Colors.deepPurple[100],),
                     maxLines: 4,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
@@ -98,15 +86,42 @@ class NewRepoCard extends StatelessWidget {
                     style: TextStyle(color: Colors.deepPurple[100]),
                   ),
                 const SizedBox(height: 15),
-                CustomButton(
-                    height: 35,
-                    width: deviceWidth / 4,
-                    onPressed: visitRepo,
-                    isIcon: true,
-                    buttonText: 'Visit',
-                    color1: const Color(0XFF4527A0),
-                    color2: const Color(0XFF4527A0),
+                Container(
+                  height: 25,
+                  width: deviceWidth/3,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      final String url = listData[index]['html_url'];
+                      if (await canLaunchUrl(Uri.parse(url))) {
+                        await launchUrl(Uri.parse(url));
+                      } else {
+                        throw 'Could not launch $url';
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      padding: const EdgeInsets.all(1.0),
+                      backgroundColor: Colors.deepPurple[800],
+                      alignment: Alignment.center,
+
                     ),
+                    child: const Row(
+                      children: [
+                        Icon(
+                          Icons.visibility,
+                          color: Colors.white,
+                        ),
+                        Text(
+                          'Click To Vist',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
