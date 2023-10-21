@@ -1,6 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hacktoberfest_flutter/screens/settings.dart';
 import 'package:hacktoberfest_flutter/shared/colors.dart';
@@ -116,6 +116,9 @@ class _SearchState extends State<Search> {
               ),
               controller: _controller,
               textInputAction: TextInputAction.done,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.allow(RegExp('[ 0-9a-zA-Z._-]',)),
+              ],
             ),
             SizedBox(
               height: deviceHeight * 0.02,
@@ -124,14 +127,15 @@ class _SearchState extends State<Search> {
             //search button to call the action
             ElevatedButton(
               onPressed: () async {
-                if (_controller.text.isNotEmpty) {
+                if (_controller.text.trim().isNotEmpty) {
                   FocusScope.of(context).unfocus();
                   setState(() {
-                    setState(() {
-                      listOfRepos = getRepos(_controller.text);
-                    });
+                    listOfRepos = getRepos(_controller.text);
                   });
                 } else {
+                  setState(() {
+                    _controller.text='';
+                  });
                   return;
                 }
               },
