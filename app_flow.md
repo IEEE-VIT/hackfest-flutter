@@ -1,6 +1,6 @@
 Github Repo Viewer (Change this Name while merging)
-Click On App Icon -> Splash Screen() -> Search Tab()
-                                        1.Search Tab -> 
+Click On App Icon -> Splash Screen() -> HomePage()
+                                        1.Search Tab() -> 
                                             Enter Your Search prompt and click on Search Button -> 
                                                 Api call for fetching Repositories -> 
                                                     Future List View Builder -> 
