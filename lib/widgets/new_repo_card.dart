@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slimy_card/flutter_slimy_card.dart';
 import 'package:hacktoberfest_flutter/shared/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../screens/contributors.dart';
 
 class NewRepoCard extends StatelessWidget {
   const NewRepoCard({super.key, required this.listData, required this.index});
@@ -78,33 +81,66 @@ class NewRepoCard extends StatelessWidget {
                     style: TextStyle(color: Colors.deepPurple[100]),
                   ),
                 const SizedBox(height: 15),
-                TextButton.icon(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      Colors.deepPurple[800]!,
-                    ),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TextButton.icon(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          Colors.deepPurple[800]!,
+                        ),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                          ),
+                        ),
+                      ),
+                      onPressed: () async {
+                        final String url = listData[index]['html_url'];
+                        if (await canLaunchUrl(Uri.parse(url))) {
+                          await launchUrl(Uri.parse(url));
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                      },
+                      icon: const Icon(
+                        Icons.visibility,
+                        color: Colors.white,
+                      ),
+                      label: const Text(
+                        'Visit',
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
-                  ),
-                  onPressed: () async {
-                    final String url = listData[index]['html_url'];
-                    if (await canLaunchUrl(Uri.parse(url))) {
-                      await launchUrl(Uri.parse(url));
-                    } else {
-                      throw 'Could not launch $url';
-                    }
-                  },
-                  icon: const Icon(
-                    Icons.visibility,
-                    color: Colors.white,
-                  ),
-                  label: const Text(
-                    'Click To Visit',
-                    style: TextStyle(color: Colors.white),
-                  ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                            builder: (_) => Contributors(
+                              repoName: listData[index]['full_name'],
+                            ),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(
+                            Icons.people_outline,
+                            color: Colors.white,
+                          ),
+                          Text('Contributors'),
+                        ],
+                      ),
+                    ),
+
+                  ],
                 ),
               ],
             ),

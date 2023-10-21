@@ -9,7 +9,7 @@ Map<String, Widget Function(BuildContext)> routes ={
 
  Search.routename:(ctx) => const Search(),
  HomePage.routename:(ctx) => const HomePage(),
- Contributors.routename:(ctx) => const Contributors(),
+ Contributors.routename:(ctx) => const Contributors(repoName: '',),
  InfoPage.routename: (ctx) => const InfoPage(),
  Settings.routename: (ctx) => const Settings(),
 
