@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:hacktoberfest_flutter/screens/home_page.dart';
 

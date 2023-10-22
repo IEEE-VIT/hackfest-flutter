@@ -9,9 +9,9 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Contributors extends StatefulWidget {
-  const Contributors({super.key});
+  const Contributors({super.key, required this.repoName});
   static const String routename = '/Contributors';
-
+  final String repoName;
   @override
   State<Contributors> createState() => _ContributorsState();
 }
@@ -22,8 +22,7 @@ class _ContributorsState extends State<Contributors>
   @override
   void initState() {
     super.initState();
-    getContributors(username: 'IEEE-VIT', repository: 'hacktoberfest-flutter')
-        .then((cards) {
+    getContributors(repository: widget.repoName).then((cards) {
       setState(() {
         cardList = cards;
       });
@@ -42,6 +41,9 @@ class _ContributorsState extends State<Contributors>
         //shadowColor: Colors.black26,
         backgroundColor: Theme.of(context).primaryColor,
         centerTitle: true,
+        iconTheme: IconThemeData(
+          color: Theme.of(context).secondaryHeaderColor,
+        ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -274,12 +276,11 @@ class _ContributorsState extends State<Contributors>
 }
 
 Future<List<ContributorCard>> getContributors({
-  required String username,
   required String repository,
 }) async {
   const String head = 'https://api.github.com/repos/';
   const String tail = '/contributors';
-  final String url = '$head$username/$repository$tail';
+  final String url = '$head$repository$tail';
   final http.Response response = await http.get(Uri.parse(url));
   final List<Contributor> contributors = contributorFromJson(response.body);
   final List<ContributorCard> contriCards = [];
@@ -307,12 +308,15 @@ Future<List<ContributorCard>> getContributors({
 }
 
 void addToContributors() {
-  // TODO(AwsmAsim): Trigger an alert box or something similar
+  // Trigger an alert box or something similar
   // Ask the user to enter the details
   // Adds the user to contributors list
 }
 
 Future<void> _launchURL(String gurl) async {
+  if (gurl.substring(0, 4) != 'http' || gurl.substring(0, 4) != 'https') {
+    gurl = 'https://$gurl';
+  }
   final String url = gurl;
   if (await canLaunchUrl(Uri.parse(url))) {
     await launchUrl(Uri.parse(url));

@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slimy_card/flutter_slimy_card.dart';
+import 'package:hacktoberfest_flutter/screens/contributors.dart';
 import 'package:hacktoberfest_flutter/shared/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -84,17 +86,7 @@ class NewRepoCard extends StatelessWidget {
                     style: TextStyle(color: Colors.deepPurple[100]),
                   ),
                 const SizedBox(height: 15),
-                TextButton.icon(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      Colors.deepPurple[800]!,
-                    ),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                      ),
-                    ),
-                  ),
+                ElevatedButton(
                   onPressed: () async {
                     final String url = listData[index]['html_url'];
                     if (await canLaunchUrl(Uri.parse(url))) {
@@ -103,13 +95,59 @@ class NewRepoCard extends StatelessWidget {
                       throw 'Could not launch $url';
                     }
                   },
-                  icon: const Icon(
-                    Icons.visibility,
-                    color: Colors.white,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.deepPurple.shade800,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                   ),
-                  label: const Text(
-                    'Click To Visit',
-                    style: TextStyle(color: Colors.white),
+                  child: const Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Icon(
+                        Icons.visibility,
+                        color: Colors.white,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 7),
+                        child: Text(
+                          'Visit',
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (_) => Contributors(
+                          repoName: listData[index]['full_name'],
+                        ),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.deepPurple[800],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  child: const Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Icon(
+                        Icons.people_outline,
+                        color: Colors.white,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 7),
+                        child: Text('Contributors'),
+                      ),
+                    ],
                   ),
                 ),
               ],
