@@ -69,7 +69,7 @@ class ThemeProvider extends ChangeNotifier{
         ),
     ),
     secondaryHeaderColor: const Color(0xffFDF0F0),
-    primaryColor: darkModeHactober,
+    primaryColor: darkModeHacktober,
     scaffoldBackgroundColor: const Color(0xff0F253E),
     tabBarTheme: const TabBarTheme(
       labelColor: Color(0xff93C2DB),

@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 
 //customizable button to remove code redundancy
 class CustomButton extends StatelessWidget {
-  const CustomButton(
-      {super.key, required this.height,
-      required this.width,
-      required this.onPressed,
-      required this.isIcon,
-      required this.buttonText,
-      required this.color1,
-      required this.color2,
-      this.icon=Icons.visibility,});
+  const CustomButton({
+    super.key,
+    required this.height,
+    required this.width,
+    required this.onPressed,
+    required this.isIcon,
+    required this.buttonText,
+    required this.color1,
+    this.color2 = const Color(0XFF4527A0),
+    this.icon = Icons.visibility,
+  });
 
   final double height, width;
   final void Function() onPressed;
@@ -24,7 +26,7 @@ class CustomButton extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.0),
+          borderRadius: BorderRadius.circular(15.0),
         ),
         // ignore: use_named_constants
         padding: const EdgeInsets.all(0.0),
@@ -41,20 +43,28 @@ class CustomButton extends StatelessWidget {
             tileMode: TileMode.mirror,
             stops: const [0.2, 1.0],
           ),
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(15),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children:<Widget> [
-            if (isIcon) Icon(
-              icon,
-              color: Colors.white,
-            ),
-            if (isIcon) const SizedBox(width: 10,),
+          children: <Widget>[
+            if (isIcon)
+              Icon(
+                icon,
+                color: Colors.white,
+              ),
+            if (isIcon)
+              const SizedBox(
+                width: 10,
+              ),
             Text(
               buttonText,
               textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.white, fontSize: 18),
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  overflow: TextOverflow.fade),
             ),
           ],
         ),

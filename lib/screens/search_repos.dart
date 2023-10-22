@@ -7,6 +7,7 @@ import 'package:hacktoberfest_flutter/screens/settings.dart';
 import 'package:hacktoberfest_flutter/shared/colors.dart';
 import 'package:hacktoberfest_flutter/widgets/new_repo_card.dart';
 import 'package:http/http.dart' as http;
+import '../widgets/custom_button.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -56,6 +57,21 @@ class _SearchState extends State<Search> {
       inputColor = Colors.white;
     } else if (isDarkMode == false && device.theme == 'System Default') {
       inputColor = Colors.black;
+    }
+
+    Future<void> serachRepos() async {
+      _controller.text = 'flutter';
+      if (_controller.text.trim().isNotEmpty) {
+        FocusScope.of(context).unfocus();
+        setState(() {
+          listOfRepos = getRepos(_controller.text);
+        });
+      } else {
+        setState(() {
+          _controller.clear();
+        });
+        return;
+      }
     }
 
     return Scaffold(
@@ -127,46 +143,14 @@ class _SearchState extends State<Search> {
             ),
 
             //search button to call the action
-            ElevatedButton(
-              onPressed: () async {
-                if (_controller.text.trim().isNotEmpty) {
-                  FocusScope.of(context).unfocus();
-                  setState(() {
-                    listOfRepos = getRepos(_controller.text);
-                  });
-                } else {
-                  setState(() {
-                    _controller.text = '';
-                  });
-                  return;
-                }
-              },
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                padding: const EdgeInsets.all(1.0),
-              ),
-              child: Ink(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [hactoberViolet, hacktoberPink],
-                  ),
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                child: Container(
-                  constraints: BoxConstraints(
-                    maxWidth: deviceWidth / 3,
-                    minHeight: 40.0,
-                  ),
-                  alignment: Alignment.center,
-                  child: const Text(
-                    'Search',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
+            CustomButton(
+              height: 40,
+              width: deviceWidth / 4,
+              onPressed: serachRepos,
+              isIcon: false,
+              buttonText: 'Search',
+              color1: hacktoberViolet,
+              color2: hacktoberPink,
             ),
 
             //This widget display the information of the repos with the help of listview
