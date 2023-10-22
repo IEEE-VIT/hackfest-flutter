@@ -42,14 +42,6 @@ This project is licensed under [MIT](https://github.com/IEEE-VIT/hacktoberfest-f
 
 # Github Repo Viewer (Change this Name while merging)
 
-## Rules In Writing App Flow
-1. Use -> for showing flow
-2. Bold the Screens and Widgets Name also mention it in () whether it is a screen or widget
-3. Use Italic and bold style when wirting buttons and also mention it in ()
-4. Whenever there is a screen write it's information on the next line
-5. Whenever there is a button write it's action on the same line
-6. Use ordered list for showcasing the options on particular screen or widget
-
 ## App Work Flow
 
 **Click On App Icon -> Splash Screen (Screen)** -> **HomePage (Screen)**   
