@@ -41,14 +41,16 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final Brightness currentBrightness = MediaQuery.of(context).platformBrightness;
+    final Brightness currentBrightness =
+        MediaQuery.of(context).platformBrightness;
     // Check if the device is in dark mode
     final bool isDarkTheme = currentBrightness == Brightness.dark;
 
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<ThemeProvider>(
-            create: (context) => ThemeProvider(isdarkTheme: isDarkTheme),),
+          create: (context) => ThemeProvider(isdarkTheme: isDarkTheme),
+        ),
       ],
       child: Consumer<ThemeProvider>(
         builder: (context, theme, _) {
@@ -57,15 +59,7 @@ class _MyAppState extends State<MyApp> {
             theme: device.theme == 'Dark' ? theme.darkTheme : theme.lightTheme,
             darkTheme:
                 device.theme == 'Light' ? theme.lightTheme : theme.darkTheme,
-            //home:HomePage(),
             home: const SplashScreen(),
-            /* home: AnimatedSplash(
-            imagePath: 'assets/git.png',
-            home: HomePage(),
-            duration: 2500,
-            type: AnimatedSplashType.StaticDuration,
-          ),*/
-
             routes: routes,
           );
         },

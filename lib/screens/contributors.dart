@@ -22,8 +22,7 @@ class _ContributorsState extends State<Contributors>
   @override
   void initState() {
     super.initState();
-    getContributors(repository: widget.repoName)
-        .then((cards) {
+    getContributors(repository: widget.repoName).then((cards) {
       setState(() {
         cardList = cards;
       });
@@ -42,6 +41,9 @@ class _ContributorsState extends State<Contributors>
         //shadowColor: Colors.black26,
         backgroundColor: Theme.of(context).primaryColor,
         centerTitle: true,
+        iconTheme: IconThemeData(
+          color: Theme.of(context).secondaryHeaderColor,
+        ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -306,12 +308,15 @@ Future<List<ContributorCard>> getContributors({
 }
 
 void addToContributors() {
-  // TODO(AwsmAsim): Trigger an alert box or something similar
+  // Trigger an alert box or something similar
   // Ask the user to enter the details
   // Adds the user to contributors list
 }
 
 Future<void> _launchURL(String gurl) async {
+  if (gurl.substring(0, 4) != 'http' || gurl.substring(0, 4) != 'https') {
+    gurl = 'https://$gurl';
+  }
   final String url = gurl;
   if (await canLaunchUrl(Uri.parse(url))) {
     await launchUrl(Uri.parse(url));

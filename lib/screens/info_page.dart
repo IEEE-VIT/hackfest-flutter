@@ -1,7 +1,4 @@
-//A simple About Us page. Changes here are not necessary.
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hacktoberfest_flutter/shared/dictionary.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -20,11 +17,8 @@ class _InfoPageState extends State<InfoPage> {
     return Scaffold(
       backgroundColor: color,
       body: ListView(
-        //padding: EdgeInsets.all(20),
         children: [
           Column(
-            //mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GestureDetector(
                 child: Center(
@@ -53,7 +47,7 @@ class _InfoPageState extends State<InfoPage> {
                 child: Center(
                   child: SizedBox(
                     height: 200,
-                    child: SvgPicture.network(hacktoberfestImage),
+                    child: Image.network(hacktoberfestImage),
                   ),
                 ),
                 onTap: () => launchUrl(

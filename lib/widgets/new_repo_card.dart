@@ -106,7 +106,7 @@ class NewRepoCard extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(left: 7),
                         child: Text(
-                            'Visit',
+                          'Visit',
                         ),
                       ),
                     ],
