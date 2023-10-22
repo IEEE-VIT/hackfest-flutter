@@ -60,7 +60,6 @@ class _SearchState extends State<Search> {
     }
 
     Future<void> serachRepos() async {
-      _controller.text = 'flutter';
       if (_controller.text.trim().isNotEmpty) {
         FocusScope.of(context).unfocus();
         setState(() {
