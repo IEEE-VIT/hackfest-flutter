@@ -3,9 +3,6 @@ import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-
-
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
   static String routename = 'SettingsPage';
@@ -15,12 +12,7 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-
-
-
-  Map<String, int> themes = {'System Default':1, 'Light':2, 'Dark':3};
-
-
+  Map<String, int> themes = {'System Default': 1, 'Light': 2, 'Dark': 3};
 
   @override
   Widget build(BuildContext context) {
@@ -50,39 +42,48 @@ class _SettingsState extends State<Settings> {
                 showDialog(
                   context: context,
                   builder: (dialogContext) {
-                    return StatefulBuilder(builder: (stfContext, stfSetState) {
-                      return AlertDialog(
-                        title: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Center(
-                            child: Text(
-                              'Set Theme',
+                    return StatefulBuilder(
+                      builder: (stfContext, stfSetState) {
+                        return AlertDialog(
+                          title: const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Center(
+                              child: Text(
+                                'Set Theme',
+                              ),
                             ),
                           ),
-                        ),
-                        content: SizedBox(
-                          height: 160,
-                          width: 150,
-                          child: ListView(
-                            children: themes.keys.map((e) => RadioListTile(
-                              title: Text(e),
-                              value: themes[e],
-                              groupValue: themes[device.theme],
-                              activeColor: Colors.cyan,
-                              onChanged: (value) {
-                                stfSetState(() {
-                                  device.theme = e;
-                                });
-                              },
-                            ),).toList(),
+                          content: SizedBox(
+                            height: 160,
+                            width: 150,
+                            child: ListView(
+                              children: themes.keys
+                                  .map(
+                                    (e) => RadioListTile(
+                                      title: Text(e),
+                                      value: themes[e],
+                                      groupValue: themes[device.theme],
+                                      activeColor: Colors.cyan,
+                                      onChanged: (value) {
+                                        stfSetState(() {
+                                          device.theme = e;
+                                        });
+                                      },
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
                           ),
-                        ),
-                        actions: [
-                          TextButton(onPressed: () {
-                               Navigator.of(context).pop();
-                               Provider.of<ThemeProvider>(context, listen: false).changeTheme(device.theme);
-                               saveSetting('theme', device.theme);
-                            },
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                                Provider.of<ThemeProvider>(
+                                  context,
+                                  listen: false,
+                                ).changeTheme(device.theme);
+                                saveSetting('theme', device.theme);
+                              },
                               child: const Text(
                                 'Save',
                                 style: TextStyle(
@@ -90,10 +91,12 @@ class _SettingsState extends State<Settings> {
                                   fontWeight: FontWeight.bold,
                                   fontSize: 17,
                                 ),
-                              ),),
-                        ],
-                      );
-                    },);
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   },
                 );
               },
@@ -104,7 +107,6 @@ class _SettingsState extends State<Settings> {
     );
   }
 }
-
 
 Future<void> saveSetting(String key, dynamic value) async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -122,10 +124,8 @@ Future<void> saveSetting(String key, dynamic value) async {
   }
 }
 
-
 //Device model including theme property
 class Device {
-
   Device({required this.theme});
   String? theme;
 }

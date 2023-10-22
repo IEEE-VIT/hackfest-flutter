@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -39,25 +40,23 @@ class _SearchState extends State<Search> {
     final deviceHeight = MediaQuery.of(context).size.height;
     final deviceWidth = MediaQuery.of(context).size.width;
 
-    final Brightness currentBrightness = MediaQuery.of(context).platformBrightness;
+    final Brightness currentBrightness =
+        MediaQuery.of(context).platformBrightness;
     // Check if the device is in dark mode
     final bool isDarkMode = currentBrightness == Brightness.dark;
 
     Color inputColor = Colors.black;
 
     // Check the theme conditions and set the inputText of the search field accordingly
-    if (device.theme == 'Dark'){
+    if (device.theme == 'Dark') {
       inputColor = Colors.white;
-    }
-    else if (device.theme == 'Light'){
+    } else if (device.theme == 'Light') {
       inputColor = Colors.black;
-    }else if (isDarkMode == true && device.theme == 'System Default'){
+    } else if (isDarkMode == true && device.theme == 'System Default') {
       inputColor = Colors.white;
-    }else if (isDarkMode == false && device.theme == 'System Default'){
+    } else if (isDarkMode == false && device.theme == 'System Default') {
       inputColor = Colors.black;
     }
-
-
 
     return Scaffold(
       appBar: AppBar(
@@ -69,15 +68,15 @@ class _SearchState extends State<Search> {
         ),
         actions: [
           IconButton(
-              icon: const Icon(
-                Icons.settings,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Settings()),
-                );
-              },
+            icon: const Icon(
+              Icons.settings,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Settings()),
+              );
+            },
           ),
         ],
         title: Text(
@@ -101,7 +100,6 @@ class _SearchState extends State<Search> {
         ),
         child: Column(
           children: <Widget>[
-
             //Textfield to get the user inputs
             TextField(
               style: TextStyle(
@@ -117,7 +115,11 @@ class _SearchState extends State<Search> {
               controller: _controller,
               textInputAction: TextInputAction.done,
               inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.allow(RegExp('[ 0-9a-zA-Z._-]',)),
+                FilteringTextInputFormatter.allow(
+                  RegExp(
+                    '[ 0-9a-zA-Z._-]',
+                  ),
+                ),
               ],
             ),
             SizedBox(
@@ -134,7 +136,7 @@ class _SearchState extends State<Search> {
                   });
                 } else {
                   setState(() {
-                    _controller.text='';
+                    _controller.text = '';
                   });
                   return;
                 }
@@ -218,9 +220,8 @@ class _SearchState extends State<Search> {
   }
 }
 
-
-//This future func get the repos data from the Github API
-//And returns the list of repos
+// This future func get the repos data from the Github API
+// And returns the list of repos
 Future<List> getRepos(String tag) async {
   final String baseURL = 'https://api.github.com/search/repositories?q=$tag';
   final response = await http.get(

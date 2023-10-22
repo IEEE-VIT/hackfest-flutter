@@ -1,5 +1,3 @@
-//A simple About Us page. Changes here are not necessary.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hacktoberfest_flutter/shared/dictionary.dart';
@@ -20,11 +18,8 @@ class _InfoPageState extends State<InfoPage> {
     return Scaffold(
       backgroundColor: color,
       body: ListView(
-        //padding: EdgeInsets.all(20),
         children: [
           Column(
-            //mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GestureDetector(
                 child: Center(

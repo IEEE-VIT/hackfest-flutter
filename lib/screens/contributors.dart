@@ -22,8 +22,7 @@ class _ContributorsState extends State<Contributors>
   @override
   void initState() {
     super.initState();
-    getContributors(repository: widget.repoName)
-        .then((cards) {
+    getContributors(repository: widget.repoName).then((cards) {
       setState(() {
         cardList = cards;
       });
@@ -306,7 +305,7 @@ Future<List<ContributorCard>> getContributors({
 }
 
 void addToContributors() {
-  // TODO(AwsmAsim): Trigger an alert box or something similar
+  // Trigger an alert box or something similar
   // Ask the user to enter the details
   // Adds the user to contributors list
 }
