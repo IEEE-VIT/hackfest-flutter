@@ -20,7 +20,6 @@ class _SettingsState extends State<Settings> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
         elevation: 5.0,
-        //shadowColor: Colors.black26,
         iconTheme: IconThemeData(
           color: Theme.of(context).secondaryHeaderColor,
         ),

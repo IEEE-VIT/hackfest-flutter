@@ -41,6 +41,9 @@ class _ContributorsState extends State<Contributors>
         //shadowColor: Colors.black26,
         backgroundColor: Theme.of(context).primaryColor,
         centerTitle: true,
+        iconTheme: IconThemeData(
+          color: Theme.of(context).secondaryHeaderColor,
+        ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
