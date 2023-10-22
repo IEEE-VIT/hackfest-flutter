@@ -9,9 +9,9 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Contributors extends StatefulWidget {
-  const Contributors({super.key});
+  const Contributors({super.key, required this.repoName});
   static const String routename = '/Contributors';
-
+  final String repoName;
   @override
   State<Contributors> createState() => _ContributorsState();
 }
@@ -22,7 +22,7 @@ class _ContributorsState extends State<Contributors>
   @override
   void initState() {
     super.initState();
-    getContributors(username: 'IEEE-VIT', repository: 'hacktoberfest-flutter')
+    getContributors(repository: widget.repoName)
         .then((cards) {
       setState(() {
         cardList = cards;
@@ -274,12 +274,11 @@ class _ContributorsState extends State<Contributors>
 }
 
 Future<List<ContributorCard>> getContributors({
-  required String username,
   required String repository,
 }) async {
   const String head = 'https://api.github.com/repos/';
   const String tail = '/contributors';
-  final String url = '$head$username/$repository$tail';
+  final String url = '$head$repository$tail';
   final http.Response response = await http.get(Uri.parse(url));
   final List<Contributor> contributors = contributorFromJson(response.body);
   final List<ContributorCard> contriCards = [];
