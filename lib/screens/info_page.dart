@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hacktoberfest_flutter/shared/dictionary.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -48,7 +47,7 @@ class _InfoPageState extends State<InfoPage> {
                 child: Center(
                   child: SizedBox(
                     height: 200,
-                    child: SvgPicture.network(hacktoberfestImage),
+                    child: Image.network(hacktoberfestImage),
                   ),
                 ),
                 onTap: () => launchUrl(
