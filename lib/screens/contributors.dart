@@ -311,6 +311,9 @@ void addToContributors() {
 }
 
 Future<void> _launchURL(String gurl) async {
+  if (gurl.substring(0, 4) != 'http' || gurl.substring(0, 4) != 'https') {
+    gurl = 'https://$gurl';
+  }
   final String url = gurl;
   if (await canLaunchUrl(Uri.parse(url))) {
     await launchUrl(Uri.parse(url));
