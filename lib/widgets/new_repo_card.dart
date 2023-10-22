@@ -80,67 +80,69 @@ class NewRepoCard extends StatelessWidget {
                     style: TextStyle(color: Colors.deepPurple[100]),
                   ),
                 const SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () async {
-                        final String url = listData[index]['html_url'];
-                        if (await canLaunchUrl(Uri.parse(url))) {
-                          await launchUrl(Uri.parse(url));
-                        } else {
-                          throw 'Could not launch $url';
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.deepPurple.shade800,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+                ElevatedButton(
+                  onPressed: () async {
+                    final String url = listData[index]['html_url'];
+                    if (await canLaunchUrl(Uri.parse(url))) {
+                      await launchUrl(Uri.parse(url));
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.deepPurple.shade800,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  child: const Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Icon(
+                        Icons.visibility,
+                        color: Colors.white,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 7),
+                        child: Text(
+                            'Visit',
                         ),
                       ),
-                      child: const Row(
-                        children: [
-                          Icon(
-                            Icons.visibility,
-                            color: Colors.white,
-                          ),
-                          SizedBox(width: 8,),
-                          Text(
-                              'Visit',
-                          ),
-                        ],
-                      ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                            builder: (_) => Contributors(
-                              repoName: listData[index]['full_name'],
-                            ),
-                          ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.deepPurple[800],
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+                    ],
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (_) => Contributors(
+                          repoName: listData[index]['full_name'],
                         ),
                       ),
-                      child: const Row(
-                        children: [
-                          Icon(
-                            Icons.people_outline,
-                            color: Colors.white,
-                          ),
-                          SizedBox(width: 8,),
-                          Text('Contributors'),
-                        ],
-                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.deepPurple[800],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
                     ),
-
-                  ],
+                  ),
+                  child: const Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Icon(
+                        Icons.people_outline,
+                        color: Colors.white,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 7),
+                        child: Text('Contributors'),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
