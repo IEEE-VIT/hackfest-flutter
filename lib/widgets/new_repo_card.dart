@@ -26,7 +26,7 @@ class _NewRepoCardState extends State<NewRepoCard> {
     final String repoFullName = widget.listData[widget.index]['full_name'];
     final String repoOwner = widget.listData[widget.index]['owner']['login'];
     final String repoName = widget.listData[widget.index]['name'];
-    final String repoDescription = widget.listData[widget.index]['description'];
+    final String repoDescription = widget.listData[widget.index]['description'].toString();
     final String repoUrl = widget.listData[widget.index]['html_url'];
     final String repoAvatarUrl =
         widget.listData[widget.index]['owner']['avatar_url'];
