@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slimy_card/flutter_slimy_card.dart';
 import 'package:hacktoberfest_flutter/screens/contributors.dart';
 import 'package:hacktoberfest_flutter/shared/colors.dart';
+import 'package:hacktoberfest_flutter/widgets/custom_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NewRepoCard extends StatelessWidget {
@@ -12,10 +13,32 @@ class NewRepoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    Future<void> visitRepo() async {
+      final String url = listData[index]['html_url'];
+      if (await canLaunchUrl(Uri.parse(url))) {
+        await launchUrl(Uri.parse(url));
+      } else {
+        throw 'Could not launch $url';
+      }
+    }
+
+    void viewContributors() {
+      Navigator.push(
+        context,
+        CupertinoPageRoute(
+          builder: (_) => Contributors(
+            repoName: listData[index]['full_name'],
+          ),
+        ),
+      );
+    }
+
+    final deviceWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: FlutterSlimyCard(
-        color: hactoberViolet,
+        color: hacktoberViolet,
         topCardHeight: 230,
         bottomCardHeight: 250,
         borderRadius: 15,
@@ -67,12 +90,20 @@ class NewRepoCard extends StatelessWidget {
                     color: Colors.white,
                     fontSize: 20,
                   ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 15),
                 if (listData[index]['description'] != null)
                   Text(
                     'Description:  ${listData[index]['description']}',
-                    style: TextStyle(color: Colors.deepPurple[100]),
+                    style: TextStyle(
+                      color: Colors.deepPurple[100],
+                    ),
+                    maxLines: 4,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
                   )
                 else
                   Text(
@@ -80,69 +111,27 @@ class NewRepoCard extends StatelessWidget {
                     style: TextStyle(color: Colors.deepPurple[100]),
                   ),
                 const SizedBox(height: 15),
-                ElevatedButton(
-                  onPressed: () async {
-                    final String url = listData[index]['html_url'];
-                    if (await canLaunchUrl(Uri.parse(url))) {
-                      await launchUrl(Uri.parse(url));
-                    } else {
-                      throw 'Could not launch $url';
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepPurple.shade800,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomButton(
+                      height: 35,
+                      width: deviceWidth / 4.4,
+                      onPressed: visitRepo,
+                      isIcon: true,
+                      buttonText: 'Visit',
+                      color1: Colors.deepPurple.shade800,
                     ),
-                  ),
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Icon(
-                        Icons.visibility,
-                        color: Colors.white,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 7),
-                        child: Text(
-                          'Visit',
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (_) => Contributors(
-                          repoName: listData[index]['full_name'],
-                        ),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepPurple[800],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                    CustomButton(
+                      height: 35,
+                      width: deviceWidth / 2.6,
+                      onPressed: viewContributors,
+                      isIcon: true,
+                      buttonText: 'Contributors',
+                      icon: Icons.people_outline,
+                      color1: Colors.deepPurple.shade800,
                     ),
-                  ),
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Icon(
-                        Icons.people_outline,
-                        color: Colors.white,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 7),
-                        child: Text('Contributors'),
-                      ),
-                    ],
-                  ),
+                  ],
                 ),
               ],
             ),
