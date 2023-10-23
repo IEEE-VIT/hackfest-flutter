@@ -20,7 +20,7 @@ class BookmarkedRepository {
     );
   }
   final String fullName;
-  final String description;
+  final String? description;
   final String link;
   final String owner;
   final String name;
