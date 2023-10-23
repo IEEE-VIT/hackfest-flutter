@@ -61,12 +61,6 @@ class _BookmarkState extends State<Bookmark> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(10),
-            bottomRight: Radius.circular(10),
-          ),
-        ),
         title: Text(
           'Bookmarked Repositories',
           style: TextStyle(
