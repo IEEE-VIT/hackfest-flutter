@@ -107,7 +107,7 @@ class _ContributorsState extends State<Contributors>
                                   decoration: BoxDecoration(
                                     gradient: LinearGradient(
                                       colors: [
-                                        hactoberViolet,
+                                        hacktoberViolet,
                                         hacktoberPink,
                                       ],
                                     ),
