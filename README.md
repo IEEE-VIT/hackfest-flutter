@@ -38,31 +38,72 @@ This project is licensed under [MIT](https://github.com/IEEE-VIT/hacktoberfest-f
 > [!NOTE]  
 > This project is not officially affiliated with DigitalOcean or Hacktoberfest in any manner.
 >
-<br>
+# Github Repo Viewer
 
-# Github Repo Viewer (Change this Name while merging)
+```mermaid
 
-## App Work Flow
+graph TD;
+  subgraph MainApp[<font size=7>App Flow]
+    SplashScreen[<font size=6>SplashScreen]
+    SplashScreen --> HomePage([<font size=5>HomePage - Screen])
+    style SplashScreen fill:indigo
+    HomePage --> MenuButton([<font size=5>HomePage - Drawer Widget Menu])
+    style HomePage fill:blue
+    MenuButton --> Home([<font size=5>Home - Screen])
+    style Home fill:darkgreen
+    MenuButton --> Profile([<font size=5>Profile - Screen])
+    style Profile fill:darkgreen
+    MenuButton --> Help([<font size=5>Help - Screen])
+    style Help fill:darkgreen
+    MenuButton --> ChangeTheme([<font size=5>Change Theme - Button])
+    style ChangeTheme fill:darkgreen
+    style MenuButton fill:purple
+    HomePage --> SearchTab([<font size=5>Search Tab - Screen])
+    style SearchTab fill:purple
+    HomePage --> AboutUsTab([<font size=5>About Us Tab - Screen])
+    style AboutUsTab fill:purple
+    SearchTab --> SearchButton[<font size=4>Enter Your Search prompt, 
+    Search - Button]
+    style SearchButton fill:darkgreen;
+    SearchButton --> RepoCards([<font size=5>Repo Cards - Widget])
+    style RepoCards fill:red;
+    RepoCards --> RepoInfo[<font size=4>Repo Information]
+    style RepoInfo fill:orange;
+    RepoCards --> DownArrow([<font size=5>Down Arrow - Button])
+    style DownArrow fill:orange;
+    DownArrow --> BookMark([<font size=5>Bookmark Button])
+    style BookMark fill:blue;
+    DownArrow --> Visit([<font size=5> Visit - Button])
+    style Visit fill:blue;
+    DownArrow --> Contributors([<font size=5>Contributors - Button])
+    style Contributors fill:blue;
+    Contributors --> ContributorsScreen([<font size=5>Contributors - Screen])
+    style ContributorsScreen fill:purple;
+    ContributorsScreen --> ContributorWidget([<font size=5>Contributor - Widget])
+    style ContributorWidget fill:darkgreen;
+    ContributorWidget --> ViewProfile([<font size=5>View Profile - Button])
+    style ViewProfile fill:red;
+    ContributorWidget --> Floating([<font size=5>Floating - Button])
+    style Floating fill:red;
+    ViewProfile --> ProfileCard[<font size=4>For each contributor, 
+    a card is shown with 
+    contributor's data and 
+    a button to visit 
+    contributor's profile]
+    style ProfileCard fill:orange;
+    Floating --> ContributorRequest[<font size=4>User requests to 
+    become a contributor
+     to the repo]
+    style ContributorRequest fill:orange;
+    HomePage --> BookMarkTab([<font size=5>BookMark Tab - Screen])
+    style BookMarkTab fill:purple
+    BookMarkTab --> BookmarkedRepos[<font size=4>Bookmarked repo will
+    be shown here and
+    can have the option
+    to remove from bookmark.
+    These repos will be
+    shown in the Repo Card-Format]
+    style BookmarkedRepos fill:darkgreen;
+  end
 
-**Click On App Icon -> Splash Screen (Screen)** -> **HomePage (Screen)**   
-The main page of the app having AppBar and tabview
-1. **Search Tab (Screen)** ->
->>Enter Your Search prompt and click on ***Search (Button)*** -> Api call for fetching Repositories ->
->>> **Repo Cards (Widget)** ->
->>1. Repo Information.
->>2. ***Down Arrow (Button)*** -> Opens a card showcasing more details
->>>1. ***Visit (Button)*** -> Opens browser and Navigates user to the github link of the repo.
->>>2. ***Contributors (Button)*** -> **Contributors (Screen)** -> **Contributor (Widget)**  
-      Shows the list of contributors by navigating to contributors page
->>>>1. ***View Profile (Button)*** -> For each contributor a card is shown with contributors data and a button to visit contributors profile.
->>>>2. ***Floating (Button)*** -> User requests for becoming a contributor to the repo.
->>>>3. ***BookMark Icon (Button)*** -> Click to bookmark the repo.
-2. **BookMark Tab (Screen)** ->
->>Bookmarked repo will be shown here and can have the option to remove from bookmark. These repos will be shown in the **Repo Card (Widget)** format.
-3. **About Us Tab (Screen)** ->
->>Navigates to the page where user can check about the creators.
-4. ***Settings Button on Appbar (Screen)*** ->
->>Settings and other app related options will be here
->1. **Help (Widget)** ->   
-    Navigates the user to the Help Page where user can check the app flow (Documentation, Video Tutorial, etc).
->2. ***Change Theme (Button)*** -> When pressed changes theme from dark to light andd vise versa.
+```
