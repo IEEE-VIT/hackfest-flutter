@@ -5,6 +5,7 @@ import 'package:hacktoberfest_flutter/screens/home_page.dart';
 import 'package:hacktoberfest_flutter/screens/info_page.dart';
 import 'package:hacktoberfest_flutter/screens/search_repos.dart';
 import 'package:hacktoberfest_flutter/screens/settings.dart';
+import 'package:hacktoberfest_flutter/screens/bookmark.dart';
 
 Map<String, Widget Function(BuildContext)> routes = {
   Search.routename: (ctx) => const Search(),
@@ -14,4 +15,5 @@ Map<String, Widget Function(BuildContext)> routes = {
       ),
   InfoPage.routename: (ctx) => const InfoPage(),
   Settings.routename: (ctx) => const Settings(),
+  Bookmark.routename: (ctx) => const Bookmark(),
 };
