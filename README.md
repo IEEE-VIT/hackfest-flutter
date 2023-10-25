@@ -43,67 +43,81 @@ This project is licensed under [MIT](https://github.com/IEEE-VIT/hacktoberfest-f
 ```mermaid
 
 graph TD;
-  subgraph MainApp[<font size=7>App Flow]
+  subgraph MainApp[<font size=6>App Flow]
     SplashScreen[<font size=6>SplashScreen]
-    SplashScreen --> HomePage([<font size=5>HomePage - Screen])
-    style SplashScreen fill:indigo
+    style SplashScreen fill:brown
+    SplashScreen --> Authentication([<font size=5>Authentication - Screen])
+    style Authentication fill:indigo
+    Authentication --> HomePage([<font size=5>HomePage - Screen])
     HomePage --> MenuButton([<font size=5>HomePage - Drawer Widget Menu])
     style HomePage fill:blue
+    MenuButton --> User([<font size=5>Basic User Details])
+    style User fill:darkgreen
     MenuButton --> Home([<font size=5>Home - Screen])
     style Home fill:darkgreen
     MenuButton --> Profile([<font size=5>Profile - Screen])
     style Profile fill:darkgreen
-    MenuButton --> Help([<font size=5>Help - Screen])
-    style Help fill:darkgreen
+    Profile --> ProfileDetails([<font size=5>Profile- Photo
+    and Description])
+    style ProfileDetails fill:red
+    MenuButton --> SignOut([<font size=5>SignOut - Button])
+    style SignOut fill:darkgreen
     MenuButton --> ChangeTheme([<font size=5>Change Theme - Button])
     style ChangeTheme fill:darkgreen
     style MenuButton fill:purple
     HomePage --> SearchTab([<font size=5>Search Tab - Screen])
     style SearchTab fill:purple
-    HomePage --> AboutUsTab([<font size=5>About Us Tab - Screen])
-    style AboutUsTab fill:purple
-    SearchTab --> SearchButton[<font size=4>Enter Your Search prompt, 
-    Search - Button]
+    SearchTab --> SearchButton([<font size=5>Search prompt, 
+    Search - Button])
     style SearchButton fill:darkgreen;
     SearchButton --> RepoCards([<font size=5>Repo Cards - Widget])
-    style RepoCards fill:red;
-    RepoCards --> RepoInfo[<font size=4>Repo Information]
-    style RepoInfo fill:orange;
+    style RepoCards fill:darkgreen;
+    RepoCards --> RepoInfo([<font size=5>Repo Information])
+    style RepoInfo fill:red;
     RepoCards --> DownArrow([<font size=5>Down Arrow - Button])
-    style DownArrow fill:orange;
-    DownArrow --> BookMark([<font size=5>Bookmark Button])
-    style BookMark fill:blue;
+    style DownArrow fill:red;
+    RepoCards --> BookMark([<font size=5>Bookmark Button])
+    style BookMark fill:red;
     DownArrow --> Visit([<font size=5> Visit - Button])
-    style Visit fill:blue;
+    style Visit fill:orange;
+    Visit --> WebVisit([<font size=5> Opens GitHub Page])
+    style WebVisit fill:blue;
     DownArrow --> Contributors([<font size=5>Contributors - Button])
-    style Contributors fill:blue;
+    style Contributors fill:orange;
     Contributors --> ContributorsScreen([<font size=5>Contributors - Screen])
-    style ContributorsScreen fill:purple;
+    style ContributorsScreen fill:blue;
     ContributorsScreen --> ContributorWidget([<font size=5>Contributor - Widget])
-    style ContributorWidget fill:darkgreen;
+    style ContributorWidget fill:purple;
     ContributorWidget --> ViewProfile([<font size=5>View Profile - Button])
-    style ViewProfile fill:red;
-    ContributorWidget --> Floating([<font size=5>Floating - Button])
-    style Floating fill:red;
-    ViewProfile --> ProfileCard[<font size=4>For each contributor, 
-    a card is shown with 
-    contributor's data and 
-    a button to visit 
-    contributor's profile]
-    style ProfileCard fill:orange;
-    Floating --> ContributorRequest[<font size=4>User requests to 
-    become a contributor
-     to the repo]
-    style ContributorRequest fill:orange;
+    style ViewProfile fill:darkgreen;
+    ViewProfile --> ProfilScreen([<font size=5>Contributor's Profile Screen])
+    style ProfilScreen fill:red;
+    ContributorWidget --> ContributorInfo([<font size=5>Contributor's Basic details])
+    style ContributorInfo fill:darkgreen;
+    ContributorsScreen --> Floating([<font size=5>Floating - Button])
+    style Floating fill:purple;
+    Floating --> ContributorRequest([<font size=5>Requests to be 
+    a contributor])
+    style ContributorRequest fill:darkgreen;
     HomePage --> BookMarkTab([<font size=5>BookMark Tab - Screen])
     style BookMarkTab fill:purple
-    BookMarkTab --> BookmarkedRepos[<font size=4>Bookmarked repo will
-    be shown here and
-    can have the option
-    to remove from bookmark.
-    These repos will be
-    shown in the Repo Card-Format]
-    style BookmarkedRepos fill:darkgreen;
+    BookMarkTab --> RepoCards
+    HomePage --> AboutUsTab([<font size=5>About Us Tab - Screen])
+    style AboutUsTab fill:purple
+    AboutUsTab --> Corousal([<font size=5>IEEE-VIT Corousal])
+    style Corousal fill:darkgreen
+    AboutUsTab --> IEEE-VIT-Repos([<font size=5>IEEE-VIT Repo's])
+    style IEEE-VIT-Repos fill:darkgreen
+    IEEE-VIT-Repos --> RepoCards
+    AboutUsTab --> Visit-IEEE-VIT([<font size=5>Visit IEEE GitHub Button])
+    style Visit-IEEE-VIT fill:darkgreen
+    AboutUsTab --> Contributors-IEEE-VIT([<font size=5>IEEE GitHub 
+    Contributors Button])
+    style Contributors-IEEE-VIT fill:darkgreen
+    AboutUsTab --> Follow([<font size=5> Follow IEEE-VIT
+    Button])
+    style Follow fill:darkgreen
+
   end
 
 ```
