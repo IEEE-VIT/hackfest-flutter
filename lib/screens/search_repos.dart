@@ -74,33 +74,6 @@ class _SearchState extends State<Search> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        elevation: 5.0,
-        //shadowColor: Colors.black26,
-        iconTheme: IconThemeData(
-          color: Theme.of(context).secondaryHeaderColor,
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.settings,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Settings()),
-              );
-            },
-          ),
-        ],
-        title: Text(
-          'Search tags',
-          style: TextStyle(
-            color: Theme.of(context).secondaryHeaderColor,
-          ),
-        ),
-      ),
       body: Container(
         padding: const EdgeInsets.all(10.0),
         decoration: BoxDecoration(
