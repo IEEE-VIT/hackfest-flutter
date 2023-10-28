@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
-
-
 // ignore: must_be_immutable
 class DrawerWidget extends StatefulWidget {
-  DrawerWidget({
+  const DrawerWidget({
     Key? key,
   }) : super(key: key);
 
@@ -18,83 +16,101 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-        width: MediaQuery.of(context).size.width * 0.7,
-        child: Scaffold(
-            body:
-               ListView(children: [
-                ListTile(
-                  onTap: () {
-
-                  },
-                  leading: const CircleAvatar(
-                    radius: 35,
-                    backgroundImage: NetworkImage('https://avatarfiles.alphacoders.com/206/thumb-206822.jpg'),
+      width: MediaQuery.of(context).size.width * 0.7,
+      child: Scaffold(
+        body: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(top: 50, left: 10, bottom: 30),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundImage: NetworkImage(
+                        'https://avatarfiles.alphacoders.com/206/thumb-206822.jpg',),
                   ),
-                  title: Padding(
-                    padding: const EdgeInsets.only(bottom: 7),
-                    child: Text(
-                      'Red Hair Shanks',
-                      style: Theme.of(context).textTheme.titleLarge,
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: Text(
+                        'Red Hair Shanks',
+                        maxLines: 2,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
                   ),
-                  contentPadding: const EdgeInsets.only(top: 50, left: 10),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                BuildTile(
-                    text: 'Home',
-                    icon: Icons.home_outlined,
-                    context: context,
-                    route: 'HomePage'),
-                BuildTile(
-                    text: 'Profile',
-                    icon: Icons.person_outline_rounded,
-                    context: context,
-                    route: ''),
-                BuildTile(
-                    text: 'Sign Out',
-                    icon: Icons.logout,
-                    context: context,
-                    route: 'SettingsPage'),
-                 Padding(
-                   padding: const EdgeInsets.only(left: 35,top: 10),
-                   child: Row(
-                     children: <Widget>[
-                       FlutterSwitch(
-                         width: 44.0,
-                         height: 22.0,
-                         toggleSize: 22.0,
-                         value: value,
-                         borderRadius: 15.0,
-                         padding: 0.0,
-                         activeToggleColor: Color(0xFF4148F5),
-                         inactiveToggleColor:Colors.deepPurple,
-                         activeColor: Color(0xFF206993),
-                         inactiveColor: Color(0xFFD7A9EC),
-                         activeIcon: Icon(
-                           Icons.nightlight_round_outlined,
-                           color: Colors.white,
-                         ),
-                         inactiveIcon: Icon(
-                           Icons.wb_sunny_outlined,
-                           color: Color(0xFFFFFFFF),
-                         ),
-                         onToggle: (val) {
-                           setState(() {
-                             value = val;
-                           });
-                         },
-                       ),
-                       Container(
-                         padding: const EdgeInsets.only(left: 15),
-                         child: const Text('Change Theme'),
-                       ),
-                     ],
-                   ),
-                 ),
-              ]),
-            ));
+                ],
+              ),
+            ),
+            BuildTile(
+              text: 'Home',
+              icon: Icons.home,
+              context: context,
+              route: 'HomePage',
+            ),
+            BuildTile(
+              text: 'Profile',
+              icon: Icons.person_rounded,
+              context: context,
+              route: '',
+            ),
+            BuildTile(
+              text: 'Sign Out',
+              icon: Icons.logout_rounded,
+              context: context,
+              route: '',
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 35, top: 15),
+              child: Row(
+                children: <Widget>[
+                  FlutterSwitch(
+                    width: 44.0,
+                    height: 22.0,
+                    toggleSize: 22.0,
+                    value: value,
+                    borderRadius: 15.0,
+                    padding: 0.0,
+                    activeToggleColor: const Color(0xFF4148F5),
+                    inactiveToggleColor: Colors.deepPurple,
+                    activeColor: const Color(0xFF206993),
+                    inactiveColor: const Color(0xFFD7A9EC),
+                    activeIcon: const Icon(
+                      Icons.nightlight_round_outlined,
+                      color: Colors.white,
+                    ),
+                    inactiveIcon: const Icon(
+                      Icons.wb_sunny_outlined,
+                      color: Color(0xFFFFFFFF),
+                    ),
+                    onToggle: (val) {
+                      setState(() {
+                        value = val;
+                      });
+                    },
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: const Text(
+                      'Change Theme',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   // ignore: non_constant_identifier_names
@@ -108,20 +124,26 @@ class _DrawerWidgetState extends State<DrawerWidget> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(19)),
       leading: Icon(
         icon,
+        size: 25,
         color: Colors.black,
       ),
       title: Text(
         text,
-        style: Theme.of(context).textTheme.bodyMedium,
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 14,
+          fontWeight: FontWeight.w400,
+        ),
       ),
-      visualDensity: const VisualDensity(horizontal: 0, vertical: -4),
-      contentPadding: const EdgeInsets.only(left: 38),
+      visualDensity: const VisualDensity(vertical: -4),
+      contentPadding: const EdgeInsets.only(left: 35, top: 5),
       onTap: () {
         Navigator.pop(context);
-        if(route=='HomePage'){
-          Navigator.pushNamedAndRemoveUntil(context, route, (route)=> false);
-        }else if(route!='')
+        if (route == 'HomePage') {
+          Navigator.pushNamedAndRemoveUntil(context, route, (route) => false);
+        } else if (route != '') {
           Navigator.pushNamed(context, route);
+        }
       },
       selectedTileColor: Colors.black,
     );
