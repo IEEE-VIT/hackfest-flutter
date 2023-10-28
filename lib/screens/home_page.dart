@@ -5,6 +5,7 @@ import 'package:hacktoberfest_flutter/screens/info_page.dart';
 import 'package:hacktoberfest_flutter/screens/search_repos.dart';
 import 'package:hacktoberfest_flutter/screens/settings.dart';
 import 'package:provider/provider.dart';
+import 'package:hacktoberfest_flutter/widgets/drawer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,35 +22,20 @@ class _HomePageState extends State<HomePage> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        appBar:AppBar(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-          ),
+        appBar: AppBar(
           backgroundColor: Theme.of(context).primaryColor,
           elevation: 5.0,
+          title: const Text('HackFest', style: TextStyle(color: Colors.black),),
           //shadowColor: Colors.black26,
           iconTheme: IconThemeData(
             color: Theme.of(context).secondaryHeaderColor,
           ),
-          actions: [
-            IconButton(
-              icon: const Icon(
-                Icons.settings,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Settings()),
-                );
-              },
-            ),
-          ],
-          title: Text(
-            'GitHub Repo Viewer',
-            style: TextStyle(
-              color: Theme.of(context).secondaryHeaderColor,
-            ),
-          ),
+        ),
+        endDrawer: const ClipRRect(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(35),
+                bottomLeft: Radius.circular(35),),
+            child: DrawerWidget(),
         ),
         backgroundColor: Theme.of(context).primaryColor,
         body: const TabBarView(

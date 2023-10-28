@@ -59,15 +59,6 @@ class _BookmarkState extends State<Bookmark> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        title: Text(
-          'Bookmarked Repositories',
-          style: TextStyle(
-            color: Theme.of(context).secondaryHeaderColor,
-          ),
-        ),
-      ),
       body: FutureBuilder<List<BookmarkedRepository>>(
         future: bookmarks,
         builder: (context, snapshot) {
