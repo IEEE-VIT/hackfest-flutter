@@ -21,7 +21,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         body: Column(
           children: [
             const Padding(
-              padding: EdgeInsets.only(top: 50, left: 10, bottom: 30),
+              padding: EdgeInsets.only(top: 50, left: 20, bottom: 30),
               child: Row(
                 children: [
                   CircleAvatar(
