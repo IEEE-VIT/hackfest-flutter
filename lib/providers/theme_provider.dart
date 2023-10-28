@@ -3,9 +3,9 @@ import 'package:hacktoberfest_flutter/shared/colors.dart';
 
 class ThemeProvider extends ChangeNotifier{
 
-  ThemeProvider({required this.isdarkTheme, this.selectedTheme});
+  ThemeProvider({required this.isDarkTheme, this.selectedTheme});
 
-  bool isdarkTheme;
+  bool isDarkTheme=true;
   String? selectedTheme;
 
   //global lightTheme for app
@@ -20,10 +20,17 @@ class ThemeProvider extends ChangeNotifier{
     ),
     secondaryHeaderColor: Colors.black,
     primaryColor: Colors.white,
-    scaffoldBackgroundColor: Colors.grey[200],
+    scaffoldBackgroundColor: Colors.white,
     tabBarTheme: TabBarTheme(
-      labelColor: Colors.black,
-      unselectedLabelColor: Colors.grey[600],
+      labelColor: hacktoberViolet,
+      indicatorColor: hacktoberViolet,
+      labelStyle: const TextStyle(
+          fontWeight: FontWeight.w600,fontSize: 16,
+      ),
+      unselectedLabelStyle: const TextStyle(
+          fontWeight: FontWeight.w600,fontSize: 16,
+      ),
+      unselectedLabelColor: Colors.black,
     ),
     inputDecorationTheme: const InputDecorationTheme(
       suffixIconColor: Colors.black,
@@ -62,18 +69,23 @@ class ThemeProvider extends ChangeNotifier{
   var darkTheme = ThemeData(
 
     fontFamily: 'Poppins-Regular',
-   // backgroundColor: Color(0xff071724),
     iconButtonTheme : IconButtonThemeData(
         style: ButtonStyle(
             iconColor: MaterialStateProperty.all(const Color(0xff93C2DB)),
         ),
     ),
     secondaryHeaderColor: const Color(0xffFDF0F0),
-    primaryColor: darkModeHacktober,
-    scaffoldBackgroundColor: const Color(0xff0F253E),
-    tabBarTheme: const TabBarTheme(
-      labelColor: Color(0xff93C2DB),
-      unselectedLabelColor: Colors.white60,
+    primaryColor: darkMode,
+    tabBarTheme: TabBarTheme(
+      labelColor: darkModeCard,
+      indicatorColor: darkModeCard,
+      labelStyle: const TextStyle(
+          fontWeight: FontWeight.w600,fontSize: 16,
+      ),
+      unselectedLabelStyle: const TextStyle(
+          fontWeight: FontWeight.w600,fontSize: 16,
+      ),
+      unselectedLabelColor: Colors.white,
     ),
     inputDecorationTheme: InputDecorationTheme(
       suffixIconColor: Colors.white,
@@ -110,24 +122,25 @@ class ThemeProvider extends ChangeNotifier{
 
 
   //
-  bool get isDarkTheme2=> isdarkTheme;
+  bool get isDarkTheme2=> isDarkTheme;
 
 
   //changeTheme to set the theme chosen in settings page
   void changeTheme(newTheme){
     selectedTheme = newTheme;
+    isDarkTheme=!isDarkTheme;
     notifyListeners();
   }
 
   //setTheme , used before to change theme from light to dark and vice-versa
   void setTheme(){
-    isdarkTheme = !isdarkTheme;
+    isDarkTheme = !isDarkTheme;
     notifyListeners();
   }
 
   //getter to get the current theme
   ThemeData get currentTheme{
-    if(isdarkTheme){
+    if(isDarkTheme){
       return darkTheme;
     } else {
       return lightTheme;

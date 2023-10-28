@@ -86,7 +86,7 @@ class _BookmarkState extends State<Bookmark> {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: FlutterSlimyCard(
-                      color: hactoberViolet,
+                      color: hacktoberViolet,
                       topCardHeight: 230,
                       bottomCardHeight: 250,
                       borderRadius: 15,
