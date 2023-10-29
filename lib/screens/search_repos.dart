@@ -3,13 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
 import 'package:hacktoberfest_flutter/screens/settings.dart';
-import 'package:hacktoberfest_flutter/shared/colors.dart';
 import 'package:hacktoberfest_flutter/widgets/custom_button.dart';
 import 'package:hacktoberfest_flutter/widgets/new_repo_card.dart';
 import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -96,13 +93,11 @@ class _SearchState extends State<Search> {
                     ),
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Provider.of<ThemeProvider>(context)
-                            .isDarkTheme2?hacktoberViolet:darkModeCard,width: 2,),
+                        borderSide: BorderSide(color: Theme.of(context).inputDecorationTheme.enabledBorder!.borderSide.color,width: 2,),
                         borderRadius: BorderRadius.circular(15.0),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Provider.of<ThemeProvider>(context)
-                            .isDarkTheme2?hacktoberViolet:darkModeCard,width: 2,),
+                        borderSide: BorderSide(color: Theme.of(context).inputDecorationTheme.focusedBorder!.borderSide.color,width: 2,),
                         borderRadius: BorderRadius.circular(15.0),
                       ),
                       labelText: 'Search Repository',
@@ -161,9 +156,11 @@ class _SearchState extends State<Search> {
                     ),
                   );
                 } else if (snapshot.data!.isEmpty) {
-                  return const Expanded(
+                  return  Expanded(
                     child: Center(
-                      child: Text('No repositories found for the search term.'),
+                      child: Text('No repositories found for the search term.',style: TextStyle(
+                        color: Theme.of(context).secondaryHeaderColor,
+                      ),),
                     ),
                   );
                 }

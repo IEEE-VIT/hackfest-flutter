@@ -36,8 +36,7 @@ class CustomButton extends StatelessWidget {
         height: height,
         width: width,
         decoration: BoxDecoration(
-          color: Provider.of<ThemeProvider>(context)
-              .isDarkTheme2?lightModeButton:darkModeButton,
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(15),
         ),
         child: Row(

@@ -97,8 +97,7 @@ class _NewRepoCardState extends State<NewRepoCard> {
 
     final deviceWidth = MediaQuery.of(context).size.width;
     return FlutterSlimyCard(
-      color: Provider.of<ThemeProvider>(context)
-          .isDarkTheme2?hacktoberViolet:darkModeCard,
+      color: Theme.of(context).canvasColor,
       cardWidth: deviceWidth*0.88,
       topCardHeight: 150,
       bottomCardHeight: 250,

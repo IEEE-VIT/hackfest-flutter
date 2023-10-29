@@ -23,9 +23,9 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         appBar:AppBar(
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(15),
           ),
-          backgroundColor: Theme.of(context).primaryColor,
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
           elevation: 5.0,
           //shadowColor: Colors.black26,
           iconTheme: IconThemeData(
@@ -48,6 +48,7 @@ class _HomePageState extends State<HomePage> {
             'GitHub Repo Viewer',
             style: TextStyle(
               color: Theme.of(context).secondaryHeaderColor,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),

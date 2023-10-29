@@ -5,7 +5,7 @@ class ThemeProvider extends ChangeNotifier{
 
   ThemeProvider({required this.isDarkTheme, this.selectedTheme});
 
-  bool isDarkTheme=true;
+  bool isDarkTheme;
   String? selectedTheme;
 
   //global lightTheme for app
@@ -18,8 +18,13 @@ class ThemeProvider extends ChangeNotifier{
         iconColor: MaterialStateProperty.all(Colors.black),
       ),
     ),
+    appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.white,
+    ),
     secondaryHeaderColor: Colors.black,
     primaryColor: Colors.white,
+    cardColor: lightModeButton,
+    canvasColor: hacktoberViolet,
     scaffoldBackgroundColor: Colors.white,
     tabBarTheme: TabBarTheme(
       labelColor: hacktoberViolet,
@@ -32,24 +37,24 @@ class ThemeProvider extends ChangeNotifier{
       ),
       unselectedLabelColor: Colors.black,
     ),
-    inputDecorationTheme: const InputDecorationTheme(
+    inputDecorationTheme: InputDecorationTheme(
       suffixIconColor: Colors.black,
-        labelStyle: TextStyle(
+        labelStyle: const TextStyle(
           fontSize: 15,
           color: Colors.black,
         ),
-        helperStyle: TextStyle(
+        helperStyle: const TextStyle(
           color: Colors.black,
         ),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
-            color: Color.fromRGBO(217, 217, 217, 1),),
-        borderRadius: BorderRadius.all(Radius.circular(20)),
+            color: hacktoberViolet,),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
-            color: Color.fromRGBO(143, 143, 143, 1),),
-        borderRadius: BorderRadius.all(Radius.circular(20)),
+            color: hacktoberViolet,),
+        borderRadius:const BorderRadius.all(Radius.circular(20)),
       ),
     ),
     listTileTheme: const ListTileThemeData(
@@ -74,8 +79,13 @@ class ThemeProvider extends ChangeNotifier{
             iconColor: MaterialStateProperty.all(const Color(0xff93C2DB)),
         ),
     ),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Color(0xff3C3C3C),
+    ),
     secondaryHeaderColor: const Color(0xffFDF0F0),
     primaryColor: darkMode,
+    cardColor: darkModeButton,
+    canvasColor: darkModeCard,
     tabBarTheme: TabBarTheme(
       labelColor: darkModeCard,
       indicatorColor: darkModeCard,
@@ -96,14 +106,14 @@ class ThemeProvider extends ChangeNotifier{
       helperStyle: const TextStyle(
         color: Colors.white,
       ),
-      enabledBorder: const OutlineInputBorder(
+      enabledBorder:  OutlineInputBorder(
         borderSide: BorderSide(
-            color: Color.fromRGBO(217, 217, 217, 1),),
-        borderRadius: BorderRadius.all(Radius.circular(20)),
+            color: darkModeCard,),
+        borderRadius:const BorderRadius.all(Radius.circular(20)),
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
-            color: Colors.purple.shade300,),
+            color:darkModeCard,),
             borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),
     ),
@@ -128,7 +138,7 @@ class ThemeProvider extends ChangeNotifier{
   //changeTheme to set the theme chosen in settings page
   void changeTheme(newTheme){
     selectedTheme = newTheme;
-    isDarkTheme=!isDarkTheme;
+    isDarkTheme = !isDarkTheme;
     notifyListeners();
   }
 
