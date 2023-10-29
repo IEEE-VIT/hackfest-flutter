@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hacktoberfest_flutter/main.dart';
 import 'package:hacktoberfest_flutter/shared/colors.dart';
 
 class ThemeProvider extends ChangeNotifier{
 
-  ThemeProvider({required this.isDarkTheme, this.selectedTheme});
-
-  bool isDarkTheme;
-  String? selectedTheme;
-
-  //global lightTheme for app
   var lightTheme= ThemeData(
 
     fontFamily: 'Poppins-Regular',
@@ -130,30 +125,10 @@ class ThemeProvider extends ChangeNotifier{
     ),
   );
 
-
-  //
-  bool get isDarkTheme2=> isDarkTheme;
-
-
   //changeTheme to set the theme chosen in settings page
-  void changeTheme(newTheme){
-    selectedTheme = newTheme;
-    isDarkTheme = !isDarkTheme;
+  void changeTheme(bool isOn){
+    device.theme=isOn?'Dark':'Light';
     notifyListeners();
   }
 
-  //setTheme , used before to change theme from light to dark and vice-versa
-  void setTheme(){
-    isDarkTheme = !isDarkTheme;
-    notifyListeners();
-  }
-
-  //getter to get the current theme
-  ThemeData get currentTheme{
-    if(isDarkTheme){
-      return darkTheme;
-    } else {
-      return lightTheme;
-    }
-  }
 }

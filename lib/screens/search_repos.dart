@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:hacktoberfest_flutter/screens/settings.dart';
+import 'package:hacktoberfest_flutter/main.dart';
 import 'package:hacktoberfest_flutter/widgets/custom_button.dart';
 import 'package:hacktoberfest_flutter/widgets/new_repo_card.dart';
 import 'package:http/http.dart' as http;

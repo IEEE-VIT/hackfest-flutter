@@ -3,9 +3,8 @@ import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
 import 'package:hacktoberfest_flutter/screens/bookmark.dart';
 import 'package:hacktoberfest_flutter/screens/info_page.dart';
 import 'package:hacktoberfest_flutter/screens/search_repos.dart';
-import 'package:hacktoberfest_flutter/screens/settings.dart';
-import 'package:provider/provider.dart';
 import 'package:hacktoberfest_flutter/widgets/drawer.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -28,7 +27,7 @@ class _HomePageState extends State<HomePage> {
           ),
           backgroundColor: Theme.of(context).primaryColor,
           elevation: 5.0,
-          title: const Text('HackFest', style: TextStyle(color: Colors.black),),
+          title: Text('HackFest', style: TextStyle(color: Theme.of(context).secondaryHeaderColor),),
           //shadowColor: Colors.black26,
           iconTheme: IconThemeData(
             color: Theme.of(context).secondaryHeaderColor,
