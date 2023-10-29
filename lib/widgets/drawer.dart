@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:hacktoberfest_flutter/main.dart';
+import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: must_be_immutable
 class DrawerWidget extends StatefulWidget {
@@ -12,9 +16,9 @@ class DrawerWidget extends StatefulWidget {
 }
 
 class _DrawerWidgetState extends State<DrawerWidget> {
-  bool value = false;
   @override
   Widget build(BuildContext context) {
+  bool value = device.theme=='Dark';
     return Drawer(
       width: MediaQuery.of(context).size.width * 0.7,
       child: Scaffold(
@@ -88,9 +92,12 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       color: Color(0xFFFFFFFF),
                     ),
                     onToggle: (val) {
+                        final provider = Provider.of<ThemeProvider>(context,listen:false);
                       setState(() {
                         value = val;
                       });
+                      provider.changeTheme(value);
+                      saveSetting('theme', device.theme);
                     },
                   ),
                   Container(
@@ -147,5 +154,21 @@ class _DrawerWidgetState extends State<DrawerWidget> {
       },
       selectedTileColor: Colors.black,
     );
+  }
+}
+
+Future<void> saveSetting(String key, dynamic value) async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  if (value is int) {
+    prefs.setInt(key, value);
+  } else if (value is double) {
+    prefs.setDouble(key, value);
+  } else if (value is bool) {
+    prefs.setBool(key, value);
+  } else if (value is String) {
+    prefs.setString(key, value);
+  } else {
+    // Handle other data types as needed.
   }
 }

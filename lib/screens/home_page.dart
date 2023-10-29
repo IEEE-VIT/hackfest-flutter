@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
 import 'package:hacktoberfest_flutter/screens/bookmark.dart';
 import 'package:hacktoberfest_flutter/screens/info_page.dart';
 import 'package:hacktoberfest_flutter/screens/search_repos.dart';
 import 'package:hacktoberfest_flutter/widgets/drawer.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,13 +17,17 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+  final ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        appBar: AppBar(
+        appBar:AppBar(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+          ),
           backgroundColor: Theme.of(context).primaryColor,
           elevation: 5.0,
-          title: const Text('HackFest', style: TextStyle(color: Colors.black),),
+          title: Text('HackFest', style: TextStyle(color: Theme.of(context).secondaryHeaderColor),),
           //shadowColor: Colors.black26,
           iconTheme: IconThemeData(
             color: Theme.of(context).secondaryHeaderColor,
@@ -41,21 +47,27 @@ class _HomePageState extends State<HomePage> {
             InfoPage(), // This loads up the the Info page
           ],
         ),
-        bottomNavigationBar: const TabBar(
-          tabs: [
+        bottomNavigationBar: TabBar(
+          labelColor: Theme.of(context).tabBarTheme.labelColor,
+          unselectedLabelColor: Theme.of(context).tabBarTheme.unselectedLabelColor,
+          labelStyle: Theme.of(context).tabBarTheme.labelStyle,
+          unselectedLabelStyle: themeProvider.lightTheme.tabBarTheme.unselectedLabelStyle,
+          tabs: const [
             Tab(
-              icon: Icon(Icons.search),
-              child: Text('Search'),
+              icon: Icon(Icons.search,size: 25,),
+              child: Text('Search',),
             ),
             Tab(
-              icon: Icon(Icons.bookmark_border),
+              icon: Icon(Icons.bookmark_border,size: 25,),
               child: Text('Bookmarks'),
             ),
             Tab(
-              icon: Icon(Icons.info_outline),
+              icon: Icon(Icons.info_outline,size: 25,),
               child: Text('About Us'),
             ),
           ],
+          indicatorWeight: 4,
+          indicatorColor: Theme.of(context).tabBarTheme.indicatorColor,
         ),
       ),
     );

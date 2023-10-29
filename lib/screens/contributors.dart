@@ -153,10 +153,7 @@ class _ContributorsState extends State<Contributors>
                             Text(
                               cardList[index].userName,
                               style: TextStyle(
-                                color: Provider.of<ThemeProvider>(context)
-                                        .isDarkTheme2
-                                    ? Colors.white.withOpacity(0.7)
-                                    : Colors.grey[700],
+                                color: Colors.grey[700],
                                 fontWeight: FontWeight.w400,
                                 fontSize: 14,
                               ),
@@ -171,10 +168,7 @@ class _ContributorsState extends State<Contributors>
                                     ? 'Contributor'
                                     : cardList[index].desc,
                                 style: TextStyle(
-                                  color: Provider.of<ThemeProvider>(context)
-                                          .isDarkTheme2
-                                      ? Colors.white.withOpacity(0.7)
-                                      : Colors.grey[700],
+                                  color:  Colors.grey[700],
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12,
                                 ),
@@ -191,21 +185,13 @@ class _ContributorsState extends State<Contributors>
                                   Icon(
                                     Icons.location_on,
                                     size: 14,
-                                    color: Provider.of<ThemeProvider>(
-                                      context,
-                                    ).isDarkTheme2
-                                        ? Colors.white
-                                        : Colors.black,
+                                    color: Colors.black,
                                   ),
                                   Text(
                                     cardList[index].location,
                                     style: TextStyle(
                                       fontSize: 12,
-                                      color: Provider.of<ThemeProvider>(
-                                        context,
-                                      ).isDarkTheme2
-                                          ? Colors.white
-                                          : Colors.black,
+                                      color:Colors.black,
                                     ),
                                   ),
                                 ],
