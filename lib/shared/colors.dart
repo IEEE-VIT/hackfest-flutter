@@ -10,11 +10,14 @@ Color hacktoberPink = const Color(0xFFff8ae0);
 
 Color hacktoberPurple = const Color(0xFF9b4667);
 
-Color hacktoberViolet = const Color.fromRGBO(153, 69, 255, 1);
+Color hacktoberViolet = const Color(0xff6D4EC6);
+
+Color hacktoberVioletLight = const Color(0xffE3DAFA);
 
 Color darkModeHacktober = const Color(0xff183D5D);
 
 //New Colors
+Color darkModeCardLight = const Color(0xffBDD7F5);
 
 Color lightModeButton = const Color(0xff4C28B4);
 

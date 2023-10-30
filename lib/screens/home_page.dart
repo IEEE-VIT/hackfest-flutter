@@ -33,12 +33,7 @@ class _HomePageState extends State<HomePage> {
             color: Theme.of(context).secondaryHeaderColor,
           ),
         ),
-        endDrawer: const ClipRRect(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(35),
-                bottomLeft: Radius.circular(35),),
-            child: DrawerWidget(),
-        ),
+        endDrawer:  const DrawerWidget(),
         backgroundColor: Theme.of(context).primaryColor,
         body: const TabBarView(
           children: [

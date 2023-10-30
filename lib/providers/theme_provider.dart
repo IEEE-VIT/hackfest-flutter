@@ -7,7 +7,8 @@ class ThemeProvider extends ChangeNotifier{
   var lightTheme= ThemeData(
 
     fontFamily: 'Poppins-Regular',
-   // backgroundColor: Color(0xfffafafa),
+    focusColor: hacktoberVioletLight,
+    indicatorColor: hacktoberViolet,
     iconButtonTheme : IconButtonThemeData(
       style: ButtonStyle(
         iconColor: MaterialStateProperty.all(Colors.black),
@@ -67,8 +68,9 @@ class ThemeProvider extends ChangeNotifier{
 
   //global darkTheme for app
   var darkTheme = ThemeData(
-
     fontFamily: 'Poppins-Regular',
+    focusColor: darkModeCardLight,
+    indicatorColor: darkModeCard,
     iconButtonTheme : IconButtonThemeData(
         style: ButtonStyle(
             iconColor: MaterialStateProperty.all(const Color(0xff93C2DB)),
