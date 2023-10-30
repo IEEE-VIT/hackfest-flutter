@@ -42,82 +42,38 @@ This project is licensed under [MIT](https://github.com/IEEE-VIT/hacktoberfest-f
 
 ```mermaid
 
-graph TD;
-  subgraph MainApp[<font size=6>App Flow]
-    SplashScreen[<font size=6>SplashScreen]
-    style SplashScreen fill:brown
-    SplashScreen --> Authentication([<font size=5>Authentication - Screen])
-    style Authentication fill:indigo
-    Authentication --> HomePage([<font size=5>HomePage - Screen])
-    HomePage --> MenuButton([<font size=5>HomePage - Drawer Widget Menu])
-    style HomePage fill:blue
-    MenuButton --> User([<font size=5>Basic User Details])
-    style User fill:darkgreen
-    MenuButton --> Home([<font size=5>Home - Screen])
-    style Home fill:darkgreen
-    MenuButton --> Profile([<font size=5>Profile - Screen])
-    style Profile fill:darkgreen
-    Profile --> ProfileDetails([<font size=5>Profile- Photo
-    and Description])
-    style ProfileDetails fill:red
-    MenuButton --> SignOut([<font size=5>SignOut - Button])
-    style SignOut fill:darkgreen
-    MenuButton --> ChangeTheme([<font size=5>Change Theme - Button])
-    style ChangeTheme fill:darkgreen
-    style MenuButton fill:purple
-    HomePage --> SearchTab([<font size=5>Search Tab - Screen])
-    style SearchTab fill:purple
-    SearchTab --> SearchButton([<font size=5>Search prompt, 
-    Search - Button])
-    style SearchButton fill:darkgreen;
-    SearchButton --> RepoCards([<font size=5>Repo Cards - Widget])
-    style RepoCards fill:darkgreen;
-    RepoCards --> RepoInfo([<font size=5>Repo Information])
-    style RepoInfo fill:red;
-    RepoCards --> DownArrow([<font size=5>Down Arrow - Button])
-    style DownArrow fill:red;
-    RepoCards --> BookMark([<font size=5>Bookmark Button])
-    style BookMark fill:red;
-    DownArrow --> Visit([<font size=5> Visit - Button])
-    style Visit fill:orange;
-    Visit --> WebVisit([<font size=5> Opens GitHub Page])
-    style WebVisit fill:blue;
-    DownArrow --> Contributors([<font size=5>Contributors - Button])
-    style Contributors fill:orange;
-    Contributors --> ContributorsScreen([<font size=5>Contributors - Screen])
-    style ContributorsScreen fill:blue;
-    ContributorsScreen --> ContributorWidget([<font size=5>Contributor - Widget])
-    style ContributorWidget fill:purple;
-    ContributorWidget --> ViewProfile([<font size=5>View Profile - Button])
-    style ViewProfile fill:darkgreen;
-    ViewProfile --> ProfilScreen([<font size=5>Contributor's Profile Screen])
-    style ProfilScreen fill:red;
-    ContributorWidget --> ContributorInfo([<font size=5>Contributor's Basic details])
-    style ContributorInfo fill:darkgreen;
-    ContributorsScreen --> Floating([<font size=5>Floating - Button])
-    style Floating fill:purple;
-    Floating --> ContributorRequest([<font size=5>Requests to be 
-    a contributor])
-    style ContributorRequest fill:darkgreen;
-    HomePage --> BookMarkTab([<font size=5>BookMark Tab - Screen])
-    style BookMarkTab fill:purple
-    BookMarkTab --> RepoCards
-    HomePage --> AboutUsTab([<font size=5>About Us Tab - Screen])
-    style AboutUsTab fill:purple
-    AboutUsTab --> Corousal([<font size=5>IEEE-VIT Corousal])
-    style Corousal fill:darkgreen
-    AboutUsTab --> IEEE-VIT-Repos([<font size=5>IEEE-VIT Repo's])
-    style IEEE-VIT-Repos fill:darkgreen
-    IEEE-VIT-Repos --> RepoCards
-    AboutUsTab --> Visit-IEEE-VIT([<font size=5>Visit IEEE GitHub Button])
-    style Visit-IEEE-VIT fill:darkgreen
-    AboutUsTab --> Contributors-IEEE-VIT([<font size=5>IEEE GitHub 
-    Contributors Button])
-    style Contributors-IEEE-VIT fill:darkgreen
-    AboutUsTab --> Follow([<font size=5> Follow IEEE-VIT
-    Button])
-    style Follow fill:darkgreen
-
-  end
+flowchart TD;
+SplashScreen[Splash Screen]
+SplashScreen --> Authentication[Authentication Screen]
+Authentication --> HomePage[Home Page Screen]
+HomePage --> MenuButton[ Drawer Widget Menu]
+MenuButton --> Home[Button: Home]
+MenuButton --> Profile[Button: User Profile]
+MenuButton --> SignOut[Button: Sign Out]
+MenuButton --> ChangeTheme[Button: Change Theme]
+HomePage --> SearchButton[Search prompt
+Search Button]
+SearchButton --> RepoCards[Widget: Repo Cards]
+RepoCards --> RepoInfo[Repo Information]
+RepoCards --> DownArrow[Button: Down Arrow]
+RepoCards --> BookMark[Button: BookMark]
+DownArrow --> Visit[ Button: Visit GitHub Page]
+Visit --> WebVisit[ Opens GitHub Page]
+DownArrow --> Contributors[Button: Contributors List]
+Contributors --> ContributorsScreen[Contributors Screen]
+ContributorsScreen --> ContributorWidget[Widget: Contributor Info Cards]
+ContributorWidget --> ViewProfile[Button: View Profile]
+ViewProfile --> ProfilScreen[Contributor's Profile Page]
+ContributorWidget --> ContributorInfo[Contributor's Basic details]
+ContributorsScreen --> Floating[Button: Floating Action Button]
+Floating --> ContributorRequest[Requests to be
+a contributor]
+HomePage --> BookMarkTab[BookMark Screen]
+BookMarkTab --> RepoCards
+HomePage --> AboutUsTab[About Us Screen]
+AboutUsTab --> IEEE-VIT-Repos[IEEE-VIT Repo's]
+IEEE-VIT-Repos --> RepoCards
+AboutUsTab --> Visit-IEEE-VIT[Button: Visit IEEE GitHub]
+AboutUsTab --> Contributors-IEEE-VIT[Button: Hackfest App Contributors ]
 
 ```
