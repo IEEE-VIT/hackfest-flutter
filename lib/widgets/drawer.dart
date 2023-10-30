@@ -84,7 +84,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                         value: value,
                         borderRadius: 15.0,
                         padding: 0.0,
-                        activeToggleColor: const Color(0xFF3C3C),
+                        activeToggleColor: const Color(0xFF3C3C3C),
                         inactiveToggleColor: Colors.deepPurple,
                         activeColor: darkModeCardLight,
                         inactiveColor: const Color(0xFFD7A9EC),
