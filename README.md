@@ -30,16 +30,7 @@ Open your forked repo in your browser and then raise a PR to the `master` branch
 
 To start contributing, check out [CONTRIBUTING.md](https://github.com/IEEE-VIT/hacktoberfest-flutter/blob/master/CONTRIBUTING.md). New contributors are always welcome to support this project. If you want something gentle to start with, check out issues labelled as `easy` or `good-first-issue`
 
-## License
-
-This project is licensed under [MIT](https://github.com/IEEE-VIT/hacktoberfest-flutter/blob/master/LICENSE)
-
-
-> [!NOTE]  
-> This project is not officially affiliated with DigitalOcean or Hacktoberfest in any manner.
->
-# Github Repo Viewer
-
+### App Work Flow
 ```mermaid
 
 flowchart TD;
@@ -77,3 +68,12 @@ AboutUsTab --> Visit-IEEE-VIT[Button: Visit IEEE GitHub]
 AboutUsTab --> Contributors-IEEE-VIT[Button: Hackfest App Contributors ]
 
 ```
+
+## License
+
+This project is licensed under [MIT](https://github.com/IEEE-VIT/hacktoberfest-flutter/blob/master/LICENSE)
+
+
+> [!NOTE]  
+> This project is not officially affiliated with DigitalOcean or Hacktoberfest in any manner.
+
