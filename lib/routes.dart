@@ -14,6 +14,6 @@ Map<String, Widget Function(BuildContext)> routes = {
         repoName: '',
       ),
   InfoPage.routename: (ctx) => const InfoPage(),
-  Settings.routename: (ctx) => const Settings(),
+  // Settings.routename: (ctx) => const Settings(),
   Bookmark.routename: (ctx) => const Bookmark(),
 };

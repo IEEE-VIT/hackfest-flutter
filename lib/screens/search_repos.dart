@@ -3,8 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:hacktoberfest_flutter/screens/settings.dart';
-import 'package:hacktoberfest_flutter/shared/colors.dart';
+import 'package:hacktoberfest_flutter/main.dart';
 import 'package:hacktoberfest_flutter/widgets/custom_button.dart';
 import 'package:hacktoberfest_flutter/widgets/new_repo_card.dart';
 import 'package:http/http.dart' as http;
@@ -18,7 +17,6 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
-  final String searchText = '';
 
   Future<List> listOfRepos = Future.value([]);
 
@@ -72,86 +70,69 @@ class _SearchState extends State<Search> {
         return;
       }
     }
-
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        elevation: 5.0,
-        //shadowColor: Colors.black26,
-        iconTheme: IconThemeData(
-          color: Theme.of(context).secondaryHeaderColor,
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.settings,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Settings()),
-              );
-            },
-          ),
-        ],
-        title: Text(
-          'Search tags',
-          style: TextStyle(
-            color: Theme.of(context).secondaryHeaderColor,
-          ),
-        ),
-      ),
       body: Container(
-        padding: const EdgeInsets.all(10.0),
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(15.0),
-          ),
-          color: Theme.of(context).primaryColor,
-        ),
-        margin: EdgeInsets.symmetric(
-          vertical: deviceHeight * 0.04,
-          horizontal: deviceHeight * 0.04,
-        ),
+        color: Theme.of(context).primaryColor,
+        padding: EdgeInsets.all(deviceWidth * 0.05),
         child: Column(
           children: <Widget>[
-            //Textfield to get the user inputs
-            TextField(
-              style: TextStyle(
-                color: inputColor,
-              ),
-              decoration: const InputDecoration(
-                labelText: 'Search Repository',
-                helperText: '* Search repos with the help of tag',
-                suffixIcon: Icon(
-                  Icons.search,
-                ),
-              ),
-              controller: _controller,
-              textInputAction: TextInputAction.done,
-              inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.allow(
-                  RegExp(
-                    '[ 0-9a-zA-Z._-]',
+            //Text field to get the user inputs
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  height: 50,
+                  width: deviceWidth*0.63,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
                   ),
+                  child: TextField(
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Theme.of(context).secondaryHeaderColor,
+                    ),
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Theme.of(context).inputDecorationTheme.enabledBorder!.borderSide.color,width: 2,),
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Theme.of(context).inputDecorationTheme.focusedBorder!.borderSide.color,width: 2,),
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      labelText: 'Search Repository',
+                      labelStyle: TextStyle(
+                        fontSize: 16,
+                        color: Theme.of(context).secondaryHeaderColor,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      suffixIcon: const Icon(
+                        Icons.search,
+                        size: 30,
+                      ),
+                    ),
+                    controller: _controller,
+                    textInputAction: TextInputAction.done,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.allow(
+                        RegExp(
+                          '[ 0-9a-zA-Z._-]',
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                //search button to call the action
+                CustomButton(
+                  height: 40,
+                  width: deviceWidth / 4.3,
+                  onPressed: serachRepos,
+                  isIcon: false,
+                  buttonText: 'Search',
                 ),
               ],
             ),
-            SizedBox(
-              height: deviceHeight * 0.02,
-            ),
-
-            //search button to call the action
-            CustomButton(
-              height: 40,
-              width: deviceWidth / 4,
-              onPressed: serachRepos,
-              isIcon: false,
-              buttonText: 'Search',
-              color1: hacktoberViolet,
-              color2: hacktoberPink,
-            ),
-
+            SizedBox(height: deviceWidth*0.03),
             //This widget display the information of the repos with the help of listview
             FutureBuilder<List<dynamic>>(
               future: listOfRepos,
@@ -175,9 +156,11 @@ class _SearchState extends State<Search> {
                     ),
                   );
                 } else if (snapshot.data!.isEmpty) {
-                  return const Expanded(
+                  return  Expanded(
                     child: Center(
-                      child: Text('No repositories found for the search term.'),
+                      child: Text('No repositories found for the search term.',style: TextStyle(
+                        color: Theme.of(context).secondaryHeaderColor,
+                      ),),
                     ),
                   );
                 }
@@ -187,9 +170,12 @@ class _SearchState extends State<Search> {
                     itemCount: snapshot.data!.length,
                     shrinkWrap: true,
                     itemBuilder: (ctx, index) {
-                      return NewRepoCard(
-                        listData: snapshot.data!,
-                        index: index,
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        child: NewRepoCard(
+                          listData: snapshot.data!,
+                          index: index,
+                        ),
                       );
                     },
                   ),
