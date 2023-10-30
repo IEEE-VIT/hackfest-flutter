@@ -32,6 +32,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 children: [
                   const CircleAvatar(
                     radius: 40,
+                    // TODO: Add the profile photo link instead of using given temporary link
                     backgroundImage: NetworkImage(
                         'https://avatarfiles.alphacoders.com/206/thumb-206822.jpg',),
                   ),
@@ -39,6 +40,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     child: Padding(
                       padding: EdgeInsets.only(left: 20),
                       child: Text(
+                        //TODO: Change the name of user by taking data from login auth
                         'Red Hair Shanks',
                         maxLines: 2,
                         style: TextStyle(
