@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
+import 'package:hacktoberfest_flutter/shared/colors.dart';
+import 'package:provider/provider.dart';
 
 //customizable button to remove code redundancy
 class CustomButton extends StatelessWidget {
@@ -9,8 +12,6 @@ class CustomButton extends StatelessWidget {
     required this.onPressed,
     required this.isIcon,
     required this.buttonText,
-    required this.color1,
-    this.color2 = const Color(0XFF4527A0),
     this.icon = Icons.visibility,
   });
 
@@ -18,7 +19,6 @@ class CustomButton extends StatelessWidget {
   final void Function() onPressed;
   final bool isIcon;
   final String buttonText;
-  final Color color1, color2;
   final IconData icon;
   @override
   Widget build(BuildContext context) {
@@ -36,13 +36,7 @@ class CustomButton extends StatelessWidget {
         height: height,
         width: width,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [color1, color2],
-            tileMode: TileMode.mirror,
-            stops: const [0.2, 1.0],
-          ),
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(15),
         ),
         child: Row(

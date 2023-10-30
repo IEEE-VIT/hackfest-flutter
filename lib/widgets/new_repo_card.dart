@@ -4,9 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slimy_card/flutter_slimy_card.dart';
 import 'package:hacktoberfest_flutter/models/bookmarked_repo_model.dart';
+import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
 import 'package:hacktoberfest_flutter/screens/contributors.dart';
 import 'package:hacktoberfest_flutter/shared/colors.dart';
 import 'package:hacktoberfest_flutter/widgets/custom_button.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -94,20 +96,33 @@ class _NewRepoCardState extends State<NewRepoCard> {
     }
 
     final deviceWidth = MediaQuery.of(context).size.width;
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: FlutterSlimyCard(
-        color: hacktoberViolet,
-        topCardHeight: 230,
-        bottomCardHeight: 250,
-        borderRadius: 15,
-        topCardWidget: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+    return FlutterSlimyCard(
+      color: Theme.of(context).canvasColor,
+      cardWidth: deviceWidth*0.88,
+      topCardHeight: 150,
+      bottomCardHeight: 250,
+      borderRadius: 15,
+      topCardWidget: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Stack(
+          children: [
+            Container(
+              alignment: Alignment.topRight,
+              child: IconButton(
+                  onPressed: _toggleBookmark,
+                  icon: Icon(
+                    bookmarked?Icons.bookmark:Icons.bookmark_outline,
+                    size: 40,
+                    color: Colors.white,
+                  ),
+                ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              child: Row(
               children: <Widget>[
                 Container(
+                  margin: const EdgeInsets.only(left: 20),
                   height: 80,
                   width: 90,
                   decoration: BoxDecoration(
@@ -127,83 +142,77 @@ class _NewRepoCardState extends State<NewRepoCard> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 15),
-                Text(
-                  'Owner:  ${widget.listData[widget.index]['owner']['login']}',
-                  style: const TextStyle(color: Colors.white),
-                ),
-                const SizedBox(height: 15),
-              ],
-            ),
-          ),
-        ),
-        bottomCardWidget: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Repository:  ${widget.listData[widget.index]['full_name']}',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 15),
-                if (widget.listData[widget.index]['description'] != null)
-                  Text(
-                    'Description:  ${widget.listData[widget.index]['description']}',
-                    style: TextStyle(
-                      color: Colors.deepPurple[100],
-                    ),
-                    maxLines: 4,
+                const SizedBox(width: 20,),
+                Expanded(
+                  flex: 3,
+                  child: Text(
+                    'Owner:  ${widget.listData[widget.index]['owner']['login']}',
+                    style: const TextStyle(color: Colors.white,fontSize: 16,),
                     overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.center,
-                  )
-                else
-                  Text(
-                    'No Description',
-                    style: TextStyle(color: Colors.deepPurple[100]),
+                    maxLines: 2,
                   ),
-                const SizedBox(height: 15),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomButton(
-                      height: 35,
-                      width: deviceWidth / 4.4,
-                      onPressed: visitRepo,
-                      isIcon: true,
-                      buttonText: 'Visit',
-                      color1: Colors.deepPurple.shade800,
-                    ),
-                    CustomButton(
-                      height: 35,
-                      width: deviceWidth / 2.6,
-                      onPressed: viewContributors,
-                      isIcon: true,
-                      buttonText: 'Contributors',
-                      icon: Icons.people_outline,
-                      color1: Colors.deepPurple.shade800,
-                    ),
-                    CustomButton(
-                      height: 35,
-                      width: deviceWidth / 2.6,
-                      onPressed: _toggleBookmark,
-                      isIcon: true,
-                      icon: Icons.bookmark_add_outlined,
-                      buttonText: 'Bookmark',
-                      color1: Colors.deepPurple.shade800,
-                    ),
-                  ],
                 ),
+                const SizedBox(height: 15),
               ],
-            ),
           ),
+            ),],
+        ),
+      ),
+      bottomCardWidget: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Repository:  ${widget.listData[widget.index]['full_name']}',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 15),
+            if (widget.listData[widget.index]['description'] != null)
+              Text(
+                'Description:  ${widget.listData[widget.index]['description']}',
+                style: TextStyle(
+                  color: Colors.deepPurple[100],
+                ),
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+              )
+            else
+              Text(
+                'No Description',
+                style: TextStyle(color: Colors.deepPurple[100]),
+              ),
+            const SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomButton(
+                    height: 35,
+                    width: deviceWidth / 4.4,
+                    onPressed: visitRepo,
+                    isIcon: true,
+                    buttonText: 'Visit',
+                  ),
+                  CustomButton(
+                    height: 35,
+                    width: deviceWidth / 2.6,
+                    onPressed: viewContributors,
+                    isIcon: true,
+                    buttonText: 'Contributors',
+                    icon: Icons.people_outline,
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

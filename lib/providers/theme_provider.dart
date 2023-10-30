@@ -1,48 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:hacktoberfest_flutter/main.dart';
 import 'package:hacktoberfest_flutter/shared/colors.dart';
 
 class ThemeProvider extends ChangeNotifier{
 
-  ThemeProvider({required this.isdarkTheme, this.selectedTheme});
-
-  bool isdarkTheme;
-  String? selectedTheme;
-
-  //global lightTheme for app
   var lightTheme= ThemeData(
 
     fontFamily: 'Poppins-Regular',
-   // backgroundColor: Color(0xfffafafa),
+    focusColor: hacktoberVioletLight,
+    indicatorColor: hacktoberViolet,
     iconButtonTheme : IconButtonThemeData(
       style: ButtonStyle(
         iconColor: MaterialStateProperty.all(Colors.black),
       ),
     ),
+    appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.white,
+    ),
     secondaryHeaderColor: Colors.black,
     primaryColor: Colors.white,
-    scaffoldBackgroundColor: Colors.grey[200],
+    cardColor: lightModeButton,
+    canvasColor: hacktoberViolet,
+    scaffoldBackgroundColor: Colors.white,
     tabBarTheme: TabBarTheme(
-      labelColor: Colors.black,
-      unselectedLabelColor: Colors.grey[600],
+      labelColor: hacktoberViolet,
+      indicatorColor: hacktoberViolet,
+      labelStyle: const TextStyle(
+          fontWeight: FontWeight.w600,fontSize: 16,
+      ),
+      unselectedLabelStyle: const TextStyle(
+          fontWeight: FontWeight.w600,fontSize: 16,
+      ),
+      unselectedLabelColor: Colors.black,
     ),
-    inputDecorationTheme: const InputDecorationTheme(
+    inputDecorationTheme: InputDecorationTheme(
       suffixIconColor: Colors.black,
-        labelStyle: TextStyle(
+        labelStyle: const TextStyle(
           fontSize: 15,
           color: Colors.black,
         ),
-        helperStyle: TextStyle(
+        helperStyle: const TextStyle(
           color: Colors.black,
         ),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
-            color: Color.fromRGBO(217, 217, 217, 1),),
-        borderRadius: BorderRadius.all(Radius.circular(20)),
+            color: hacktoberViolet,),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
-            color: Color.fromRGBO(143, 143, 143, 1),),
-        borderRadius: BorderRadius.all(Radius.circular(20)),
+            color: hacktoberViolet,),
+        borderRadius:const BorderRadius.all(Radius.circular(20)),
       ),
     ),
     listTileTheme: const ListTileThemeData(
@@ -60,20 +68,31 @@ class ThemeProvider extends ChangeNotifier{
 
   //global darkTheme for app
   var darkTheme = ThemeData(
-
     fontFamily: 'Poppins-Regular',
-   // backgroundColor: Color(0xff071724),
+    focusColor: darkModeCardLight,
+    indicatorColor: darkModeCard,
     iconButtonTheme : IconButtonThemeData(
         style: ButtonStyle(
             iconColor: MaterialStateProperty.all(const Color(0xff93C2DB)),
         ),
     ),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Color(0xff3C3C3C),
+    ),
     secondaryHeaderColor: const Color(0xffFDF0F0),
-    primaryColor: darkModeHacktober,
-    scaffoldBackgroundColor: const Color(0xff0F253E),
-    tabBarTheme: const TabBarTheme(
-      labelColor: Color(0xff93C2DB),
-      unselectedLabelColor: Colors.white60,
+    primaryColor: darkMode,
+    cardColor: darkModeButton,
+    canvasColor: darkModeCard,
+    tabBarTheme: TabBarTheme(
+      labelColor: darkModeCard,
+      indicatorColor: darkModeCard,
+      labelStyle: const TextStyle(
+          fontWeight: FontWeight.w600,fontSize: 16,
+      ),
+      unselectedLabelStyle: const TextStyle(
+          fontWeight: FontWeight.w600,fontSize: 16,
+      ),
+      unselectedLabelColor: Colors.white,
     ),
     inputDecorationTheme: InputDecorationTheme(
       suffixIconColor: Colors.white,
@@ -84,14 +103,14 @@ class ThemeProvider extends ChangeNotifier{
       helperStyle: const TextStyle(
         color: Colors.white,
       ),
-      enabledBorder: const OutlineInputBorder(
+      enabledBorder:  OutlineInputBorder(
         borderSide: BorderSide(
-            color: Color.fromRGBO(217, 217, 217, 1),),
-        borderRadius: BorderRadius.all(Radius.circular(20)),
+            color: darkModeCard,),
+        borderRadius:const BorderRadius.all(Radius.circular(20)),
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
-            color: Colors.purple.shade300,),
+            color:darkModeCard,),
             borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),
     ),
@@ -108,29 +127,10 @@ class ThemeProvider extends ChangeNotifier{
     ),
   );
 
-
-  //
-  bool get isDarkTheme2=> isdarkTheme;
-
-
   //changeTheme to set the theme chosen in settings page
-  void changeTheme(newTheme){
-    selectedTheme = newTheme;
+  void changeTheme(bool isOn){
+    device.theme=isOn?'Dark':'Light';
     notifyListeners();
   }
 
-  //setTheme , used before to change theme from light to dark and vice-versa
-  void setTheme(){
-    isdarkTheme = !isdarkTheme;
-    notifyListeners();
-  }
-
-  //getter to get the current theme
-  ThemeData get currentTheme{
-    if(isdarkTheme){
-      return darkTheme;
-    } else {
-      return lightTheme;
-    }
-  }
 }
