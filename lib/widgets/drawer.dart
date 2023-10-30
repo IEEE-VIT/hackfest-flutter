@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:hacktoberfest_flutter/main.dart';
@@ -22,13 +23,14 @@ class _DrawerWidgetState extends State<DrawerWidget> {
     return Drawer(
       width: MediaQuery.of(context).size.width * 0.7,
       child: Scaffold(
+        backgroundColor: Theme.of(context).primaryColor,
         body: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 50, left: 20, bottom: 30),
+            Padding(
+              padding: const EdgeInsets.only(top: 50, left: 20, bottom: 30),
               child: Row(
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 40,
                     backgroundImage: NetworkImage(
                         'https://avatarfiles.alphacoders.com/206/thumb-206822.jpg',),
@@ -40,7 +42,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                         'Red Hair Shanks',
                         maxLines: 2,
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Theme.of(context).secondaryHeaderColor,
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                         ),
@@ -60,7 +62,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               text: 'Profile',
               icon: Icons.person_rounded,
               context: context,
-              route: '',
+              route: 'ProfileDetails',
             ),
             BuildTile(
               text: 'Sign Out',
@@ -102,10 +104,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   ),
                   Container(
                     padding: const EdgeInsets.only(left: 15),
-                    child: const Text(
+                    child: Text(
                       'Change Theme',
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Theme.of(context).secondaryHeaderColor,
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
                       ),
@@ -132,12 +134,12 @@ class _DrawerWidgetState extends State<DrawerWidget> {
       leading: Icon(
         icon,
         size: 25,
-        color: Colors.black,
+        color: Theme.of(context).secondaryHeaderColor,
       ),
       title: Text(
         text,
-        style: const TextStyle(
-          color: Colors.black,
+        style: TextStyle(
+          color: Theme.of(context).secondaryHeaderColor,
           fontSize: 14,
           fontWeight: FontWeight.w400,
         ),
