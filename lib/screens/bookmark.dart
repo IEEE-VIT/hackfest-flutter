@@ -9,6 +9,8 @@ import 'package:hacktoberfest_flutter/shared/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../widgets/custom_button.dart';
+
 class Bookmark extends StatefulWidget {
   const Bookmark({super.key});
   static String routename = 'Bookmark';
@@ -42,10 +44,6 @@ class _BookmarkState extends State<Bookmark> {
   ) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final List<String> bookmarkStrings = prefs.getStringList('bookmark') ?? [];
-    // final int indexToRemove = bookmarkStrings.indexWhere((item) {
-    //   final Map<String, dynamic> repoMap = json.decode(item);
-    //   return repoMap['fullName'] == repository.fullName;
-    // });
 
     if (index >= 0) {
       bookmarkStrings.removeAt(index);
@@ -58,7 +56,10 @@ class _BookmarkState extends State<Bookmark> {
 
   @override
   Widget build(BuildContext context) {
+
+    final deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
       body: FutureBuilder<List<BookmarkedRepository>>(
         future: bookmarks,
         builder: (context, snapshot) {
@@ -77,70 +78,100 @@ class _BookmarkState extends State<Bookmark> {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: FlutterSlimyCard(
-                      color: hacktoberViolet,
-                      topCardHeight: 230,
+                      color: Theme.of(context).canvasColor,
+                      cardWidth: deviceWidth*0.88,
+                      topCardHeight: 150,
                       bottomCardHeight: 250,
                       borderRadius: 15,
-                      topCardWidget: SingleChildScrollView(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Container(
-                                height: 80,
-                                width: 90,
-                                decoration: BoxDecoration(
+                      topCardWidget: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Stack(
+                          children: [
+                            Container(
+                              alignment: Alignment.topRight,
+                              child: IconButton(
+                                onPressed: (){removeBookmark(repo, index);},
+                                icon: Icon(
+                                  bookmarked?Icons.bookmark_outline:Icons.bookmark,
+                                  size: 40,
                                   color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                      repo.avatarUrl,
-                                    ),
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.1),
-                                      blurRadius: 20,
-                                      spreadRadius: 1,
-                                    ),
-                                  ],
                                 ),
                               ),
-                              const SizedBox(height: 15),
-                              Text(
-                                'Owner:  ${repo.owner}',
-                                style: const TextStyle(color: Colors.white),
+                            ),
+                            Container(
+                              alignment: Alignment.center,
+                              child: Row(
+                                children: <Widget>[
+                                  Container(
+                                    margin: const EdgeInsets.only(left: 20),
+                                    height: 80,
+                                    width: 90,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                      image: DecorationImage(
+                                        image: NetworkImage(
+                                          repo.avatarUrl,
+                                        ),
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.1),
+                                          blurRadius: 20,
+                                          spreadRadius: 1,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(width: 20,),
+                                  Expanded(
+                                    flex: 3,
+                                    child: Text(
+                                      'Owner:  ${repo.owner}',
+                                      style: const TextStyle(color: Colors.white,fontSize: 16,),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 2,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 15),
+                                ],
                               ),
-                              const SizedBox(height: 15),
-                            ],
-                          ),
+                            ),],
                         ),
                       ),
                       bottomCardWidget: SingleChildScrollView(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Repository:  ${repo.fullName}',
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Repository:  ${repo.fullName}',
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
                               ),
-                              const SizedBox(height: 15),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 15),
                               Text(
                                 'Description:  ${repo.description}',
-                                style: TextStyle(color: Colors.deepPurple[100]),
+                                style: TextStyle(
+                                  color: Colors.deepPurple[100],
+                                ),
+                                maxLines: 4,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.center,
                               ),
-                              const SizedBox(height: 15),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                            const SizedBox(height: 15),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  ElevatedButton(
+                                  CustomButton(
+                                    height: 35,
+                                    width: deviceWidth / 4.4,
                                     onPressed: () async {
                                       final String url = repo.link;
                                       if (await canLaunchUrl(Uri.parse(url))) {
@@ -149,93 +180,30 @@ class _BookmarkState extends State<Bookmark> {
                                         throw 'Could not launch $url';
                                       }
                                     },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor:
-                                          Colors.deepPurple.shade800,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                    ),
-                                    child: const Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Icon(
-                                          Icons.visibility,
-                                          color: Colors.white,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(left: 7),
-                                          child: Text(
-                                            'Visit',
+                                    isIcon: true,
+                                    buttonText: 'Visit',
+                                  ),
+                                  CustomButton(
+                                    height: 35,
+                                    width: deviceWidth / 2.6,
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        CupertinoPageRoute(
+                                          builder: (_) => Contributors(
+                                            repoName: repo.fullName,
                                           ),
                                         ),
-                                      ],
-                                    ),
-                                  ),
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      removeBookmark(repo, index);
+                                      );
                                     },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor:
-                                          Colors.deepPurple.shade800,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                    ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Icon(
-                                          bookmarked == true
-                                              ? Icons.bookmarks_outlined
-                                              : Icons.bookmarks,
-                                          color: Colors.white,
-                                        ),
-                                      ],
-                                    ),
+                                    isIcon: true,
+                                    buttonText: 'Contributors',
+                                    icon: Icons.people_outline,
                                   ),
                                 ],
                               ),
-                              ElevatedButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    CupertinoPageRoute(
-                                      builder: (_) => Contributors(
-                                        repoName: repo.fullName,
-                                      ),
-                                    ),
-                                  );
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.deepPurple[800],
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                ),
-                                child: const Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Icon(
-                                      Icons.people_outline,
-                                      color: Colors.white,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 7),
-                                      child: Text('Contributors'),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
