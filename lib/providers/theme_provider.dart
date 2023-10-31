@@ -5,10 +5,10 @@ import 'package:hacktoberfest_flutter/shared/colors.dart';
 class ThemeProvider extends ChangeNotifier{
 
   var lightTheme= ThemeData(
-
     fontFamily: 'Poppins-Regular',
     focusColor: hacktoberVioletLight,
     indicatorColor: hacktoberViolet,
+    highlightColor: Color(0xFFAA96DA),
     iconButtonTheme : IconButtonThemeData(
       style: ButtonStyle(
         iconColor: MaterialStateProperty.all(Colors.black),
@@ -71,6 +71,7 @@ class ThemeProvider extends ChangeNotifier{
     fontFamily: 'Poppins-Regular',
     focusColor: darkModeCardLight,
     indicatorColor: darkModeCard,
+    highlightColor: Color(0xFF206993),
     iconButtonTheme : IconButtonThemeData(
         style: ButtonStyle(
             iconColor: MaterialStateProperty.all(const Color(0xff93C2DB)),
