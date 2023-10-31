@@ -59,6 +59,7 @@ class _BookmarkState extends State<Bookmark> {
 
     final deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
       body: FutureBuilder<List<BookmarkedRepository>>(
         future: bookmarks,
         builder: (context, snapshot) {
