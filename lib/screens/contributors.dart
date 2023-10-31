@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hacktoberfest_flutter/models/contributor_detail_model.dart';
 import 'package:hacktoberfest_flutter/models/contributors_card_model.dart';
 import 'package:hacktoberfest_flutter/models/contributors_data_model.dart';
-import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
-import 'package:hacktoberfest_flutter/shared/colors.dart';
 import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Contributors extends StatefulWidget {
@@ -36,40 +33,23 @@ class _ContributorsState extends State<Contributors>
     final deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
         elevation: 5.0,
-        //shadowColor: Colors.black26,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
         backgroundColor: Theme.of(context).primaryColor,
-        centerTitle: true,
         iconTheme: IconThemeData(
           color: Theme.of(context).secondaryHeaderColor,
         ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Contributors List',
-              style: TextStyle(
-                color: Theme.of(context).secondaryHeaderColor,
-              ),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Container(
-              height: 30,
-              width: 30,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(50),
-              ),
-              child: Text(
-                cardList.length.toString(),
-                style: const TextStyle(fontSize: 14),
-              ),
-            ),
-          ],
+        title: Text(
+          'Contributors List',
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 20,
+            color: Theme.of(context).secondaryHeaderColor,
+          ),
         ),
       ),
       body: cardList.isEmpty
@@ -83,7 +63,7 @@ class _ContributorsState extends State<Contributors>
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Theme.of(context).primaryColor,
+                      color: Colors.transparent,
                     ),
                     padding: const EdgeInsets.all(10),
                     child: Row(
@@ -105,26 +85,22 @@ class _ContributorsState extends State<Contributors>
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        hacktoberViolet,
-                                        hacktoberPink,
-                                      ],
-                                    ),
+                                    color: Theme.of(context).highlightColor,
                                     borderRadius: BorderRadius.circular(30.0),
                                   ),
                                   child: Container(
                                     constraints: BoxConstraints(
-                                      maxWidth: deviceWidth / 5,
+                                      maxWidth: deviceWidth / 4.5,
                                       minHeight: 30.0,
                                     ),
                                     alignment: Alignment.center,
-                                    child: const Text(
+                                    child: Text(
                                       'View Profile',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 10,
+                                        color: Theme.of(context).secondaryHeaderColor,
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                   ),
@@ -138,6 +114,7 @@ class _ContributorsState extends State<Contributors>
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             if (cardList[index].name.isNotEmpty)
                               Text(
@@ -145,7 +122,7 @@ class _ContributorsState extends State<Contributors>
                                 style: TextStyle(
                                   color: Theme.of(context).secondaryHeaderColor,
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 14,
+                                  fontSize: 16,
                                 ),
                               )
                             else
@@ -153,8 +130,8 @@ class _ContributorsState extends State<Contributors>
                             Text(
                               cardList[index].userName,
                               style: TextStyle(
-                                color: Colors.grey[700],
-                                fontWeight: FontWeight.w400,
+                                color: Theme.of(context).secondaryHeaderColor,
+                                fontWeight: FontWeight.w500,
                                 fontSize: 14,
                               ),
                             ),
@@ -168,7 +145,7 @@ class _ContributorsState extends State<Contributors>
                                     ? 'Contributor'
                                     : cardList[index].desc,
                                 style: TextStyle(
-                                  color:  Colors.grey[700],
+                                  color:  Theme.of(context).secondaryHeaderColor,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12,
                                 ),
@@ -185,13 +162,13 @@ class _ContributorsState extends State<Contributors>
                                   Icon(
                                     Icons.location_on,
                                     size: 14,
-                                    color: Colors.black,
+                                    color: Theme.of(context).secondaryHeaderColor,
                                   ),
                                   Text(
                                     cardList[index].location,
                                     style: TextStyle(
                                       fontSize: 12,
-                                      color:Colors.black,
+                                      color:Theme.of(context).secondaryHeaderColor,
                                     ),
                                   ),
                                 ],
@@ -249,10 +226,10 @@ class _ContributorsState extends State<Contributors>
                 );
               },
             ),
-      floatingActionButton: const FloatingActionButton(
-        backgroundColor: Colors.blue,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).highlightColor,
         onPressed: addToContributors,
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add_rounded,size: 40,),
       ),
     );
   }
