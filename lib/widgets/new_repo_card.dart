@@ -46,7 +46,7 @@ class _NewRepoCardState extends State<NewRepoCard> {
 
     final Map<String, dynamic> repoMap = bookmarkedRepo.toMap();
 
-    final List<String> bookmarks = pref.getStringList('bookmark') ?? [];
+    final List<String> bookmarks = pref.getStringList('bookmarking') ?? [];
 
     if (bookmarks.any((item) {
       final Map<String, dynamic> repoMap =
@@ -70,7 +70,7 @@ class _NewRepoCardState extends State<NewRepoCard> {
       });
     }
 
-    pref.setStringList('bookmark', bookmarks);
+    pref.setStringList('bookmarking', bookmarks);
   }
 
   @override
