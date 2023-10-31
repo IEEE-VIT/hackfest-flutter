@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
-import 'package:hacktoberfest_flutter/shared/colors.dart';
-import 'package:provider/provider.dart';
 
 //customizable button to remove code redundancy
 class CustomButton extends StatelessWidget {

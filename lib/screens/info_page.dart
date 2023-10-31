@@ -3,15 +3,13 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slimy_card/flutter_slimy_card.dart';
+import 'package:hacktoberfest_flutter/models/bookmarked_repo_model.dart';
+import 'package:hacktoberfest_flutter/screens/contributors.dart';
 import 'package:hacktoberfest_flutter/shared/dictionary.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:hacktoberfest_flutter/widgets/custom_button.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../models/bookmarked_repo_model.dart';
-import '../widgets/custom_button.dart';
-import 'contributors.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 
 class InfoPage extends StatefulWidget {
   const InfoPage({Key? key}) : super(key: key);
@@ -24,10 +22,15 @@ class InfoPage extends StatefulWidget {
 class _InfoPageState extends State<InfoPage> {
   bool bookmarked = false;
 
-
-  Future<void> _toggleBookmark(String repoFullName, String repoOwner, String repoName, String repoDescription, String repoUrl, String repoAvatarUrl) async {
+  Future<void> _toggleBookmark(
+    String repoFullName,
+    String repoOwner,
+    String repoName,
+    String repoDescription,
+    String repoUrl,
+    String repoAvatarUrl,
+  ) async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
-
 
     final BookmarkedRepository bookmarkedRepo = BookmarkedRepository(
       fullName: repoFullName,
@@ -44,13 +47,13 @@ class _InfoPageState extends State<InfoPage> {
 
     if (bookmarks.any((item) {
       final Map<String, dynamic> repoMap =
-      json.decode(item); // Deserialize the JSON string
+          json.decode(item); // Deserialize the JSON string
       return repoMap['fullName'] == repoFullName;
     })) {
       // Remove the bookmark
       bookmarks.removeWhere((item) {
         final Map<String, dynamic> repoMap =
-        json.decode(item); // Deserialize the JSON string
+            json.decode(item); // Deserialize the JSON string
         return repoMap['fullName'] == repoFullName;
       });
       setState(() {
@@ -80,6 +83,7 @@ class _InfoPageState extends State<InfoPage> {
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -107,7 +111,7 @@ class _InfoPageState extends State<InfoPage> {
                       'assets/IEEE.png',
                       fit: BoxFit.fill,
                       // height: 200,
-                      width: deviceWidth/2.0,
+                      width: deviceWidth / 2.0,
                     ),
                   ),
                 ),
@@ -141,7 +145,7 @@ class _InfoPageState extends State<InfoPage> {
                 height: 20,
               ),
               FutureBuilder<Map<String, dynamic>>(
-                future: getRepositoryDetails('IEEE-VIT','hackfest-flutter'),
+                future: getRepositoryDetails('IEEE-VIT', 'hackfest-flutter'),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const CircularProgressIndicator();
@@ -152,7 +156,7 @@ class _InfoPageState extends State<InfoPage> {
 
                     return FlutterSlimyCard(
                       color: Theme.of(context).canvasColor,
-                      cardWidth: deviceWidth*0.88,
+                      cardWidth: deviceWidth * 0.88,
                       topCardHeight: 150,
                       bottomCardHeight: 250,
                       borderRadius: 15,
@@ -163,9 +167,20 @@ class _InfoPageState extends State<InfoPage> {
                             Container(
                               alignment: Alignment.topRight,
                               child: IconButton(
-                                onPressed: () async {_toggleBookmark(repoData?['full_name'], repoData?['owner']['login'], repoData?['name'], repoData!['description'].toString(), repoData['html_url'], repoData['owner']['avatar_url'] );},
+                                onPressed: () async {
+                                  _toggleBookmark(
+                                    repoData?['full_name'],
+                                    repoData?['owner']['login'],
+                                    repoData?['name'],
+                                    repoData!['description'].toString(),
+                                    repoData['html_url'],
+                                    repoData['owner']['avatar_url'],
+                                  );
+                                },
                                 icon: Icon(
-                                  bookmarked?Icons.bookmark:Icons.bookmark_outline,
+                                  bookmarked
+                                      ? Icons.bookmark
+                                      : Icons.bookmark_outline,
                                   size: 40,
                                   color: Colors.white,
                                 ),
@@ -196,12 +211,17 @@ class _InfoPageState extends State<InfoPage> {
                                       ],
                                     ),
                                   ),
-                                  const SizedBox(width: 20,),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
                                   Expanded(
                                     flex: 3,
                                     child: Text(
                                       'Owner:  ${repoData?['owner']['login']}',
-                                      style: const TextStyle(color: Colors.white,fontSize: 16,),
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                      ),
                                       overflow: TextOverflow.ellipsis,
                                       maxLines: 2,
                                     ),
@@ -209,7 +229,8 @@ class _InfoPageState extends State<InfoPage> {
                                   const SizedBox(height: 15),
                                 ],
                               ),
-                            ),],
+                            ),
+                          ],
                         ),
                       ),
                       bottomCardWidget: SingleChildScrollView(
@@ -244,9 +265,11 @@ class _InfoPageState extends State<InfoPage> {
                               ),
                             const SizedBox(height: 15),
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   CustomButton(
                                     height: 35,
@@ -301,7 +324,8 @@ class _InfoPageState extends State<InfoPage> {
                 height: 35,
                 width: deviceWidth / 4.4,
                 onPressed: () async {
-                  const String url = 'https://github.com/IEEE-VIT/hackfest-flutter';
+                  const String url =
+                      'https://github.com/IEEE-VIT/hackfest-flutter';
                   if (await canLaunchUrl(Uri.parse(url))) {
                     await launchUrl(Uri.parse(url));
                   } else {
@@ -328,7 +352,6 @@ class _InfoPageState extends State<InfoPage> {
                 buttonText: 'Contributors',
                 icon: Icons.people_outline,
               ),
-
               CustomButton(
                 height: 35,
                 width: deviceWidth / 4.1,
@@ -343,16 +366,19 @@ class _InfoPageState extends State<InfoPage> {
                 isIcon: true,
                 icon: Icons.follow_the_signs,
                 buttonText: 'Follow',
-              )
+              ),
             ],
-          )
+          ),
         ],
       ),
     );
   }
 }
 
-Future<Map<String, dynamic>> getRepositoryDetails(String owner, String repoName) async {
+Future<Map<String, dynamic>> getRepositoryDetails(
+  String owner,
+  String repoName,
+) async {
   final String baseURL = 'https://api.github.com/repos/$owner/$repoName';
   final response = await http.get(
     Uri.parse(Uri.encodeFull(baseURL)),
@@ -366,4 +392,3 @@ Future<Map<String, dynamic>> getRepositoryDetails(String owner, String repoName)
     throw Exception('Failed to fetch repository details');
   }
 }
-

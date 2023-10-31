@@ -5,11 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slimy_card/flutter_slimy_card.dart';
 import 'package:hacktoberfest_flutter/models/bookmarked_repo_model.dart';
 import 'package:hacktoberfest_flutter/screens/contributors.dart';
-import 'package:hacktoberfest_flutter/shared/colors.dart';
+import 'package:hacktoberfest_flutter/widgets/custom_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import '../widgets/custom_button.dart';
 
 class Bookmark extends StatefulWidget {
   const Bookmark({super.key});
@@ -31,7 +29,8 @@ class _BookmarkState extends State<Bookmark> {
 
   Future<List<BookmarkedRepository>> loadBookmarks() async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
-    final List<String> bookmarkStrings = pref.getStringList('bookmarking') ?? [];
+    final List<String> bookmarkStrings =
+        pref.getStringList('bookmarking') ?? [];
     final List<BookmarkedRepository> bookmarks = bookmarkStrings
         .map((item) => BookmarkedRepository.fromMap(json.decode(item)))
         .toList();
@@ -43,24 +42,23 @@ class _BookmarkState extends State<Bookmark> {
     int index,
   ) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final List<String> bookmarkStrings = prefs.getStringList('bookmarking') ?? [];
+    final List<String> bookmarkStrings =
+        prefs.getStringList('bookmarking') ?? [];
 
     if (index >= 0) {
       bookmarkStrings.removeAt(index);
       prefs.setStringList('bookmarking', bookmarkStrings);
     }
-    if(repository.fullName == 'IEEE-VIT/hackfest-flutter'){
+    if (repository.fullName == 'IEEE-VIT/hackfest-flutter') {
       prefs.setBool('bookmarkedState', bookmarked);
     }
     setState(() {
       bookmarks = loadBookmarks();
     });
-
   }
 
   @override
   Widget build(BuildContext context) {
-
     final deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
@@ -83,7 +81,7 @@ class _BookmarkState extends State<Bookmark> {
                     padding: const EdgeInsets.all(8.0),
                     child: FlutterSlimyCard(
                       color: Theme.of(context).canvasColor,
-                      cardWidth: deviceWidth*0.88,
+                      cardWidth: deviceWidth * 0.88,
                       topCardHeight: 150,
                       bottomCardHeight: 250,
                       borderRadius: 15,
@@ -94,9 +92,13 @@ class _BookmarkState extends State<Bookmark> {
                             Container(
                               alignment: Alignment.topRight,
                               child: IconButton(
-                                onPressed: (){removeBookmark(repo, index);},
+                                onPressed: () {
+                                  removeBookmark(repo, index);
+                                },
                                 icon: Icon(
-                                  bookmarked?Icons.bookmark_outline:Icons.bookmark,
+                                  bookmarked
+                                      ? Icons.bookmark_outline
+                                      : Icons.bookmark,
                                   size: 40,
                                   color: Colors.white,
                                 ),
@@ -127,12 +129,17 @@ class _BookmarkState extends State<Bookmark> {
                                       ],
                                     ),
                                   ),
-                                  const SizedBox(width: 20,),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
                                   Expanded(
                                     flex: 3,
                                     child: Text(
                                       'Owner:  ${repo.owner}',
-                                      style: const TextStyle(color: Colors.white,fontSize: 16,),
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                      ),
                                       overflow: TextOverflow.ellipsis,
                                       maxLines: 2,
                                     ),
@@ -140,7 +147,8 @@ class _BookmarkState extends State<Bookmark> {
                                   const SizedBox(height: 15),
                                 ],
                               ),
-                            ),],
+                            ),
+                          ],
                         ),
                       ),
                       bottomCardWidget: SingleChildScrollView(
@@ -158,20 +166,22 @@ class _BookmarkState extends State<Bookmark> {
                               textAlign: TextAlign.center,
                             ),
                             const SizedBox(height: 15),
-                              Text(
-                                'Description:  ${repo.description}',
-                                style: TextStyle(
-                                  color: Colors.deepPurple[100],
-                                ),
-                                maxLines: 4,
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.center,
+                            Text(
+                              'Description:  ${repo.description}',
+                              style: TextStyle(
+                                color: Colors.deepPurple[100],
                               ),
+                              maxLines: 4,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                            ),
                             const SizedBox(height: 15),
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   CustomButton(
                                     height: 35,
