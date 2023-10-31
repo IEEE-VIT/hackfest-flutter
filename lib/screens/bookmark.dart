@@ -31,7 +31,7 @@ class _BookmarkState extends State<Bookmark> {
 
   Future<List<BookmarkedRepository>> loadBookmarks() async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
-    final List<String> bookmarkStrings = pref.getStringList('bookmark') ?? [];
+    final List<String> bookmarkStrings = pref.getStringList('bookmarking') ?? [];
     final List<BookmarkedRepository> bookmarks = bookmarkStrings
         .map((item) => BookmarkedRepository.fromMap(json.decode(item)))
         .toList();
@@ -43,15 +43,19 @@ class _BookmarkState extends State<Bookmark> {
     int index,
   ) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final List<String> bookmarkStrings = prefs.getStringList('bookmark') ?? [];
+    final List<String> bookmarkStrings = prefs.getStringList('bookmarking') ?? [];
 
     if (index >= 0) {
       bookmarkStrings.removeAt(index);
-      prefs.setStringList('bookmark', bookmarkStrings);
+      prefs.setStringList('bookmarking', bookmarkStrings);
+    }
+    if(repository.fullName == 'IEEE-VIT/hackfest-flutter'){
+      prefs.setBool('bookmarkedState', bookmarked);
     }
     setState(() {
       bookmarks = loadBookmarks();
     });
+
   }
 
   @override
