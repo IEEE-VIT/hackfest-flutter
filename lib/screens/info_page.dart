@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hacktoberfest_flutter/shared/dictionary.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+
 class InfoPage extends StatefulWidget {
   const InfoPage({Key? key}) : super(key: key);
   static String routename = 'InfoPage';
@@ -15,15 +16,18 @@ class _InfoPageState extends State<InfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: color,
+      backgroundColor: Theme.of(context).primaryColor,
       body: ListView(
         children: [
           Column(
             children: [
+              SizedBox(
+                height: 20,
+              ),
               GestureDetector(
                 child: Center(
                   child: Image.asset(
-                    'assets/ieee.png',
+                    'assets/IEEE (2).png',
                     height: 150, //IEEE image
                   ),
                 ),
@@ -36,8 +40,8 @@ class _InfoPageState extends State<InfoPage> {
               Text(
                 ieeeDesc,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
+                style: TextStyle(
+                  color: Theme.of(context).secondaryHeaderColor,
                 ),
               ),
               Container(
@@ -62,8 +66,8 @@ class _InfoPageState extends State<InfoPage> {
           Text(
             hacktoberfestDesc,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Colors.white,
+            style: TextStyle(
+              color: Theme.of(context).secondaryHeaderColor,
             ),
           ),
         ],
