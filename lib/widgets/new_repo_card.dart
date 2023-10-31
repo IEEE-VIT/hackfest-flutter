@@ -4,11 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slimy_card/flutter_slimy_card.dart';
 import 'package:hacktoberfest_flutter/models/bookmarked_repo_model.dart';
-import 'package:hacktoberfest_flutter/providers/theme_provider.dart';
 import 'package:hacktoberfest_flutter/screens/contributors.dart';
-import 'package:hacktoberfest_flutter/shared/colors.dart';
 import 'package:hacktoberfest_flutter/widgets/custom_button.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 

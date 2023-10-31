@@ -31,7 +31,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
           CustomShapeProfile(
             width: width,
             userName: userName,
-            //TODO: Give profile photourl in below field
+            // Give profile photourl in below field
             photoUrl: photoUrl,
           ),
           const CustomContainer(heading: 'Description:', subHeading:'Chief of the Red Hair Pirates \nOne of the Four Emperors that rule over the New World.' ,),

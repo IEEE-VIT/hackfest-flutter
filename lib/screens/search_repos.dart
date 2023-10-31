@@ -17,7 +17,6 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
-
   Future<List> listOfRepos = Future.value([]);
 
   TextEditingController _controller = TextEditingController();
@@ -36,7 +35,6 @@ class _SearchState extends State<Search> {
 
   @override
   Widget build(BuildContext context) {
-    final deviceHeight = MediaQuery.of(context).size.height;
     final deviceWidth = MediaQuery.of(context).size.width;
 
     final Brightness currentBrightness =
@@ -44,6 +42,7 @@ class _SearchState extends State<Search> {
     // Check if the device is in dark mode
     final bool isDarkMode = currentBrightness == Brightness.dark;
 
+    // ignore: unused_local_variable
     Color inputColor = Colors.black;
 
     // Check the theme conditions and set the inputText of the search field accordingly
@@ -70,6 +69,7 @@ class _SearchState extends State<Search> {
         return;
       }
     }
+
     return Scaffold(
       body: Container(
         color: Theme.of(context).primaryColor,
@@ -82,7 +82,7 @@ class _SearchState extends State<Search> {
               children: [
                 Container(
                   height: 50,
-                  width: deviceWidth*0.63,
+                  width: deviceWidth * 0.63,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                   ),
@@ -93,11 +93,25 @@ class _SearchState extends State<Search> {
                     ),
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Theme.of(context).inputDecorationTheme.enabledBorder!.borderSide.color,width: 2,),
+                        borderSide: BorderSide(
+                          color: Theme.of(context)
+                              .inputDecorationTheme
+                              .enabledBorder!
+                              .borderSide
+                              .color,
+                          width: 2,
+                        ),
                         borderRadius: BorderRadius.circular(15.0),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Theme.of(context).inputDecorationTheme.focusedBorder!.borderSide.color,width: 2,),
+                        borderSide: BorderSide(
+                          color: Theme.of(context)
+                              .inputDecorationTheme
+                              .focusedBorder!
+                              .borderSide
+                              .color,
+                          width: 2,
+                        ),
                         borderRadius: BorderRadius.circular(15.0),
                       ),
                       labelText: 'Search Repository',
@@ -132,7 +146,7 @@ class _SearchState extends State<Search> {
                 ),
               ],
             ),
-            SizedBox(height: deviceWidth*0.03),
+            SizedBox(height: deviceWidth * 0.03),
             //This widget display the information of the repos with the help of listview
             FutureBuilder<List<dynamic>>(
               future: listOfRepos,
@@ -156,11 +170,14 @@ class _SearchState extends State<Search> {
                     ),
                   );
                 } else if (snapshot.data!.isEmpty) {
-                  return  Expanded(
+                  return Expanded(
                     child: Center(
-                      child: Text('No repositories found for the search term.',style: TextStyle(
-                        color: Theme.of(context).secondaryHeaderColor,
-                      ),),
+                      child: Text(
+                        'No repositories found for the search term.',
+                        style: TextStyle(
+                          color: Theme.of(context).secondaryHeaderColor,
+                        ),
+                      ),
                     ),
                   );
                 }

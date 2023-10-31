@@ -26,8 +26,3 @@ Color darkMode = const Color(0xff3D3D3D);
 Color darkModeCard = const Color(0xff206993);
 
 Color darkModeButton = const Color(0xff4148F5);
-
-
-
-
-

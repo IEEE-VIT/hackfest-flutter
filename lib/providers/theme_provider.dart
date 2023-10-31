@@ -2,20 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:hacktoberfest_flutter/main.dart';
 import 'package:hacktoberfest_flutter/shared/colors.dart';
 
-class ThemeProvider extends ChangeNotifier{
-
-  var lightTheme= ThemeData(
+class ThemeProvider extends ChangeNotifier {
+  var lightTheme = ThemeData(
     fontFamily: 'Poppins-Regular',
     focusColor: hacktoberVioletLight,
     indicatorColor: hacktoberViolet,
-    highlightColor: Color(0xFFAA96DA),
-    iconButtonTheme : IconButtonThemeData(
+    highlightColor: const Color(0xFFAA96DA),
+    iconButtonTheme: IconButtonThemeData(
       style: ButtonStyle(
         iconColor: MaterialStateProperty.all(Colors.black),
       ),
     ),
     appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
     ),
     secondaryHeaderColor: Colors.black,
     primaryColor: Colors.white,
@@ -26,44 +25,48 @@ class ThemeProvider extends ChangeNotifier{
       labelColor: hacktoberViolet,
       indicatorColor: hacktoberViolet,
       labelStyle: const TextStyle(
-          fontWeight: FontWeight.w600,fontSize: 16,
+        fontWeight: FontWeight.w600,
+        fontSize: 16,
       ),
       unselectedLabelStyle: const TextStyle(
-          fontWeight: FontWeight.w600,fontSize: 16,
+        fontWeight: FontWeight.w600,
+        fontSize: 16,
       ),
       unselectedLabelColor: Colors.black,
     ),
     inputDecorationTheme: InputDecorationTheme(
       suffixIconColor: Colors.black,
-        labelStyle: const TextStyle(
-          fontSize: 15,
-          color: Colors.black,
-        ),
-        helperStyle: const TextStyle(
-          color: Colors.black,
-        ),
+      labelStyle: const TextStyle(
+        fontSize: 15,
+        color: Colors.black,
+      ),
+      helperStyle: const TextStyle(
+        color: Colors.black,
+      ),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
-            color: hacktoberViolet,),
+          color: hacktoberViolet,
+        ),
         borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
-            color: hacktoberViolet,),
-        borderRadius:const BorderRadius.all(Radius.circular(20)),
+          color: hacktoberViolet,
+        ),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),
     ),
     listTileTheme: const ListTileThemeData(
-        textColor: Colors.black,
+      textColor: Colors.black,
     ),
     dialogTheme: const DialogTheme(
-        titleTextStyle: TextStyle(
-          color: Colors.black,
-          fontWeight: FontWeight.w600,
-          fontSize: 20,
-        ),
-        backgroundColor: Colors.white,
+      titleTextStyle: TextStyle(
+        color: Colors.black,
+        fontWeight: FontWeight.w600,
+        fontSize: 20,
       ),
+      backgroundColor: Colors.white,
+    ),
   );
 
   //global darkTheme for app
@@ -71,11 +74,11 @@ class ThemeProvider extends ChangeNotifier{
     fontFamily: 'Poppins-Regular',
     focusColor: darkModeCardLight,
     indicatorColor: darkModeCard,
-    highlightColor: Color(0xFF206993),
-    iconButtonTheme : IconButtonThemeData(
-        style: ButtonStyle(
-            iconColor: MaterialStateProperty.all(const Color(0xff93C2DB)),
-        ),
+    highlightColor: const Color(0xFF206993),
+    iconButtonTheme: IconButtonThemeData(
+      style: ButtonStyle(
+        iconColor: MaterialStateProperty.all(const Color(0xff93C2DB)),
+      ),
     ),
     appBarTheme: const AppBarTheme(
       backgroundColor: Color(0xff3C3C3C),
@@ -88,10 +91,12 @@ class ThemeProvider extends ChangeNotifier{
       labelColor: darkModeCard,
       indicatorColor: darkModeCard,
       labelStyle: const TextStyle(
-          fontWeight: FontWeight.w600,fontSize: 16,
+        fontWeight: FontWeight.w600,
+        fontSize: 16,
       ),
       unselectedLabelStyle: const TextStyle(
-          fontWeight: FontWeight.w600,fontSize: 16,
+        fontWeight: FontWeight.w600,
+        fontSize: 16,
       ),
       unselectedLabelColor: Colors.white,
     ),
@@ -104,15 +109,17 @@ class ThemeProvider extends ChangeNotifier{
       helperStyle: const TextStyle(
         color: Colors.white,
       ),
-      enabledBorder:  OutlineInputBorder(
+      enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
-            color: darkModeCard,),
-        borderRadius:const BorderRadius.all(Radius.circular(20)),
+          color: darkModeCard,
+        ),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
-            color:darkModeCard,),
-            borderRadius: const BorderRadius.all(Radius.circular(20)),
+          color: darkModeCard,
+        ),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),
     ),
     listTileTheme: const ListTileThemeData(
@@ -129,9 +136,8 @@ class ThemeProvider extends ChangeNotifier{
   );
 
   //changeTheme to set the theme chosen in settings page
-  void changeTheme(bool isOn){
-    device.theme=isOn?'Dark':'Light';
+  void changeTheme(bool isOn) {
+    device.theme = isOn ? 'Dark' : 'Light';
     notifyListeners();
   }
-
 }

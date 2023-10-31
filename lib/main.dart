@@ -31,16 +31,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   //set the saved theme to our device
 
   Future<void> loadAppTheme() async {
     final String theme = await getSetting('theme');
-    if(theme==null){
-      setState(() {
-        device.theme = 'Light';
-      });
-    }
+    // if (theme == null) {
+    //   setState(() {
+    //     device.theme = 'Light';
+    //   });
+    // }
     setState(() {
       device.theme = theme;
     });
@@ -65,7 +64,7 @@ class _MyAppState extends State<MyApp> {
         builder: (context, theme, _) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            theme: device.theme=='Dark'? theme.darkTheme : theme.lightTheme,
+            theme: device.theme == 'Dark' ? theme.darkTheme : theme.lightTheme,
             home: const SplashScreen(),
             routes: routes,
           );
